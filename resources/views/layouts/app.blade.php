@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/public/css/app.css') }}">
 
     <style>
         body {
@@ -26,6 +26,8 @@
     </style>
 </head>
 <body id="app-layout">
+    <script type="text/javascript" src="aurelia/jspm_packages/system.js"></script>
+    <script type="text/javascript" src="aurelia/config.js"></script>
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">

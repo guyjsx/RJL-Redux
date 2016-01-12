@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container spark-screen">
+<div class="container spark-screen" aurelia-app>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -9,6 +9,9 @@
 				<table class="table">
 					<thead></thead>
 					<tbody>
+						 <script>
+					     	System.import('aurelia-bootstrapper');
+					    </script>
 						@foreach($cases as $case)
 							<tr>
 								<td>{{ $case->caseId }}</td>
