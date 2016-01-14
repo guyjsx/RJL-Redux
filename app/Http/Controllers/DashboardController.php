@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\Compilers\BladeCompiler;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,7 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return response()->json(array('html' => view('home')->render()));
-        return view('home');
+        return view('welcome');
     }
 }

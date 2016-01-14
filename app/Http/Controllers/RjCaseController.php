@@ -19,9 +19,9 @@ class RjCaseController extends Controller
     {
     	$cases = RjCase::all();
 
-    	return view('cases/index', [
-    		'cases' => $cases	
-    	]);
+        return response()->json(array('html' =>view('cases/index', [
+            'cases' => $cases   
+        ])->render()));
     }
 
     /**

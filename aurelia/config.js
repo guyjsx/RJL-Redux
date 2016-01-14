@@ -8,7 +8,7 @@ System.config({
     ]
   },
   paths: {
-    "*": "src/*",
+    "*": "aurelia/src/*",
     "github:*": "aurelia/jspm_packages/github/*",
     "npm:*": "aurelia/jspm_packages/npm/*"
   },
@@ -19,6 +19,7 @@ System.config({
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.0.2",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.0.8",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-beta.1.0.1",
+    "aurelia-http-client": "npm:aurelia-http-client@1.0.0-beta.1.0.1",
     "aurelia-loader-default": "npm:aurelia-loader-default@1.0.0-beta.1.0.2",
     "aurelia-logging-console": "npm:aurelia-logging-console@1.0.0-beta.1",
     "aurelia-router": "npm:aurelia-router@1.0.0-beta.1.0.1",
@@ -104,6 +105,11 @@ System.config({
     "npm:aurelia-history-browser@1.0.0-beta.1.0.1": {
       "aurelia-history": "npm:aurelia-history@1.0.0-beta.1",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.0.2",
+      "core-js": "npm:core-js@1.2.6"
+    },
+    "npm:aurelia-http-client@1.0.0-beta.1.0.1": {
+      "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.0.2",
+      "aurelia-path": "npm:aurelia-path@1.0.0-beta.1",
       "core-js": "npm:core-js@1.2.6"
     },
     "npm:aurelia-loader-default@1.0.0-beta.1.0.2": {
