@@ -1,4 +1,6 @@
 import {HttpClient} from 'aurelia-http-client';
+import $ from 'jquery';
+import dataTable from 'datatables';
 
 export class Cases {
 	static inject() { return [HttpClient]; }
@@ -11,4 +13,11 @@ export class Cases {
 			this.html = response.content.html;
 		});
 	}
+
+	attached() {
+      $('#casesTable').dataTable( {
+        "paginate": true,
+        "pageLength": 25
+      });
+  }
 }

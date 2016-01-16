@@ -3,8 +3,12 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
 				<div class="panel-heading">Panel heading</div>
-				<table class="table">
-					<thead></thead>
+				<table id="casesTable" class="table">
+					<thead>
+						<tr>
+							<th></th>
+						</tr>
+					</thead>
 					<tbody>
 						@foreach($cases as $case)
 							<tr>

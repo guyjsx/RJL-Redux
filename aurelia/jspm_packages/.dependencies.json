@@ -186,5 +186,10 @@
     "aurelia-pal": "npm:aurelia-pal@^1.0.0-beta.1",
     "aurelia-path": "npm:aurelia-path@^1.0.0-beta.1",
     "core-js": "npm:core-js@^1.2.6"
-  }
+  },
+  "npm:datatables@1.10.9": {
+    "css": "jspm:css@^0.1.5",
+    "jquery": "jspm:jquery"
+  },
+  "npm:jquery@2.2.0": {}
 }
