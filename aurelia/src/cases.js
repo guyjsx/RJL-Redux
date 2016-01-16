@@ -3,6 +3,7 @@ import $ from 'jquery';
 import dataTable from 'datatables';
 
 export class Cases {
+	//test
 	static inject() { return [HttpClient]; }
 	constructor(http) {
 		this.http = http;
