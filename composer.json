@@ -27,7 +27,12 @@
     ],
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "app/models/entities",
+            "app/models/repositories",
+            "app/models/repositories/rjcase",
+            "app/models/services",
+            "app/models/services/rjcase"
         ],
         "psr-4": {
             "App\\": "app/"

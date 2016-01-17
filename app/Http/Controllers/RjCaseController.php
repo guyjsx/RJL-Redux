@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class RjCaseController extends Controller
 {
+
+    public function __construct(\Services\RjCase\RjCaseService $rjCaseService)
+    {
+        $this->rjCaseService = $rjCaseService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class RjCaseController extends Controller
      */
     public function index()
     {
-    	$cases = RjCase::all();
+    	$cases = $this->rjCaseService->getAllCases();
 
         return response()->json(array('html' =>view('cases/index', [
             'cases' => $cases   
