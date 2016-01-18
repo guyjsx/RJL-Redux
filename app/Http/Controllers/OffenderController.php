@@ -5,17 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\RjCase;
 use App\Http\Controllers\Controller;
 use Services\Offender\OffenderService;
-use Services\RjCase\RjCaseService;
 
-class RjCaseController extends Controller
+class OffenderController extends Controller
 {
-
-    public function __construct(RjCaseService $rjCaseService)
+    public function __construct(OffenderService $offenderService)
     {
-        $this->rjCaseService = $rjCaseService;
+        $this->offenderService = $offenderService;
     }
 
     /**
@@ -25,10 +22,10 @@ class RjCaseController extends Controller
      */
     public function index()
     {
-    	$cases = $this->rjCaseService->getAllCases()->toArray();
+        $offenders = $this->offenderService->getAllOffenders();
 
-        return response()->json(array('html' =>view('cases/index', [
-            'cases' => $cases   
+        return response()->json(array('html' =>view('offenders/index', [
+            'offenders' => $offenders
         ])->render()));
     }
 

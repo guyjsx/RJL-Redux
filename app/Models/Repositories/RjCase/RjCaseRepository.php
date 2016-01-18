@@ -3,7 +3,7 @@
 namespace Repositories\RjCase;
 
 use Illuminate\Database\Eloquent\Model;
-use \stdClass;
+use Illuminate\Support\Facades\DB as DB;
 
 /**
 * RjCase repository, containing commonly used queries
@@ -26,7 +26,7 @@ class RjCaseRepository implements RjCaseInterface
     /**
     * Returns the pokemon object associated with the passed id
     * 
-    * @param mixed $pokemonId
+    * @param mixed $caseId
     * @return Model
     */
     public function getCaseById($caseId)
@@ -35,14 +35,12 @@ class RjCaseRepository implements RjCaseInterface
     }
 
     /**
-    * Returns the pokemon object associated with the pokemonName
-    * 
-    * @param string $pokemonName
+    * Returns all cases
     */
     public function getAllCases()
     {
         // Search for all
-        $cases = $this->rjCaseModel->all();
+        $cases = $this->rjCaseModel->with('victims', 'offenders')->get();
 
         if ($cases)
         {

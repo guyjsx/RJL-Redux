@@ -147,9 +147,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         'Repositories\RjCase\RjCaseRepositoryServiceProvider',
         'Services\RjCase\RjCaseServiceServiceProvider',
+        'Repositories\Offender\OffenderRepositoryServiceProvider',
+        'Services\Offender\OffenderServiceServiceProvider',
+        'Repositories\Victim\VictimRepositoryServiceProvider',
+        'Services\Victim\VictimServiceServiceProvider',
 
         /*
          * Application Service Providers...
@@ -206,6 +211,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 
     ],
 
