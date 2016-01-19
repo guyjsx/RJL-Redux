@@ -1,0 +1,73 @@
+
+#navbar-app {
+    position: fixed;
+    left: 0;
+    padding: 0;
+    background: $color-secondary;
+    height: 100%;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            position: relative;
+            background-color: $color-secondary;
+            height: 60px;
+            border-bottom: 1px solid lightgrey;
+            text-align: center;
+            line-height: 1;
+            
+            .nav-item, .nav-item-title {
+                position: relative;
+                height: 100%;
+                line-height: 60px;
+            }
+
+            .nav-item-title {
+                text-align: left;
+            }
+
+            .fa {
+                vertical-align: middle;
+            }
+
+            &.active {
+                &:after {
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-top: 8px solid transparent;
+                    border-bottom: 8px solid transparent;
+                    border-right: 8px solid $color-main;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    margin-top: -8px;
+                }
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+
+  .loaderOverlay {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 3em;
+      width: 3em;
+      padding-left: 16.66666667%;
+      
+      .icon-white {
+          color: $color-white;
+      }
+  }
+}

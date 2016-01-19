@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Compilers\BladeCompiler;
 
 class HomeController extends Controller
@@ -26,7 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //return response()->json(array('html' => view('home')->render()));
-        return view('home');
+        $user = null;
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        return view('home')->with('user', json_encode($user));
     }
 }

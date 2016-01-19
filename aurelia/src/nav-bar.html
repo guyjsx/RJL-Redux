@@ -1,0 +1,32 @@
+<template>
+    <nav id="navbar-app" class="col-sm-2" role="navigation">
+        <div>Hello ${user.username}!</div>
+        <ul>
+            <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+                <div class="col-sm-4 nav-item">
+                    <div if.bind="row.title == 'Home'">
+                        <i class="fa fa-home fa-2x"></i>
+                    </div>
+                    <div if.bind="row.title == 'Cases'">
+                        <i class="fa fa-suitcase fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-sm-8 nav-item-title">
+                    <a href.bind="row.href">${row.title}</a>
+                </div>
+            </li>
+            <li>
+                <div class="col-sm-4 nav-item">
+                    <i class="fa fa-sign-out fa-2x"></i>
+                </div>
+                <div class="col-sm-8 nav-item-title">
+                    <a href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+        <div class="loader loaderOverlay" if.bind="router.isNavigating">
+            <i class="fa fa-spinner fa-spin fa-3x icon-white"></i>
+        </div>
+    </nav>
+</template>
+

@@ -1,7 +1,87 @@
 .test {
   background: blue; }
 
+.panel-default, .panel {
+  padding: 5px;
+  background: #4c555c;
+  border: none; }
+  .panel-default > .panel-heading, .panel > .panel-heading {
+    color: white; }
+  .panel-default .dataTables_wrapper, .panel .dataTables_wrapper {
+    padding-top: 10px;
+    color: white; }
+    .panel-default .dataTables_wrapper *, .panel-default .dataTables_wrapper .dataTables_paginate .paginate_button, .panel .dataTables_wrapper *, .panel .dataTables_wrapper .dataTables_paginate .paginate_button {
+      color: white !important; }
+    .panel-default .dataTables_wrapper select, .panel-default .dataTables_wrapper input, .panel .dataTables_wrapper select, .panel .dataTables_wrapper input {
+      color: black !important; }
+    .panel-default .dataTables_wrapper td, .panel .dataTables_wrapper td {
+      border-color: #989898; }
+    .panel-default .dataTables_wrapper th, .panel .dataTables_wrapper th {
+      border: none; }
+    .panel-default .dataTables_wrapper table.dataTable.no-footer, .panel .dataTables_wrapper table.dataTable.no-footer {
+      border-bottom: 1px solid #989898; }
+  .panel-default .panel-heading, .panel .panel-heading {
+    background: #4c555c; }
+  .panel-default .even, .panel-default .odd, .panel .even, .panel .odd {
+    background: #4c555c; }
+
+#navbar-app {
+  position: fixed;
+  left: 0;
+  padding: 0;
+  background: #4c555c;
+  height: 100%; }
+  #navbar-app ul {
+    list-style-type: none;
+    padding: 0; }
+    #navbar-app ul li {
+      position: relative;
+      background-color: #4c555c;
+      height: 60px;
+      border-bottom: 1px solid lightgrey;
+      text-align: center;
+      line-height: 1; }
+      #navbar-app ul li .nav-item, #navbar-app ul li .nav-item-title {
+        position: relative;
+        height: 100%;
+        line-height: 60px; }
+      #navbar-app ul li .nav-item-title {
+        text-align: left; }
+      #navbar-app ul li .fa {
+        vertical-align: middle; }
+      #navbar-app ul li.active:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 8px solid #32383d;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -8px; }
+      #navbar-app ul li a {
+        color: white;
+        text-decoration: none; }
+  #navbar-app .loaderOverlay {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 3em;
+    width: 3em;
+    padding-left: 16.66666667%; }
+    #navbar-app .loaderOverlay .icon-white {
+      color: white; }
+
+body {
+  background: #32383d;
+  color: white; }
+
 .test {
-  background: blue; }
+  background: #000; }
 
 /*# sourceMappingURL=app.css.map */

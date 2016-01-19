@@ -24,8 +24,11 @@
         }
     </style>
     <base href="/"></base>
+    <script>var userObj = {!! $user or 'undefined' !!}</script>
+    <link href="{{ URL::asset('/public/css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body id="app-layout" aurelia-app="main">
+<body id="app-layout">
+    <div aurelia-app="main"></div>
     <script type="text/javascript" src="aurelia/jspm_packages/system.js"></script>
     <script type="text/javascript" src="aurelia/config.js"></script>
     <script>

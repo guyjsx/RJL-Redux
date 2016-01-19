@@ -1,0 +1,41 @@
+.panel-default, .panel {
+    padding: 5px;
+    background: $color-secondary;
+    border: none;
+
+    >.panel-heading {
+        color: $color-white;
+    }
+
+    .dataTables_wrapper {
+        padding-top: 10px;
+        color: $color-white;
+        *, .dataTables_paginate .paginate_button {
+            color: $color-white !important;
+        }
+        
+        select, input {
+            color: black !important;
+        }
+
+        td {
+            border-color: $color-seperator;
+        }
+
+        th {
+            border: none;
+        }
+
+        table.dataTable.no-footer {
+            border-bottom: 1px solid $color-seperator;
+        }
+    }
+
+    .panel-heading {
+        background: $color-secondary;
+   }
+
+    .even, .odd {
+        background: $color-secondary;
+    }
+}

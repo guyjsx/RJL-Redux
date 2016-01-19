@@ -1,7 +1,15 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 @import 'helpers/config';
-.test {
-	background:blue;
+@import "themes/dark";
+@import 'components/nav';
+
+body {
+	background: $color-main;
+	color: $color-white;
 }
 
+
+.test {
+	background: #000;
+}
