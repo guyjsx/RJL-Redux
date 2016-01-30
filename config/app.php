@@ -154,6 +154,9 @@ return [
         'Services\Offender\OffenderServiceServiceProvider',
         'Repositories\Victim\VictimRepositoryServiceProvider',
         'Services\Victim\VictimServiceServiceProvider',
+        'Repositories\Charge\ChargeRepositoryServiceProvider',
+        'Services\Charge\ChargeServiceServiceProvider',
+        'Illuminate\Html\HtmlServiceProvider',
 
         /*
          * Application Service Providers...
@@ -208,8 +211,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
+        'Form'      => Illuminate\Html\FormFacade::class,
+        'Html'      => Illuminate\Html\HtmlFacade::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 
     ],

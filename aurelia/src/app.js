@@ -6,10 +6,11 @@ export class App {
 	constructor(router) {
 		this.router = router;
 		this.router.configure(config => {
-			config.title = 'RJL';
+			config.title = 'Parent';
+			config.parent = "true";
 		  	config.map([
-		  		{ route: ['', 'home'], moduleId: 'home', nav: true, title:'Home' },
-		  		{ route: ['cases'], moduleId: 'cases', nav: true, title:'Cases' }
+		  		{ route: ['', 'home/'], moduleId: 'home', nav: true, title:'Home' },
+		  		{ route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' }
 		  	]);
 		});
 	}

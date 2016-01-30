@@ -1,0 +1,39 @@
+<template>
+   <form name="casesForm" id="casesForm" method="post" action="/api/cases/" submit.delegate="submitCase()">
+       <div innerHTML.bind="html"></div>
+       <label for="caseId">Case ID: </label>
+       <input type="text" name="data[case][caseId]" id="caseId" value="">
+
+       <require from="resources/custom-select"></require>
+
+       <select select2.bind="options" value.bind="selectedState" change.delegate="changeCallback($event)" multiple="multiple">
+           <option repeat.for="state of states" model.bind="state">${state.name}</option>
+       </select>
+
+       <div id="victimSection" class="row">
+           <section id="victim">
+               <div class="col-sm-3" repeat.for="item of victimFieldData">
+                   <div class="index" style="display: none;">${$parentIndex = $index}</div>
+                   <div repeat.for="field of item">
+                       <label for="victim-${field.name}-${$parentIndex}">${field.namePretty}: </label>
+                       <input if.bind="field.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${field.name}]" id="victim-${field.name}-${$parentIndex}" value="">
+                   </div>
+               </div>
+           </section>
+           <a id="addVictim" click.delegate="addVictim()">Add Victim</a>
+       </div>
+       <div id="offenderSection" class="row">
+           <section id="offender">
+               <div class="col-sm-3" repeat.for="item of offenderFieldData">
+                   <div class="index" style="display: none;">${$parentIndex = $index}</div>
+                   <div repeat.for="field of item">
+                       <label for="offender-${field.name}-${$parentIndex}">${field.namePretty}: </label>
+                       <input if.bind="field.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${field.name}]" id="offender-${field.name}-${$parentIndex}" value="">
+                   </div>
+               </div>
+           </section>
+           <a id="addOffender"  click.delegate="addOffender()">Add Offender</a>
+       </div>
+       <button type="submit">Submit</button>
+   </form>
+</template>

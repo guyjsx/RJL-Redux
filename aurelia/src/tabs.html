@@ -1,0 +1,10 @@
+<template>
+    <ul>
+        <li repeat.for="tab of tabs">
+            <a href="${'#' + $parent.id + '-' + $index}">${tab.title}</a>
+        </li>
+    </ul>
+    <div repeat.for="tab of tabs" id="${$parent.id + '-' + $index}">
+        <p>${tab.text}</p>
+    </div>
+</template>

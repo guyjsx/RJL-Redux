@@ -36,6 +36,8 @@
       "datatables": "npm:datatables@^1.10.9",
       "fetch": "github:github/fetch@^0.10.1",
       "font-awesome": "npm:font-awesome@^4.4.0",
+      "jquery-ui": "github:components/jqueryui@^1.11.4",
+      "select2": "github:select2/select2@^4.0.1",
       "text": "github:systemjs/plugin-text@^0.0.3"
     },
     "devDependencies": {

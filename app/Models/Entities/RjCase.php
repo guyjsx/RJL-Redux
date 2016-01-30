@@ -13,12 +13,14 @@ class RjCase extends Model
      */
     protected $table = 'rj_cases';
 
+    public $timestamps = false;
+
     /**
      * The victims that belong to the case
      */
     public function victims()
     {
-        return $this->belongsToMany('Entities\Victim', 'rj_cases_victims');
+        return $this->belongsToMany('Entities\Victim', 'rj_cases_victims', 'rj_case_id','victim_id');
     }
 
     /**
@@ -29,4 +31,11 @@ class RjCase extends Model
         return $this->belongsToMany('Entities\Offender', 'offenders_rj_cases');
     }
 
+    /**
+     * The charges that belong to the case
+     */
+    public function charges()
+    {
+        return $this->belongsToMany('Entities\Charge', 'charges_rj_cases');
+    }
 }

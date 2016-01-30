@@ -1,5 +1,7 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
+import $ from 'jquery';
+import dataTable from 'datatables';
 
 @inject(HttpClient)
 export class Home {
@@ -8,6 +10,16 @@ export class Home {
   }
 
   activate() {
-  	
+    return this.http.get('/api/home').then(response => {
+      this.html = response.content.html;
+    });
+  }
+
+  attached() {
+    $('#casesTable').dataTable( {
+        scrollY:        '50vh',
+        scrollCollapse: true,
+        paging:         false
+    });
   }
 }

@@ -1,0 +1,38 @@
+input {
+    color: black;
+}
+
+span.inputField {
+    display: inline-block;
+    position: relative;
+    input[readonly] {
+        background: $color-main;
+        color: $color-white;
+        border: none;
+
+        &:hover {
+            background: $color-secondary;
+            cursor: pointer;
+        }
+    }
+
+    &:hover {
+        &:after {
+            content: "\f040";
+            font-family: FontAwesome;
+            position:absolute;
+            top:0;
+            right: -20px;
+        }
+    }
+
+    &.removeEditIcon {
+        &:hover {
+            &:after {
+                content: "";
+            }
+        }
+    }
+
+}
+

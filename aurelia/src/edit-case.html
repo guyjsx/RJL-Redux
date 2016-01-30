@@ -1,0 +1,19 @@
+<template>
+    <form id="editCaseForm" name="editCaseForm" role="form" submit.delegate="update(data['id'])">
+        <input type="hidden" name="_token" value.bind="data['token']"]>
+        <input type="hidden" id="id" value.bind="data['case']['id']" name="data[id]" >
+        <div class="row">
+
+            <div class="col-sm-3">
+                <label for="caseId">Case Id: </label>
+                <span class="inputField"><input type="text" id="caseId" value.bind="data['caseId']" name="data[caseId]" readonly></span>
+            </div>
+            <div class="col-sm-3">
+                <label for="caseStatus">Case Status: </label>
+                <span class="inputField"><input type="text" id="caseStatus" value.bind="data['caseStatus']" name="data[caseStatus]" readonly></span>
+            </div>
+        </div>
+
+        <button class="btn  btn-default" type="submit">Update</button>
+    </form>
+</template>

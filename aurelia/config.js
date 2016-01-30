@@ -9,6 +9,7 @@ System.config({
   },
   paths: {
     "*": "aurelia/src/*",
+    '!': "tacos",
     "github:*": "aurelia/jspm_packages/github/*",
     "npm:*": "aurelia/jspm_packages/npm/*"
   },
@@ -33,6 +34,8 @@ System.config({
     "datatables": "npm:datatables@1.10.9",
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.5.0",
+    "jquery-ui": "github:components/jqueryui@1.11.4",
+    "select2": "github:select2/select2@4.0.1",
     "text": "github:systemjs/plugin-text@0.0.3",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"

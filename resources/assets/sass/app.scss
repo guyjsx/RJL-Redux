@@ -3,6 +3,8 @@
 @import 'helpers/config';
 @import "themes/dark";
 @import 'components/nav';
+@import 'components/forms';
+@import 'components/reports';
 
 body {
 	background: $color-main;

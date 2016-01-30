@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Entities\Offender;
+use Entities\Victim;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\RjCase;
+use Entities\RjCase;
 use App\Http\Controllers\Controller;
 use Services\Offender\OffenderService;
 use Services\RjCase\RjCaseService;
@@ -39,7 +41,8 @@ class RjCaseController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json(array('html' =>view('cases/create')->render()));
+
     }
 
     /**
@@ -50,7 +53,23 @@ class RjCaseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all()['data'];
+        $case = new RjCase;
+        $case->caseId = $data['case']['caseId'];
+        $case->save();
+
+        foreach($data['victim'] as $newVictim) {
+            $victim = new Victim();
+
+            $victim->victimId = $newVictim['victimId'];
+            $victim->firstName = $newVictim['firstName'];
+            $victim->lastName = $newVictim['lastName'];
+            $victim->save();
+
+            $case->victims()->attach($victim->id);
+        }
+
+        return redirect('/#/cases/' . $case->id . '/edit');
     }
 
     /**
@@ -72,7 +91,10 @@ class RjCaseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $token = csrf_token();
+        $case = $this->rjCaseService->getCaseById($id);
+
+        return response()->json(array('data' => $case, 'token' => $token));
     }
 
     /**
@@ -82,9 +104,18 @@ class RjCaseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $case = RjCase::find($data['id']);
+
+        $case->caseId = $data['caseId'];
+        $case->caseStatus = $data['caseStatus'];
+
+        $case->save();
+
+        return response()->json(array('success' => 'true'));
     }
 
     /**

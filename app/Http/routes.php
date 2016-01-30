@@ -26,9 +26,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/', 'HomeController@index');
+    Route::get('/api/home', 'HomeController@show');
     Route::resource('/api/cases', 'RjCaseController');
     Route::resource('/api/offender', 'OffenderController');
     Route::resource('/api/victim', 'VictimController');
+    Route::resource('/api/charge', 'ChargeController');
 
 });
 

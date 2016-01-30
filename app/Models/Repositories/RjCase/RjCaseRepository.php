@@ -29,9 +29,9 @@ class RjCaseRepository implements RjCaseInterface
     * @param mixed $caseId
     * @return Model
     */
-    public function getCaseById($caseId)
+    public function getCaseById($id)
     {
-        return $this->rjCaseModel->find($caseId);
+        return $this->rjCaseModel->where('id', '=', $id)->with('victims', 'offenders')->get()->toArray()[0];
     }
 
     /**
