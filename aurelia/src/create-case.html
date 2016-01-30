@@ -1,22 +1,27 @@
 <template>
    <form name="casesForm" id="casesForm" method="post" action="/api/cases/" submit.delegate="submitCase()">
-       <div innerHTML.bind="html"></div>
-       <label for="caseId">Case ID: </label>
-       <input type="text" name="data[case][caseId]" id="caseId" value="">
+       <div repeat.for="item of caseFieldData">
+           <require from="ObjectKeysValueConverter"></require>
+           <div repeat.for="prop of item | objectKeys">
+               <label for="${prop.name}">${prop.namePretty} </label>
+               <input type="text" name="data[case][${prop.name}]" id="${prop.name}" value.bind="prop.value">
+           </div>
+       </div>
 
        <require from="resources/custom-select"></require>
 
-       <select select2.bind="options" value.bind="selectedState" change.delegate="changeCallback($event)" multiple="multiple">
-           <option repeat.for="state of states" model.bind="state">${state.name}</option>
+       <select select2.bind="options" value.bind="selectedCharge" multiple="multiple" name="data[charge][]">
+           <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
        </select>
 
        <div id="victimSection" class="row">
            <section id="victim">
                <div class="col-sm-3" repeat.for="item of victimFieldData">
                    <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                   <div repeat.for="field of item">
-                       <label for="victim-${field.name}-${$parentIndex}">${field.namePretty}: </label>
-                       <input if.bind="field.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${field.name}]" id="victim-${field.name}-${$parentIndex}" value="">
+                   <require from="ObjectKeysValueConverter"></require>
+                   <div repeat.for="prop of item | objectKeys">
+                       <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                       <input if.bind="prop.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="prop.value">
                    </div>
                </div>
            </section>
@@ -26,9 +31,10 @@
            <section id="offender">
                <div class="col-sm-3" repeat.for="item of offenderFieldData">
                    <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                   <div repeat.for="field of item">
-                       <label for="offender-${field.name}-${$parentIndex}">${field.namePretty}: </label>
-                       <input if.bind="field.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${field.name}]" id="offender-${field.name}-${$parentIndex}" value="">
+                   <require from="ObjectKeysValueConverter"></require>
+                   <div repeat.for="prop of item | objectKeys">
+                       <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                       <input if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="prop.value">
                    </div>
                </div>
            </section>

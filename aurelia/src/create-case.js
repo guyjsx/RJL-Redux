@@ -8,60 +8,75 @@ export class CreateCase {
     }
 
     activate() {
-        this.caseFields = [];
-        this.caseFieldData = [];
-
-        this.victimFields =  [
-            { name: 'victimId', type:'input', namePretty: 'Victim ID'},
-            { name: 'firstName', type:'input', namePretty: 'First Name'},
-            { name: 'lastName', type:'input', namePretty: 'Last Name'}
-        ];
-
-        this.offenderFields = [
-                { name: 'offenderId', type:'input', namePretty: 'Offender ID'},
-                { name: 'firstName', type:'input', namePretty: 'First Name'},
-                { name: 'lastName', type:'input', namePretty: 'Last Name'},
+        this.caseFieldData = [
+            {
+                caseId: {
+                    name: "caseId", type: "input", namePretty: "Case ID", value: ''
+                },
+                caseStatus: {
+                    name: "caseStatus", type: "input", namePretty: "Case Status", value: ''
+                }
+            }
         ];
 
         this.victimFieldData = [];
         this.offenderFieldData = [];
-
-        this.states = [
-            { id: 0, name: 'foo' },
-            { id: 1, name: 'bar'},
-            { id: 2, name: 'baz'}];
-
-
-        this.selectedState = [];
+        this.selectedCharge = [];
+        this.victimCount = 0;
 
         return this.http.get('/api/cases/create').then(response => {
-            this.html = response.content.html;
+            this.charges = response.content.charges
         });
     }
 
     addVictim() {
-        this.victimFieldData.push(this.victimFields);
+        this.victimFieldData.push(
+            {
+                victimId: {
+                    name: 'victimId', type:'input', namePretty: 'Victim ID', value: ""
+                },
+                firstName: {
+                    name: 'firstName', type:'input', namePretty: 'First Name', value: ""
+                },
+                lastName: {
+                    name: 'lastName', type:'input', namePretty: 'Last Name', value: ""
+                }
+            }
+        );
+
+        this.victimCount++;
     }
 
     addOffender() {
-        this.offenderFieldData.push(this.offenderFields);
+        this.offenderFieldData.push(
+            {
+                offenderId: {
+                    name: 'offenderId', type:'input', namePretty: 'Offender ID', value: ""
+                },
+                firstName: {
+                    name: 'firstName', type:'input', namePretty: 'First Name', value: ""
+                },
+                lastName: {
+                    name: 'lastName', type:'input', namePretty: 'Last Name', value: ""
+                }
+            }
+        );
     }
 
     submitCase() {
-        this.token = $('input[name="_token"]').val();
-        $.ajax({
-            type: "POST",
-            url: "/api/cases",
-            data: $('#casesForm').serialize(),
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-            }
-        });
-    }
+        this.data = {
+            case: this.caseFieldData,
+            victim: this.victimFieldData,
+            offender: this.offenderFieldData,
+            charge: this.selectedCharge
+        }
 
-    changeCallback(evt: Event): void {
-        console.log(evt);
+        this.http.post('/api/cases', this.data)
+            .then(response => {
+                console.log('done');
+            });
+
+
     }
 
     attached() {
@@ -69,14 +84,8 @@ export class CreateCase {
         //    event.preventDefault();
         //    console.log('testing submit');
         //
-        //    $("#victim-0, #offender-0").remove();
-        //
         //    $.ajax({
         //        type: "POST",
-        //        beforeSend: function (request)
-        //        {
-        //            request.setRequestHeader("X-XSRF-TOKEN", this.token);
-        //        },
         //        url: "/api/cases",
         //        data: $(this).serialize(),
         //        dataType: 'json',
@@ -85,11 +94,5 @@ export class CreateCase {
         //        }
         //    });
         //});
-    }
-}
-
-export class StringifyValueConverter {
-    toView(value) {
-        return JSON.stringify(value, null, 2);
     }
 }

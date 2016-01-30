@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Entities\Charge;
 use Entities\Offender;
 use Entities\Victim;
 use Illuminate\Http\Request;
@@ -9,15 +10,17 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Entities\RjCase;
 use App\Http\Controllers\Controller;
+use Services\Charge\ChargeService;
 use Services\Offender\OffenderService;
 use Services\RjCase\RjCaseService;
 
 class RjCaseController extends Controller
 {
 
-    public function __construct(RjCaseService $rjCaseService)
+    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService)
     {
         $this->rjCaseService = $rjCaseService;
+        $this->chargeService = $chargeService;
     }
 
     /**
@@ -41,8 +44,9 @@ class RjCaseController extends Controller
      */
     public function create()
     {
-        return response()->json(array('html' =>view('cases/create')->render()));
+        $charges = $this->chargeService->getAllCharges()->toArray();
 
+        return response()->json(array('charges' => $charges));
     }
 
     /**
@@ -53,20 +57,44 @@ class RjCaseController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all()['data'];
-        $case = new RjCase;
-        $case->caseId = $data['case']['caseId'];
-        $case->save();
+        $data = $request->all();
 
-        foreach($data['victim'] as $newVictim) {
-            $victim = new Victim();
+        if (isset($data['case'][0])) {
+            $case = new RjCase;
+            $case->caseId = $data['case'][0]['caseId']['value'];
+            $case->caseStatus = $data['case'][0]['caseStatus']['value'];
+            $case->save();
+        }
 
-            $victim->victimId = $newVictim['victimId'];
-            $victim->firstName = $newVictim['firstName'];
-            $victim->lastName = $newVictim['lastName'];
-            $victim->save();
+        if(isset($data['victim'])) {
+            foreach($data['victim'] as $newVictim) {
+                $victim = new Victim();
+                $victim->victimId = $newVictim['victimId']['value'];
+                $victim->firstName = $newVictim['firstName']['value'];
+                $victim->lastName = $newVictim['lastName']['value'];
+                $victim->save();
 
-            $case->victims()->attach($victim->id);
+                $case->victims()->attach($victim->id);
+            }
+        }
+
+        if (isset($data['offender'])) {
+            foreach($data['offender'] as $newOffender) {
+                $offender = new Offender();
+
+                $offender->offenderId = $newOffender['offenderId']['value'];
+                $offender->firstName = $newOffender['firstName']['value'];
+                $offender->lastName = $newOffender['lastName']['value'];
+                $offender->save();
+
+                $case->offenders()->attach($offender->id);
+            }
+        }
+
+        if (isset($data['charge'])) {
+            foreach($data['charge'] as $newCharge) {
+                $case->charges()->attach($newCharge);
+            }
         }
 
         return redirect('/#/cases/' . $case->id . '/edit');
