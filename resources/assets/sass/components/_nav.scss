@@ -12,6 +12,14 @@
         padding: 0;
 
         li {
+
+            &:first-of-type {
+                height: 73px;
+
+                .nav-item, .nav-item-title {
+                    line-height: 73px;
+                }
+            }
             position: relative;
             background-color: $color-secondary;
             height: 60px;

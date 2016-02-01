@@ -1,7 +1,16 @@
 <template>
     <nav id="navbar-app" class="col-sm-2" role="navigation">
-        <div>Hello ${user.username}!</div>
         <ul>
+            <li>
+                <div class="col-sm-4 nav-item">
+                    <div>
+                        <i class="fa fa-user fa-2x"></i>
+                    </div>
+                </div>
+                <div class="col-sm-8 nav-item-title">
+                    <a href.bind="row.href">Hello ${user.username}!</a>
+                </div>
+            </li>
             <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
                 <div class="col-sm-4 nav-item">
                     <div if.bind="row.title == 'Home'">

@@ -9,6 +9,14 @@ export class Home {
     this.http = http;
   }
 
+    configureRouter(config, router) {
+        config.map([
+            {route: ["", "cases/view"], moduleId: 'view-case', nav: true, title: 'Case View'},
+            {route: ["create"], moduleId: 'create-case', nav: true, title: 'Case Create'},
+            {route: ["edit"], moduleId: 'edit-case', nav: false, title: 'Edit Case'}
+        ]);
+    }
+
   activate() {
     return this.http.get('/api/home').then(response => {
       this.html = response.content.html;
@@ -16,10 +24,6 @@ export class Home {
   }
 
   attached() {
-    $('#casesTable').dataTable( {
-        scrollY:        '50vh',
-        scrollCollapse: true,
-        paging:         false
-    });
+
   }
 }
