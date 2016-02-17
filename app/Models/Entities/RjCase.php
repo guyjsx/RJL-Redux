@@ -38,4 +38,9 @@ class RjCase extends Model
     {
         return $this->belongsToMany('Entities\Charge', 'charges_rj_cases');
     }
+
+    public function files()
+    {
+        return $this->hasMany('Entities\FileUpload', 'case_id');
+    }
 }

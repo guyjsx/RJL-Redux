@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Entities\Charge;
 use Entities\Offender;
 use Entities\Victim;
+use Entities\FileUpload;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,11 +14,12 @@ use App\Http\Controllers\Controller;
 use Services\Charge\ChargeService;
 use Services\Offender\OffenderService;
 use Services\RjCase\RjCaseService;
+use Services\FileUpload\FileUploadService;
 
 class RjCaseController extends Controller
 {
 
-    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService)
+    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService, FileUploadService $fileUploadService)
     {
         $this->rjCaseService = $rjCaseService;
         $this->chargeService = $chargeService;
@@ -97,7 +99,7 @@ class RjCaseController extends Controller
             }
         }
 
-        return redirect('/#/cases/' . $case->id . '/edit');
+        return "success";
     }
 
     /**
@@ -121,8 +123,9 @@ class RjCaseController extends Controller
     {
         $token = csrf_token();
         $case = $this->rjCaseService->getCaseById($id);
+        $victimFieldData = Victim::fieldData();
 
-        return response()->json(array('data' => $case, 'token' => $token));
+        return response()->json(array('data' => $case, 'token' => $token, 'victimFieldData' => $victimFieldData));
     }
 
     /**

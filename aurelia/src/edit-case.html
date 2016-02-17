@@ -2,18 +2,102 @@
     <form id="editCaseForm" name="editCaseForm" role="form" submit.delegate="update(data['id'])">
         <input type="hidden" name="_token" value.bind="data['token']"]>
         <input type="hidden" id="id" value.bind="data['case']['id']" name="data[id]" >
-        <div class="row">
+        <div class="row" repeat.for="item of caseFieldData">
+            <require from="ObjectKeysValueConverter"></require>
+            <div class="col-sm-3" repeat.for="prop of item | objectKeys">
+                <div>
+                    <label for="${prop.name}">${prop.namePretty} </label>
+                </div>
+                    <span class="inputField"><input click.delegate="edit()" type="text" name="data[case][${prop.name}]" id="${prop.name}" value.bind="data[prop.name]" readonly></span>
+                </div>
+            </div>
+        </div>
 
-            <div class="col-sm-3">
-                <label for="caseId">Case Id: </label>
-                <span class="inputField"><input type="text" id="caseId" value.bind="data['caseId']" name="data[caseId]" readonly></span>
-            </div>
-            <div class="col-sm-3">
-                <label for="caseStatus">Case Status: </label>
-                <span class="inputField"><input type="text" id="caseStatus" value.bind="data['caseStatus']" name="data[caseStatus]" readonly></span>
-            </div>
+        <div id="victimSection">
+            <section id="victim">
+                <div repeat.for="item of victimFieldData">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Victim ${$index + 1}</div>
+                        <div class="panel-body">
+                            <div class="index" style="display: none;">${$parentIndex = $index}</div>
+                            <div class="row">
+                                <div class="col-sm-3" repeat.for="prop of item | objectKeys">
+                                    <div>
+                                        <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                    </div>
+                                    <div>
+                                        <span class="inputField">
+                                            <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" readonly>
+
+                                            <div if.bind="prop.type  == 'select'">
+                                                <div class="editOverlay" click.delegate="edit()"></div>
+                                                <select name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" disabled>
+                                                    <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
+                                                </select>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="offenderSection">
+            <section id="offender">
+                <div repeat.for="item of offenderFieldData">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Offender ${$index + 1}</div>
+                        <div class="panel-body">
+                            <div class="index" style="display: none;">${$parentIndex = $index}</div>
+                            <require from="ObjectKeysValueConverter"></require>
+                            <div class="row">
+                                <div class="col-sm-3" repeat.for="prop of item | objectKeys">
+                                    <div>
+                                        <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                    </div>
+                                    <div>
+                                        <span class="inputField">
+                                            <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]" readonly>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <button class="btn  btn-default" type="submit">Update</button>
     </form>
+
+    <div id="fileSection">
+        <form id="fileUploadForm" name="fileUploadForm" role="form" submit.delegate="fileUpload()" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
+            <require from="FileListToArrayValueConverter"></require>
+            <div class="panel panel-default">
+                <div class="panel-heading">Case Files</div>
+                <div class="panel-body">
+                    <input type="hidden" id="id" value.bind="data[id]" name="data[id]" >
+                    <div class="row">
+                        <div show.bind="fileSuccess">File Uploaded Successfully!</div>
+                        <div class="fileError"></div>
+                        <div class="col-sm-6">
+                            <input type="file" multiple files.bind="selectedFiles">
+                            <button type="submit" class="btn  btn-default">Upload</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul>
+                                <li repeat.for="file of uploadedFiles | fileListToArray">
+                                    <h5><a href="/uploads/${file.filename}">${file.filename}</a></h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </template>

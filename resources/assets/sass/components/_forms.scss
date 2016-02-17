@@ -7,10 +7,29 @@ input, .charge-select2-container {
     margin-bottom: 20px;
 }
 
+form {
+    position: relative;
+
+    .editOverlay {
+        cursor: pointer;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 9999;
+    }
+}
+
 span.inputField {
     display: inline-block;
     position: relative;
-    input[readonly] {
+    margin-bottom: 20px;
+
+    input[readonly], select[disabled] {
+        margin-bottom: 0;
         background: $color-main;
         color: $color-white;
         border: none;

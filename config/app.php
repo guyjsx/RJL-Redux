@@ -156,6 +156,8 @@ return [
         'Services\Victim\VictimServiceServiceProvider',
         'Repositories\Charge\ChargeRepositoryServiceProvider',
         'Services\Charge\ChargeServiceServiceProvider',
+        'Repositories\FileUpload\FileUploadRepositoryServiceProvider',
+        'Services\FileUpload\FileUploadServiceServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
 
         /*
