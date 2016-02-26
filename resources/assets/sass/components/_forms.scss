@@ -7,6 +7,11 @@ input, .charge-select2-container {
     margin-bottom: 20px;
 }
 
+textarea {
+    width: 100%;
+    color: black;
+}
+
 form {
     position: relative;
 
@@ -23,20 +28,29 @@ form {
     }
 }
 
+span.textAreaField {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+}
+
 span.inputField {
     display: inline-block;
     position: relative;
     margin-bottom: 20px;
+}
 
-    input[readonly], select[disabled] {
+span.inputField, span.textAreaField {
+    input[readonly], select[disabled], textarea[readonly] {
         margin-bottom: 0;
         background: $color-main;
         color: $color-white;
         border: none;
 
         &:hover {
-            background: $color-secondary;
+            background: $color-seperator;
             cursor: pointer;
+            color: black;
         }
     }
 

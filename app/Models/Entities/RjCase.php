@@ -43,4 +43,10 @@ class RjCase extends Model
     {
         return $this->hasMany('Entities\FileUpload', 'case_id');
     }
+
+    public function notes()
+    {
+        return $this->hasMany('Entities\Note', 'rj_case_id');
+    }
+
 }

@@ -32,6 +32,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/api/victim', 'VictimController');
     Route::resource('/api/charge', 'ChargeController');
     Route::post('/api/file-upload', 'FileUploadController@uploadFile');
+    Route::resource('/api/note', 'NoteController');
 
 });
 

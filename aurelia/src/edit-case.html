@@ -71,7 +71,7 @@
             </section>
         </div>
 
-        <button class="btn  btn-default" type="submit">Update</button>
+        <button class="btn  btn-default" type="submit">Update Case</button>
     </form>
 
     <div id="fileSection">
@@ -94,6 +94,56 @@
                                     <h5><a href="/uploads/${file.filename}">${file.filename}</a></h5>
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="noteSection">
+        <form id="noteForm" name="noteForm" role="form" submit.delegate="addNote()" method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading">Case Notes</div>
+                <div class="panel-body">
+                    <input type="hidden" value.bind="data[id]" name="data[id]" >
+                    <div class="row">
+                        <div show.bind="noteSuccess">Note Added Successfully!</div>
+                        <div class="col-sm-6">
+                            <div>
+                                <label for="noteDate">Note Date: </label>
+                            </div>
+                            <span class="inputField">
+                                <input click.delegate="edit()" type="text" name="data[noteData][noteDate]" id="noteDate" value.bind="noteData.noteDate" readonly>
+                            </span>
+                            <div>
+                                <label for="noteContent">Note Content: </label>
+                            </div>
+                            <span class="textAreaField">
+                                <textarea rows="10" click.delegate="edit()" name="data[noteData][noteContent]" id="noteContent" value.bind="noteData.noteContent" readonly></textarea>
+                            </span>
+                            <button type="submit" class="btn  btn-default">Add Note</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <table id="notesTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Note Date</th>
+                                        <th>Note Contents</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr repeat.for="note of notes">
+                                        <td>
+                                            ${note.noteDate}
+                                        </td>
+                                        <td>
+                                            ${note.noteContent}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

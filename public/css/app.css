@@ -119,6 +119,10 @@ input, .charge-select2-container {
   color: black;
   margin-bottom: 20px; }
 
+textarea {
+  width: 100%;
+  color: black; }
+
 form {
   position: relative; }
   form .editOverlay {
@@ -132,26 +136,35 @@ form {
     bottom: 0;
     z-index: 9999; }
 
+span.textAreaField {
+  display: block;
+  position: relative;
+  margin-bottom: 20px; }
+
 span.inputField {
   display: inline-block;
   position: relative;
   margin-bottom: 20px; }
-  span.inputField input[readonly], span.inputField select[disabled] {
-    margin-bottom: 0;
-    background: #32383d;
-    color: white;
-    border: none; }
-    span.inputField input[readonly]:hover, span.inputField select[disabled]:hover {
-      background: #4c555c;
-      cursor: pointer; }
-  span.inputField:hover:after {
-    content: "\f040";
-    font-family: FontAwesome;
-    position: absolute;
-    top: 0;
-    right: -20px; }
-  span.inputField.removeEditIcon:hover:after {
-    content: ""; }
+
+span.inputField input[readonly], span.inputField select[disabled], span.inputField textarea[readonly], span.textAreaField input[readonly], span.textAreaField select[disabled], span.textAreaField textarea[readonly] {
+  margin-bottom: 0;
+  background: #32383d;
+  color: white;
+  border: none; }
+  span.inputField input[readonly]:hover, span.inputField select[disabled]:hover, span.inputField textarea[readonly]:hover, span.textAreaField input[readonly]:hover, span.textAreaField select[disabled]:hover, span.textAreaField textarea[readonly]:hover {
+    background: #989898;
+    cursor: pointer;
+    color: black; }
+
+span.inputField:hover:after, span.textAreaField:hover:after {
+  content: "\f040";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: -20px; }
+
+span.inputField.removeEditIcon:hover:after, span.textAreaField.removeEditIcon:hover:after {
+  content: ""; }
 
 select, .select2-dropdown {
   color: black; }

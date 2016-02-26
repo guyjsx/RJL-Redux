@@ -158,6 +158,8 @@ return [
         'Services\Charge\ChargeServiceServiceProvider',
         'Repositories\FileUpload\FileUploadRepositoryServiceProvider',
         'Services\FileUpload\FileUploadServiceServiceProvider',
+        'Repositories\Note\NoteRepositoryServiceProvider',
+        'Services\Note\NoteServiceServiceProvider',
         'Illuminate\Html\HtmlServiceProvider',
 
         /*

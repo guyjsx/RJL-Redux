@@ -11,7 +11,9 @@ export class CreateCase {
 
     activate(params) {
         this.data = [];
+        this.noteData = {};
         this.uploadedFiles = [];
+
         this.fileSuccess = 0;
         this.caseFieldData = [
             {
@@ -56,6 +58,17 @@ export class CreateCase {
             }
         ];
 
+        //this.noteFieldData = [
+        //    {
+        //        noteContent: {
+        //            name: 'noteContent', type:'textarea', namePretty: 'Note Content', value: ""
+        //        },
+        //        noteDate: {
+        //            name: 'noteDate', type:'input', namePretty: 'Note Date', value: ""
+        //        }
+        //    }
+        //];
+
         this.selectedFiles = [];
 
         return this.http.get('/api/cases/' + params.id + '/edit')
@@ -93,10 +106,10 @@ export class CreateCase {
     }
 
     edit() {
-        $("input[readonly]").removeAttr('readonly');
+        $("input[readonly], textarea[readonly]").removeAttr('readonly');
         $('.editOverlay').remove();
         $("select[disabled]").removeAttr('disabled');
-        $(".inputField").addClass('removeEditIcon');
+        $(".inputField, .textAreaField").addClass('removeEditIcon');
     }
 
     fileUpload() {
@@ -140,7 +153,16 @@ export class CreateCase {
         }
     }
 
-    attached() {
+    addNote() {
+        this.http.post('/api/note', this.noteData)
+            .then(response => {
+                console.log(response);
+            });this
+    }
 
+    attached() {
+        $('#notesTable').dataTable( {
+
+        });
     }
 }
