@@ -115,9 +115,10 @@
 #login {
   margin-top: 100px; }
 
-input, .charge-select2-container {
+input:not(.select2-search__field), select:not(charge-select) {
   color: black;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  height: 26px; }
 
 textarea {
   width: 100%;
@@ -166,10 +167,32 @@ span.inputField:hover:after, span.textAreaField:hover:after {
 span.inputField.removeEditIcon:hover:after, span.textAreaField.removeEditIcon:hover:after {
   content: ""; }
 
+.charge-select-wrapper {
+  margin-bottom: 20px; }
+
 select, .select2-dropdown {
   color: black; }
 
-.select2.select2-container {
+#edit .select2-selection.select2-selection--multiple {
+  margin-bottom: 0;
+  background-color: #32383d !important;
+  color: white;
+  border: none; }
+  #edit .select2-selection.select2-selection--multiple:hover {
+    background: #989898;
+    cursor: pointer;
+    color: black; }
+    #edit .select2-selection.select2-selection--multiple:hover:after {
+      content: "\f040";
+      font-family: FontAwesome;
+      position: absolute;
+      top: 0;
+      right: -20px; }
+
+#edit .select2-search.select2-search--inline {
+  height: 25px !important; }
+
+.select2-selection__choice {
   color: black; }
 
 .caseStatusReportContainer {
@@ -177,6 +200,9 @@ select, .select2-dropdown {
   position: relative;
   height: 435px;
   width: 100%; }
+
+.btn {
+  margin-bottom: 20px; }
 
 .btn-green {
   background: #1ac65b;

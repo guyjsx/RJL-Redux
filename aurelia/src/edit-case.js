@@ -12,51 +12,17 @@ export class CreateCase {
     activate(params) {
         this.data = [];
         this.noteData = {};
+        this.notes = [];
         this.uploadedFiles = [];
+        this.charges = [];
+        this.selectedCharge = [];
 
         this.fileSuccess = 0;
-        this.caseFieldData = [
-            {
-                caseId: {
-                    name: "caseId", type: "input", namePretty: "Case ID", value: ''
-                },
-                caseStatus: {
-                    name: "caseStatus", type: "input", namePretty: "Case Status", value: ''
-                },
-                dateOfReferral: {
-                    name: "dateOfReferral", type: "input", namePretty: "Date of Referral", value: ''
-                },
-                caseDate: {
-                    name: "courtDate", type: "input", namePretty: "Court Date", value: ''
-                },
-                dateOfCharge: {
-                    name: "dateOfCharge", type: "input", namePretty: "Date of Charge", value: ''
-                },
-                caseClose: {
-                    name: "caseClose", type: "input", namePretty: "Case Closed", value: ''
-                },
-                facilitator: {
-                    name: "facilitator", type: "input", namePretty: "Facilitator", value: ''
-                },
-                caseDescription: {
-                    name: "caseDescription", type: "input", namePretty: "Case Description", value: ''
-                }
-            }
-        ];
+        this.noteSuccess = 0;
+        this.childIndex = 0;
+        this.caseFieldData = [];
 
-        this.offenderFieldData = [
-            {
-                offenderId: {
-                    name: 'offenderId', type:'input', namePretty: 'Offender ID', value: ""
-                },
-                firstName: {
-                    name: 'firstName', type:'input', namePretty: 'First Name', value: ""
-                },
-                lastName: {
-                    name: 'lastName', type:'input', namePretty: 'Last Name', value: ""
-                }
-            }
-        ];
+        this.offenderFieldData = [];
 
         //this.noteFieldData = [
         //    {
@@ -75,9 +41,29 @@ export class CreateCase {
             .then(response => {
                 this.data = response.content.data;
                 this.uploadedFiles = this.data.files;
+                this.notes = this.data.notes;
+                this.charges = response.content.chargesData;
+                for (var i=0; i < this.data.charges.length; i++) {
+                    //this.selectedCharge.push({
+                    //    id: this.data.charges[i].id,
+                    //    text: this.data.charges[i].charges
+                    //});
+                    this.selectedCharge.push(
+                        this.data.charges[i].id
+                    );
+                }
+
+                this.caseFieldData = [
+                    response.content.caseFieldData
+                ]
+
                 this.victimFieldData = [
                     response.content.victimFieldData
                 ];
+
+                this.offenderFieldData = [
+                    response.content.offenderFieldData
+                ]
             });
     }
 
@@ -154,15 +140,15 @@ export class CreateCase {
     }
 
     addNote() {
-        this.http.post('/api/note', this.noteData)
+        this.http.post('/api/note' + '?id=' + this.data.id, this.noteData)
             .then(response => {
                 console.log(response);
-            });this
+                this.noteSuccess = 1;
+                this.notes.push(response.content.note);
+            });
     }
 
     attached() {
-        $('#notesTable').dataTable( {
-
-        });
+        $(".charge-select2-container .chargeSelect").val(this.selectedCharge).trigger('change');
     }
 }

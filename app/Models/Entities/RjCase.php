@@ -49,4 +49,34 @@ class RjCase extends Model
         return $this->hasMany('Entities\Note', 'rj_case_id');
     }
 
+    public static function fieldData() {
+        $fieldDataMapping = array(
+            'caseId' => array(
+                'name' => 'caseId', 'type' => 'input', 'namePretty' => 'Case ID', 'value' => ""
+            ),
+            'caseStatus'=> array(
+                'name' => 'caseStatus', 'type' => 'input', 'namePretty' => 'Case Status', 'value' => ""
+            ),
+            'casePhase' => array(
+                'name' => 'casePhase', 'type' => 'input', 'namePretty' => 'Case Phase', 'value' => ""
+            ),
+            'caseClose' => array(
+                'name' => 'caseClose', 'type' => 'input', 'namePretty' => 'Case Close', 'value' => ""
+            ),
+            'dateOfReferral' => array(
+                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => ""
+            ),
+            'dateClosed' => array(
+                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => ""
+            ),
+            'courtDate' => array(
+                'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => ""
+            ),
+            'caseDescription' => array(
+                'name' => 'caseDescription', 'type' => 'textarea', 'namePretty' => 'Case Description', 'value' => ""
+            )
+        );
+
+        return $fieldDataMapping;
+    }
 }

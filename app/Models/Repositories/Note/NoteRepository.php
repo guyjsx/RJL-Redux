@@ -2,6 +2,7 @@
 
 namespace Repositories\Note;
 
+use Entities\Note;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -52,16 +53,23 @@ class NoteRepository implements NoteInterface
     public function saveNote($data)
     {
         if (isset($data)) {
-            $note = new $this->noteModel;
-
-            $note->noteDate = $data["noteDate"];
-            $note->noteContent = $data["noteContent"];
+            $note = new Note(
+                array(
+                    "noteDate" => $data["noteDate"],
+                    "noteContent" => $data["noteContent"],
+                    "rj_case_id" => $data["id"]
+                )
+            );
 
             $note->save();
 
             $savedNote = $note->find($note->id);
 
-            return "test";
+            $responseData = array(
+                'note' => $savedNote
+            );
+
+            return response()->json($responseData);
         }
 
     }

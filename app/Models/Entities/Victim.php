@@ -40,20 +40,22 @@ class Victim extends Model
             'gender' => array(
                 'name' => 'gender', 'type' => 'select', 'namePretty' => 'Gender', 'value' => "",
                 'options' => array(
-                    array('name' => 'Male', 'value' => 'male'),
-                    array('name' => 'Female', 'value' => 'female')
+                    array('name' => 'Select an option...', 'value' => '', 'selected'=> 'true'),
+                    array('name' => 'Male', 'value' => 'male', 'selected'=> ''),
+                    array('name' => 'Female', 'value' => 'female', 'selected'=> '')
                 )
             ),
             'race' => array(
                 'name' => 'race', 'type' => 'select', 'namePretty' => 'Race', 'value' => "",
                     'options' => array(
-                        array('name' => 'White', 'value' => 'White'),
-                        array('name' => 'African-American', 'value' => 'African-American'),
-                        array('name' => 'Hispanic', 'value' => 'Hispanic'),
-                        array('name' => 'Asian', 'value' => 'asian'),
-                        array('name' => 'Native Hawaiian/Pacific Islander', 'value' => 'Native Hawaiian/Pacific Islander'),
-                        array('name' => 'Native American/Alaska Native', 'value' => 'Native American/Alaska Native'),
-                        array('name' => 'Other/Mixed', 'value' => 'Other/Mixed')
+                        array('name' => 'Select an option...', 'value' => '', 'selected'=> 'true'),
+                        array('name' => 'White', 'value' => 'White', 'selected'=> ''),
+                        array('name' => 'African-American', 'value' => 'African-American', 'selected'=> ''),
+                        array('name' => 'Hispanic', 'value' => 'Hispanic', 'selected'=> ''),
+                        array('name' => 'Asian', 'value' => 'asian', 'selected'=> ''),
+                        array('name' => 'Native Hawaiian/Pacific Islander', 'value' => 'Native Hawaiian/Pacific Islander', 'selected'=> ''),
+                        array('name' => 'Native American/Alaska Native', 'value' => 'Native American/Alaska Native', 'selected'=> ''),
+                        array('name' => 'Other/Mixed', 'value' => 'Other/Mixed', 'selected'=> '')
                     )
             ),
             'streetAddress' => array(
@@ -94,11 +96,12 @@ class Victim extends Model
             ),
             'phoneOneType' => array(
                 'name' => 'phoneOneType', 'type' => 'select', 'namePretty' => 'Phone One Type', 'value' => "",
-                    'options' => [
-                        array('name' => 'Mobile', 'value' => 'Mobile'),
-                        array('name' => 'Work', 'value' => 'Work'),
-                        array('name' => 'Home', 'value' => 'Home')
-                    ]
+                    'options' => array(
+                        array('name' => 'Select an option...', 'value' => '', 'selected'=> 'true'),
+                        array('name' => 'Mobile', 'value' => 'Mobile', 'selected'=> '' ),
+                        array('name' => 'Work', 'value' => 'Work', 'selected'=> ''),
+                        array('name' => 'Home', 'value' => 'Home', 'selected'=> '')
+                    )
             ),
             'phoneTwo' => array(
                 'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => ""
@@ -106,9 +109,10 @@ class Victim extends Model
             'phoneTwoType' => array(
                 'name' => 'phoneTwoType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
                     'options' => [
-                        array('name' => 'Mobile', 'value' => 'Mobile'),
-                        array('name' => 'Work', 'value' => 'Work'),
-                        array('name' => 'Home', 'value' => 'Home')
+                        array('name' => 'Select an option...', 'value' => '', 'selected'=> 'true'),
+                        array('name' => 'Mobile', 'value' => 'Mobile', 'selected'=> ''),
+                        array('name' => 'Work', 'value' => 'Work', 'selected'=> ''),
+                        array('name' => 'Home', 'value' => 'Home', 'selected'=> '')
                     ]
             ),
         );

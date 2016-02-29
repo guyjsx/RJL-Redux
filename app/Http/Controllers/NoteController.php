@@ -11,6 +11,10 @@ use Services\Note\NoteService;
 
 class NoteController extends Controller
 {
+    public function __construct(NoteService $noteService)
+    {
+        $this->noteService = $noteService;
+    }
 
     /**
      * Display a listing of the resource.
@@ -42,18 +46,9 @@ class NoteController extends Controller
     {
         $data = $request->all();
 
-        if (isset($data)) {
-            $note = new Note();
+        $savedNote = $this->noteService->saveNote($data);
 
-            $note->noteDate = $data["noteDate"];
-            $note->noteContent = $data["noteContent"];
-
-            $note->save();
-
-            $savedNote = $note->find($note->id);
-        }
-
-        return "success";
+        return $savedNote;
     }
 
     /**

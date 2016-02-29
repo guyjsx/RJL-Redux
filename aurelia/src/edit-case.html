@@ -1,153 +1,212 @@
 <template>
-    <form id="editCaseForm" name="editCaseForm" role="form" submit.delegate="update(data['id'])">
-        <input type="hidden" name="_token" value.bind="data['token']"]>
-        <input type="hidden" id="id" value.bind="data['case']['id']" name="data[id]" >
-        <div class="row" repeat.for="item of caseFieldData">
-            <require from="ObjectKeysValueConverter"></require>
-            <div class="col-sm-3" repeat.for="prop of item | objectKeys">
-                <div>
-                    <label for="${prop.name}">${prop.namePretty} </label>
-                </div>
-                    <span class="inputField"><input click.delegate="edit()" type="text" name="data[case][${prop.name}]" id="${prop.name}" value.bind="data[prop.name]" readonly></span>
-                </div>
-            </div>
-        </div>
-
-        <div id="victimSection">
-            <section id="victim">
-                <div repeat.for="item of victimFieldData">
+    <div id="edit">
+        <form id="editCaseForm" name="editCaseForm" role="form" submit.delegate="update(data['id'])">
+            <input type="hidden" name="_token" value.bind="data['token']"]>
+            <input type="hidden" id="id" value.bind="data['case']['id']" name="data[id]" >
+            <div class="row">
+                <div class="col-sm-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Victim ${$index + 1}</div>
+                        <div class="panel-heading">Case</div>
                         <div class="panel-body">
-                            <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                            <div class="row">
-                                <div class="col-sm-3" repeat.for="prop of item | objectKeys">
-                                    <div>
-                                        <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                    </div>
-                                    <div>
-                                        <span class="inputField">
-                                            <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" readonly>
-
-                                            <div if.bind="prop.type  == 'select'">
-                                                <div class="editOverlay" click.delegate="edit()"></div>
-                                                <select name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" disabled>
-                                                    <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
-                                                </select>
+                            <div repeat.for="item of caseFieldData">
+                                <require from="ObjectKeysValueConverter"></require>
+                                <div>
+                                    <div repeat.for="prop of item | objectKeys">
+                                        <div class="col-sm-4">
+                                            <div if.bind="prop.type == 'input'">
+                                                <div>
+                                                    <label for="${prop.name}">${prop.namePretty} </label>
+                                                </div>
+                                                <div>
+                                            <span class="inputField" if.bind="prop.type == 'input'">
+                                                <input click.delegate="edit()" type="text" name="data[case][${prop.name}]" id="${prop.name}" value.bind="data[prop.name]" readonly>
+                                            </span>
+                                                </div>
                                             </div>
-                                        </span>
+                                            <div if.bind="prop.type == 'textarea'">
+                                                <div>
+                                                    <label for="${prop.name}">${prop.namePretty} </label>
+                                                </div>
+                                                <span class="textAreaField">
+                                                    <textarea rows="10" click.delegate="edit()" name="data[case][${prop.name}]" id="${prop.name}"  value.bind="data[prop.name]" readonly></textarea>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
 
-        <div id="offenderSection">
-            <section id="offender">
-                <div repeat.for="item of offenderFieldData">
+            <div class="row">
+                <div class="col-sm-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Offender ${$index + 1}</div>
+                        <div class="panel-heading">Charge</div>
                         <div class="panel-body">
-                            <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                            <require from="ObjectKeysValueConverter"></require>
-                            <div class="row">
-                                <div class="col-sm-3" repeat.for="prop of item | objectKeys">
-                                    <div>
-                                        <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                    </div>
-                                    <div>
-                                        <span class="inputField">
-                                            <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]" readonly>
-                                        </span>
+                            <div class="col-sm-3">
+                                <div class="charge-select-wrapper">
+                                    <div class="charge-select2-container">
+                                        <require from="resources/custom-select"></require>
+
+                                        <div>
+                                            <label for="charges">Charge(s): </label>
+                                        </div>
+
+                                        <select id="charges" class="chargeSelect" select2.bind="options" value.bind="selectedCharge" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
+                                            <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            <div id="victimSection">
+                <section id="victim">
+                    <div if.bind="data.victims.length !== 0" repeat.for="item of victimFieldData">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Victim ${$index + 1}</div>
+                            <div class="panel-body">
+                                <div class="index" style="display: none;">${$parentIndex = $index}</div>
+                                <div class="row">
+                                    <div class="col-sm-4" repeat.for="prop of item | objectKeys">
+                                        <div>
+                                            <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                        </div>
+                                        <div>
+                                            <span class="inputField">
+                                                <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" readonly>
+
+                                                <div if.bind="prop.type  == 'select'">
+                                                    <div class="editOverlay" click.delegate="edit()"></div>
+                                                    <select name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" disabled>
+                                                        <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="offenderSection">
+                <section id="offender">
+                    <div if.bind="data.offenders.length !== 0" repeat.for="item of offenderFieldData">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Victim ${$index + 1}</div>
+                            <div class="panel-body">
+                                <div class="index" style="display: none;">${$parentIndex = $index}</div>
+                                <div class="row">
+                                    <div class="col-sm-4" repeat.for="prop of item | objectKeys">
+                                        <div>
+                                            <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                        </div>
+                                        <div>
+                                            <span class="inputField">
+                                                <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]" readonly>
+
+                                                <div if.bind="prop.type  == 'select'">
+                                                    <div class="editOverlay" click.delegate="edit()"></div>
+                                                    <select name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]" disabled>
+                                                        <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <button class="btn  btn-default btn-green" type="submit">Update Case</button>
+        </form>
+
+        <div id="fileSection">
+            <form id="fileUploadForm" name="fileUploadForm" role="form" submit.delegate="fileUpload()" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
+                <require from="FileListToArrayValueConverter"></require>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Case Files</div>
+                    <div class="panel-body">
+                        <input type="hidden" id="id" value.bind="data[id]" name="data[id]" >
+                        <div class="row">
+                            <div show.bind="fileSuccess">File Uploaded Successfully!</div>
+                            <div class="fileError"></div>
+                            <div class="col-sm-6">
+                                <input type="file" multiple files.bind="selectedFiles">
+                                <button type="submit" class="btn  btn-default">Upload</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <ul>
+                                    <li repeat.for="file of uploadedFiles | fileListToArray">
+                                        <h5><a href="/uploads/${file.filename}">${file.filename}</a></h5>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
         </div>
 
-        <button class="btn  btn-default" type="submit">Update Case</button>
-    </form>
-
-    <div id="fileSection">
-        <form id="fileUploadForm" name="fileUploadForm" role="form" submit.delegate="fileUpload()" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
-            <require from="FileListToArrayValueConverter"></require>
-            <div class="panel panel-default">
-                <div class="panel-heading">Case Files</div>
-                <div class="panel-body">
-                    <input type="hidden" id="id" value.bind="data[id]" name="data[id]" >
-                    <div class="row">
-                        <div show.bind="fileSuccess">File Uploaded Successfully!</div>
-                        <div class="fileError"></div>
-                        <div class="col-sm-6">
-                            <input type="file" multiple files.bind="selectedFiles">
-                            <button type="submit" class="btn  btn-default">Upload</button>
-                        </div>
-                        <div class="col-sm-6">
-                            <ul>
-                                <li repeat.for="file of uploadedFiles | fileListToArray">
-                                    <h5><a href="/uploads/${file.filename}">${file.filename}</a></h5>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div id="noteSection">
-        <form id="noteForm" name="noteForm" role="form" submit.delegate="addNote()" method="post">
-            <div class="panel panel-default">
-                <div class="panel-heading">Case Notes</div>
-                <div class="panel-body">
-                    <input type="hidden" value.bind="data[id]" name="data[id]" >
-                    <div class="row">
-                        <div show.bind="noteSuccess">Note Added Successfully!</div>
-                        <div class="col-sm-6">
-                            <div>
-                                <label for="noteDate">Note Date: </label>
+        <div id="noteSection">
+            <form id="noteForm" name="noteForm" role="form" submit.delegate="addNote()" method="post">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Case Notes</div>
+                    <div class="panel-body">
+                        <input type="hidden" type="text" value.bind="data[id]" name="data[id]">
+                        <div class="row">
+                            <div show.bind="noteSuccess">Note Added Successfully!</div>
+                            <div class="col-sm-6">
+                                <div>
+                                    <label for="noteDate">Note Date: </label>
+                                </div>
+                                <span class="inputField">
+                                    <input click.delegate="edit()" type="text" name="data[noteData][noteDate]" id="noteDate" value.bind="noteData.noteDate" readonly>
+                                </span>
+                                <div>
+                                    <label for="noteContent">Note Content: </label>
+                                </div>
+                                <span class="textAreaField">
+                                    <textarea rows="10" click.delegate="edit()" name="data[noteData][noteContent]" id="noteContent" value.bind="noteData.noteContent" readonly></textarea>
+                                </span>
+                                <button type="submit" class="btn  btn-default">Add Note</button>
                             </div>
-                            <span class="inputField">
-                                <input click.delegate="edit()" type="text" name="data[noteData][noteDate]" id="noteDate" value.bind="noteData.noteDate" readonly>
-                            </span>
-                            <div>
-                                <label for="noteContent">Note Content: </label>
+                            <div class="col-sm-6">
+                                <table id="notesTable" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Note Date</th>
+                                            <th>Note Contents</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr repeat.for="note of notes">
+                                            <td>
+                                                ${note.noteDate}
+                                            </td>
+                                            <td>
+                                                ${note.noteContent}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <span class="textAreaField">
-                                <textarea rows="10" click.delegate="edit()" name="data[noteData][noteContent]" id="noteContent" value.bind="noteData.noteContent" readonly></textarea>
-                            </span>
-                            <button type="submit" class="btn  btn-default">Add Note</button>
-                        </div>
-                        <div class="col-sm-6">
-                            <table id="notesTable" class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Note Date</th>
-                                        <th>Note Contents</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr repeat.for="note of notes">
-                                        <td>
-                                            ${note.noteDate}
-                                        </td>
-                                        <td>
-                                            ${note.noteContent}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </template>

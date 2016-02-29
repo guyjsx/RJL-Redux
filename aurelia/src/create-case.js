@@ -8,40 +8,34 @@ export class CreateCase {
     }
 
     activate() {
-        this.caseFieldData = [
-            {
-                caseId: {
-                    name: "caseId", type: "input", namePretty: "Case ID", value: ''
-                },
-                caseStatus: {
-                    name: "caseStatus", type: "input", namePretty: "Case Status", value: ''
-                }
-            }
-        ];
+        this.caseFieldData = [];
 
         this.victimFieldData = [];
         this.offenderFieldData = [];
         this.selectedCharge = [];
         this.victimCount = 0;
+        this.data = [];
 
         return this.http.get('/api/cases/create').then(response => {
             this.charges = response.content.charges
+            this.caseFieldData = [
+                response.content.caseFieldData
+            ]
+
+            this.victimFieldMapping = response.content.victimFieldData;
+
+
+            this.offenderFieldMapping = response.content.offenderFieldData;
+
         });
     }
 
     addVictim() {
+        this.newVictimFieldMapping = [];
+        this.newVictimFieldMapping = $.extend(true, {}, this.victimFieldMapping);
+
         this.victimFieldData.push(
-            {
-                victimId: {
-                    name: 'victimId', type:'input', namePretty: 'Victim ID', value: ""
-                },
-                firstName: {
-                    name: 'firstName', type:'input', namePretty: 'First Name', value: ""
-                },
-                lastName: {
-                    name: 'lastName', type:'input', namePretty: 'Last Name', value: ""
-                }
-            }
+           this.newVictimFieldMapping
         );
 
         this.victimCount++;
@@ -49,17 +43,7 @@ export class CreateCase {
 
     addOffender() {
         this.offenderFieldData.push(
-            {
-                offenderId: {
-                    name: 'offenderId', type:'input', namePretty: 'Offender ID', value: ""
-                },
-                firstName: {
-                    name: 'firstName', type:'input', namePretty: 'First Name', value: ""
-                },
-                lastName: {
-                    name: 'lastName', type:'input', namePretty: 'Last Name', value: ""
-                }
-            }
+            this.offenderFieldMapping
         );
     }
 
@@ -80,19 +64,6 @@ export class CreateCase {
     }
 
     attached() {
-        //$('#casesForm').on('submit', function() {
-        //    event.preventDefault();
-        //    console.log('testing submit');
-        //
-        //    $.ajax({
-        //        type: "POST",
-        //        url: "/api/cases",
-        //        data: $(this).serialize(),
-        //        dataType: 'json',
-        //        success: function(data) {
-        //            console.log(data);
-        //        }
-        //    });
-        //});
+
     }
 }
