@@ -20,7 +20,7 @@ export class CreateCase {
             this.charges = response.content.charges
             this.caseFieldData = [
                 response.content.caseFieldData
-            ]
+            ];
 
             this.victimFieldMapping = response.content.victimFieldData;
 

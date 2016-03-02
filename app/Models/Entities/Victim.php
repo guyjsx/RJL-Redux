@@ -35,7 +35,7 @@ class Victim extends Model
                 'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
             ),
             'dateOfBirth' => array(
-                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => ""
+                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "",'placeholder' => 'YYYY-MM-DD'
             ),
             'gender' => array(
                 'name' => 'gender', 'type' => 'select', 'namePretty' => 'Gender', 'value' => "",
@@ -72,24 +72,6 @@ class Victim extends Model
             ),
             'email' => array(
                 'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => ""
-            ),
-            'guardianOneFirstName' => array(
-                'name' => 'guardianOneFirstName', 'type' => 'input', 'namePretty' => 'Guardian One First Name', 'value' => ""
-            ),
-            'guardianOneLastName' => array(
-                'name' => 'guardianOneLastName', 'type' =>'input', 'namePretty' => 'Guardian One Last Name', 'value' => ""
-            ),
-            'guardianOneRelation' => array(
-                'name' => 'guardianOneRelation', 'type' => 'input', 'namePretty' => 'Guardian One Relation', 'value' => ""
-            ),
-            'guardianTwoFirstName' => array(
-                'name' => 'guardianTwoFirstName', 'type' => 'input', 'namePretty' => 'Guardian Two First Name', 'value' => ""
-            ),
-            'guardianTwoLastName' => array(
-                'name' => 'guardianTwoLastName', 'type' => 'input', 'namePretty' => 'Guardian Two Last Name', 'value' => ""
-            ),
-            'guardianTwoRelation' => array(
-                'name' => 'guardianTwoRelation', 'type' => 'input', 'namePretty' => 'Guardian Two Relation', 'value' => ""
             ),
             'phoneOne' => array(
                 'name' => 'phoneOne', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => ""

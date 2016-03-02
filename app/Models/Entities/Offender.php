@@ -34,12 +34,12 @@ class Offender extends Model
                 'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
             ),
             'dateOfBirth' => array(
-                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => ""
+                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
             ),
             'gender' => array(
                 'name' => 'gender', 'type' => 'select', 'namePretty' => 'Gender', 'value' => "",
                 'options' => array(
-                    array('name' => '', 'value' => ''),
+                    array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Male', 'value' => 'male'),
                     array('name' => 'Female', 'value' => 'female')
                 )
@@ -47,7 +47,7 @@ class Offender extends Model
             'race' => array(
                 'name' => 'race', 'type' => 'select', 'namePretty' => 'Race', 'value' => "",
                 'options' => array(
-                    array('name' => '', 'value' => ''),
+                    array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'White', 'value' => 'White'),
                     array('name' => 'African-American', 'value' => 'African-American'),
                     array('name' => 'Hispanic', 'value' => 'Hispanic'),
@@ -96,7 +96,7 @@ class Offender extends Model
             'phoneOneType' => array(
                 'name' => 'phoneOneType', 'type' => 'select', 'namePretty' => 'Phone One Type', 'value' => "",
                 'options' => [
-                    array('name' => '', 'value' => ''),
+                    array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
                     array('name' => 'Work', 'value' => 'Work'),
                     array('name' => 'Home', 'value' => 'Home')
@@ -108,7 +108,7 @@ class Offender extends Model
             'phoneTwoType' => array(
                 'name' => 'phoneTwoType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
                 'options' => [
-                    array('name' => '', 'value' => ''),
+                    array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
                     array('name' => 'Work', 'value' => 'Work'),
                     array('name' => 'Home', 'value' => 'Home')

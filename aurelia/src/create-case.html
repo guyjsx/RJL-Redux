@@ -9,24 +9,27 @@
                            <require from="ObjectKeysValueConverter"></require>
                            <div>
                                <div repeat.for="prop of item | objectKeys">
-                                   <div class="col-sm-4">
-                                       <div if.bind="prop.type == 'input'">
+                                   <div if.bind="prop.type == 'input'">
+                                       <div class="col-sm-4">
                                            <div>
                                                <label for="${prop.name}">${prop.namePretty} </label>
                                            </div>
                                            <div>
-                                        <span>
-                                            <input type="text" name="caseFieldData[case][${prop.name}]" id="${prop.name}" value.bind="caseFieldData[prop.name]">
-                                        </span>
+                                                <span>
+                                                    <input type="text" name="caseFieldData[case][${prop.name}]" id="${prop.name}" value.bind="caseFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
+                                                </span>
                                            </div>
                                        </div>
-                                       <div if.bind="prop.type == 'textarea'">
+                                   </div>
+
+                                   <div if.bind="prop.type == 'textarea'">
+                                       <div class="col-sm-6">
                                            <div>
                                                <label for="${prop.name}">${prop.namePretty} </label>
                                            </div>
-                                            <span>
-                                                <textarea rows="10" name="caseFieldData[case][${prop.name}]" id="${prop.name}"  value.bind="caseFieldData[prop.name]"></textarea>
-                                            </span>
+                                           <span>
+                                                <textarea rows="10" name="caseFieldData[case][${prop.name}]" id="${prop.name}"  value.bind="caseFieldData[0][prop.name]['value']"></textarea>
+                                           </span>
                                        </div>
                                    </div>
                                </div>
@@ -76,7 +79,7 @@
                                    </div>
                                    <div>
                                         <span>
-                                            <input if.bind="prop.type  == 'input'" type="text" name="victimFieldData[${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
+                                            <input if.bind="prop.type  == 'input'" type="text" name="victimFieldData[${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
 
                                             <div if.bind="prop.type  == 'select'">
                                                 <select name="victimFieldData[${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
@@ -109,11 +112,11 @@
                                    </div>
                                    <div>
                                         <span>
-                                            <input if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]">
+                                            <input if.bind="prop.type  == 'input'" type="text" name="offenderFieldData[${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
 
                                             <div if.bind="prop.type  == 'select'">
-                                                <select name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]">
-                                                    <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
+                                                <select name="offenderFieldData[${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']">
+                                                    <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
                                                 </select>
                                             </div>
                                         </span>
