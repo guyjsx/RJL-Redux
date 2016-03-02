@@ -9,6 +9,7 @@
                            <require from="ObjectKeysValueConverter"></require>
                            <div>
                                <div repeat.for="prop of item | objectKeys">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
                                    <div if.bind="prop.type == 'input'">
                                        <div class="col-sm-4">
                                            <div>
@@ -16,7 +17,7 @@
                                            </div>
                                            <div>
                                                 <span>
-                                                    <input type="text" name="caseFieldData[case][${prop.name}]" id="${prop.name}" value.bind="caseFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
+                                                    <input type="text" name="${prop.name}" id="${prop.name}" value.bind="caseFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
                                                 </span>
                                            </div>
                                        </div>
@@ -68,25 +69,28 @@
        <div id="victimSection">
            <section id="victim">
                <div if.bind="victimFieldData.length !== 0" repeat.for="item of victimFieldData">
-                   <div class="panel panel-default">
+                   <div id="victim-${$index}" class="panel panel-default">
                        <div class="panel-heading">Victim ${$index + 1}</div>
                        <div class="panel-body">
                            <div class="index" style="visibility: hidden;">${$parentIndex = $index}</div>
                            <div class="row">
-                               <div class="col-sm-4" repeat.for="prop of item | objectKeys">
-                                   <div>
-                                       <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                   </div>
-                                   <div>
-                                        <span>
-                                            <input if.bind="prop.type  == 'input'" type="text" name="victimFieldData[${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
+                               <div repeat.for="prop of item | objectKeys">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                   <div class="col-sm-4">
+                                       <div>
+                                           <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                       </div>
+                                       <div>
+                                            <span>
+                                                <input if.bind="prop.type  == 'input'" type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
 
-                                            <div if.bind="prop.type  == 'select'">
-                                                <select name="victimFieldData[${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
-                                                    <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
-                                                </select>
-                                            </div>
-                                        </span>
+                                                <div if.bind="prop.type  == 'select'">
+                                                    <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
+                                                        <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                       </div>
                                    </div>
                                </div>
                            </div>
@@ -106,20 +110,23 @@
                        <div class="panel-body">
                            <div class="index" style="display: none;">${$parentIndex = $index}</div>
                            <div class="row">
-                               <div class="col-sm-4" repeat.for="prop of item | objectKeys">
-                                   <div>
-                                       <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                   </div>
-                                   <div>
-                                        <span>
-                                            <input if.bind="prop.type  == 'input'" type="text" name="offenderFieldData[${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
+                               <div repeat.for="prop of item | objectKeys">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                   <div class="col-sm-4">
+                                       <div>
+                                           <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                       </div>
+                                       <div>
+                                            <span>
+                                                <input if.bind="prop.type  == 'input'" type="text" name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
 
-                                            <div if.bind="prop.type  == 'select'">
-                                                <select name="offenderFieldData[${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']">
-                                                    <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
-                                                </select>
-                                            </div>
-                                        </span>
+                                                <div if.bind="prop.type  == 'select'">
+                                                    <select name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']">
+                                                        <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                       </div>
                                    </div>
                                </div>
                            </div>

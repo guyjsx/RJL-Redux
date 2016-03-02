@@ -9,7 +9,7 @@ System.config({
   },
   paths: {
     "*": "aurelia/src/*",
-    '!': "tacos",
+    "!": "tacos",
     "github:*": "aurelia/jspm_packages/github/*",
     "npm:*": "aurelia/jspm_packages/npm/*"
   },
@@ -35,6 +35,7 @@ System.config({
     "fetch": "github:github/fetch@0.10.1",
     "font-awesome": "npm:font-awesome@4.5.0",
     "jquery-ui": "github:components/jqueryui@1.11.4",
+    "jquery-validation": "github:jzaefferer/jquery-validation@1.15.0",
     "select2": "github:select2/select2@4.0.1",
     "text": "github:systemjs/plugin-text@0.0.3",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -48,6 +49,9 @@ System.config({
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
+    },
+    "github:jzaefferer/jquery-validation@1.15.0": {
+      "jquery": "npm:jquery@2.2.1"
     },
     "github:twbs/bootstrap@3.3.6": {
       "jquery": "github:components/jquery@2.2.0"

@@ -1,10 +1,13 @@
 import {inject} from 'aurelia-framework';
+import {ObserverLocator} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
+import validate from 'jquery-validation';
 
-@inject(HttpClient)
+@inject(HttpClient, ObserverLocator)
 export class CreateCase {
-    constructor(http) {
+    constructor(http, observerLocator) {
         this.http = http;
+        this.observerLocator = observerLocator;
     }
 
     activate() {
@@ -41,6 +44,10 @@ export class CreateCase {
         this.victimCount++;
     }
 
+    onChange(newValue, oldValue) {
+        alert(`bar changed from ${oldValue} to ${newValue}`);
+    }
+
     addOffender() {
         this.offenderFieldData.push(
             this.offenderFieldMapping
@@ -59,11 +66,77 @@ export class CreateCase {
             .then(response => {
                 console.log('done');
             });
+    }
 
+    setupCaseValidation() {
+        $("#casesForm").validate({
+            rules: {
+                caseId: {
+                    required: true
+                },
+                victimId: {
+                    required: true,
+                },
+                offenderId: {
+                    required: true
+                },
+                caseStatus: {
+                    required: true
+                },
+                courtDate: {
+                    required: true
+                },
+                dateOfCharge: {
+                    required: true
+                },
+                dateOfReferral: {
+                    required: true
+                },
+                firstName: {
+                    required: true
+                },
+                lastName: {
+                    required: true
+                },
+                dateOfBirth: {
+                    required: true
+                },
+                streetAddress: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                zipCode: {
+                    required: true
+                },
+                primaryPhone: {
+                    required: true
+                },
+                primaryPhoneType: {
+                    required: true
+                },
+                zipCode: {
+                    required: true
+                }
 
+            },
+            messages: {
+
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    }
+
+    setupVictimValidation(index) {
+        $( "#casesForm" ).rules( "add", {
+            "minlength": 2
+        });
     }
 
     attached() {
-
+        this.setupCaseValidation();
     }
 }
