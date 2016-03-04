@@ -55,7 +55,7 @@
                                        <label for="${charge.id}">Charge(s): </label>
                                    </div>
 
-                                   <select class="charge-select" select2.bind="options" value.bind="selectedCharge" multiple="multiple" name="data[charge]">
+                                   <select class="charge-select" select2.bind="options" value.bind="selectedCharge" multiple="multiple" name="charge">
                                        <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
                                    </select>
                                </div>

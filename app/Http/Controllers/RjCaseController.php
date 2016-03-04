@@ -177,4 +177,14 @@ class RjCaseController extends Controller
     {
         //
     }
+
+    public function checkIfExists(Request $request) {
+        $data = $request->all();
+
+        if (RjCase::where('caseId', '=', $data['caseId'])->exists()) {
+            return "false";
+        }
+
+        return "true";
+    }
 }

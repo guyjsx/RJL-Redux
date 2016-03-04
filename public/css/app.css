@@ -204,6 +204,8 @@ label.error {
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
   margin-top: -15px;
   color: #ff3232; }
+  .charge-select2-container label.error {
+    margin-top: 0; }
 
 .caseStatusReportContainer {
   display: block;

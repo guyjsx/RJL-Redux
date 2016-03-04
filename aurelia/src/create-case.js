@@ -1,13 +1,11 @@
 import {inject} from 'aurelia-framework';
-import {ObserverLocator} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import validate from 'jquery-validation';
 
-@inject(HttpClient, ObserverLocator)
+@inject(HttpClient)
 export class CreateCase {
-    constructor(http, observerLocator) {
+    constructor(http) {
         this.http = http;
-        this.observerLocator = observerLocator;
     }
 
     activate() {
@@ -44,10 +42,6 @@ export class CreateCase {
         this.victimCount++;
     }
 
-    onChange(newValue, oldValue) {
-        alert(`bar changed from ${oldValue} to ${newValue}`);
-    }
-
     addOffender() {
         this.offenderFieldData.push(
             this.offenderFieldMapping
@@ -69,10 +63,30 @@ export class CreateCase {
     }
 
     setupCaseValidation() {
+        $.validator.addMethod(
+                "dateFormat",
+                function(value, element) {
+                    return value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/);
+                },
+                "Please enter a date in the format YYYY-MM-DD"
+            );
+
+        $.validator.addMethod(
+                "states",
+                function(value, element) {
+                    return value.match(/^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/);
+                },
+                "Please enter a state in two letters, e.g., KY"
+            );
+
         $("#casesForm").validate({
+            onkeyup: false,
             rules: {
                 caseId: {
-                    required: true
+                    required: true,
+                    remote: {
+                        url: "/api/cases/exists"
+                    }
                 },
                 victimId: {
                     required: true,
@@ -84,13 +98,25 @@ export class CreateCase {
                     required: true
                 },
                 courtDate: {
+                    required: true,
+                    dateFormat: true
+                },
+                charge: {
                     required: true
                 },
                 dateOfCharge: {
-                    required: true
+                    required: true,
+                    dateFormat: true
+                },
+                dateClosed: {
+                    dateFormat: true
                 },
                 dateOfReferral: {
-                    required: true
+                    required: true,
+                    dateFormat: true
+                },
+                email: {
+                    email: true
                 },
                 firstName: {
                     required: true
@@ -99,7 +125,8 @@ export class CreateCase {
                     required: true
                 },
                 dateOfBirth: {
-                    required: true
+                    required: true,
+                    dateFormat: true
                 },
                 streetAddress: {
                     required: true
@@ -107,14 +134,19 @@ export class CreateCase {
                 city: {
                     required: true
                 },
+                state: {
+                  states: true
+                },
                 zipCode: {
                     required: true
                 },
-                primaryPhone: {
+                phoneOne: {
                     required: true
                 },
-                primaryPhoneType: {
+                phoneOneType: {
                     required: true
+                },
+                phoneTwo: {
                 },
                 zipCode: {
                     required: true
@@ -122,7 +154,9 @@ export class CreateCase {
 
             },
             messages: {
-
+                caseId: {
+                    remote: "what the"
+                }
             },
             submitHandler: function(form) {
                 form.submit();
@@ -132,7 +166,7 @@ export class CreateCase {
 
     setupVictimValidation(index) {
         $( "#casesForm" ).rules( "add", {
-            "minlength": 2
+            minlength: 2
         });
     }
 
