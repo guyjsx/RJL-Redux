@@ -47,8 +47,16 @@ class RjCaseController extends Controller
     public function create()
     {
         $charges = $this->chargeService->getAllCharges()->toArray();
+        $caseFieldData = RjCase::fieldData();
+        $victimFieldData = Victim::fieldData();
+        $offenderFieldData = Offender::fieldData();
 
-        return response()->json(array('charges' => $charges));
+        return response()->json(array(
+            'charges' => $charges,
+            'caseFieldData' => $caseFieldData,
+            'victimFieldData' => $victimFieldData,
+            'offenderFieldData' => $offenderFieldData,
+        ));
     }
 
     /**
@@ -123,9 +131,19 @@ class RjCaseController extends Controller
     {
         $token = csrf_token();
         $case = $this->rjCaseService->getCaseById($id);
+        $caseFieldData = RjCase::fieldData();
         $victimFieldData = Victim::fieldData();
+        $offenderFieldData = Offender::fieldData();
+        $charges = $this->chargeService->getAllCharges()->toArray();
 
-        return response()->json(array('data' => $case, 'token' => $token, 'victimFieldData' => $victimFieldData));
+        return response()->json(array(
+            'data' => $case,
+            'token' => $token,
+            'caseFieldData' => $caseFieldData,
+            'victimFieldData' => $victimFieldData,
+            'offenderFieldData' => $offenderFieldData,
+            'chargesData' => $charges
+        ));
     }
 
     /**
@@ -158,5 +176,15 @@ class RjCaseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkIfExists(Request $request) {
+        $data = $request->all();
+
+        if (RjCase::where('caseId', '=', $data['caseId'])->exists()) {
+            return "false";
+        }
+
+        return "true";
     }
 }

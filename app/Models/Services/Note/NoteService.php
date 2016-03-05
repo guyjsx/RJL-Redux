@@ -59,7 +59,8 @@ class NoteService
     }
 
     public function saveNote($data) {
-        $this->noteRepo->saveNote($data);
-        return "success";
+        $savedNote = $this->noteRepo->saveNote($data);
+        
+        return $savedNote;
     }
 }

@@ -1,59 +1,139 @@
 <template>
    <form name="casesForm" id="casesForm" method="post" action="/api/cases/" submit.delegate="submitCase()">
-       <div class="row" repeat.for="item of caseFieldData">
-           <require from="ObjectKeysValueConverter"></require>
-           <div class="col-sm-3" repeat.for="prop of item | objectKeys">
-               <label for="${prop.name}">${prop.namePretty} </label>
-               <input type="text" name="data[case][${prop.name}]" id="${prop.name}" value.bind="prop.value">
+       <div class="row">
+           <div class="col-sm-12">
+               <div class="panel panel-default">
+                   <div class="panel-heading">Case</div>
+                   <div class="panel-body">
+                       <div repeat.for="item of caseFieldData">
+                           <require from="ObjectKeysValueConverter"></require>
+                           <div>
+                               <div repeat.for="prop of item | objectKeys">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                   <div if.bind="prop.type == 'input'">
+                                       <div class="col-sm-4">
+                                           <div>
+                                               <label for="${prop.name}">${prop.namePretty} </label>
+                                           </div>
+                                           <div>
+                                                <span>
+                                                    <input type="text" name="${prop.name}" id="${prop.name}" value.bind="caseFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
+                                                </span>
+                                           </div>
+                                       </div>
+                                   </div>
+
+                                   <div if.bind="prop.type == 'textarea'">
+                                       <div class="col-sm-6">
+                                           <div>
+                                               <label for="${prop.name}">${prop.namePretty} </label>
+                                           </div>
+                                           <span>
+                                                <textarea rows="10" name="caseFieldData[case][${prop.name}]" id="${prop.name}"  value.bind="caseFieldData[0][prop.name]['value']"></textarea>
+                                           </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
            </div>
        </div>
 
-
        <div class="row">
-           <div class="col-sm-3">
-               <div class="charge-select2-container">
-                   <require from="resources/custom-select"></require>
+           <div class="col-sm-12">
+               <div class="panel panel-default">
+                   <div class="panel-heading">Charge</div>
+                   <div class="panel-body">
+                       <div class="col-sm-3">
+                           <div class="charge-select-wrapper">
+                               <div class="charge-select2-container">
+                                   <require from="resources/custom-select"></require>
 
-                   <select select2.bind="options" value.bind="selectedCharge" multiple="multiple" name="data[charge][]">
-                       <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
-                   </select>
+                                   <div>
+                                       <label for="${charge.id}">Charge(s): </label>
+                                   </div>
+
+                                   <select class="charge-select" select2.bind="options" value.bind="selectedCharge" multiple="multiple" name="charge">
+                                       <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
+                                   </select>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
                </div>
            </div>
        </div>
 
        <div id="victimSection">
            <section id="victim">
-               <div repeat.for="item of victimFieldData">
-                   <div class="panel panel-default">
+               <div if.bind="victimFieldData.length !== 0" repeat.for="item of victimFieldData">
+                   <div id="victim-${$index}" class="panel panel-default">
                        <div class="panel-heading">Victim ${$index + 1}</div>
                        <div class="panel-body">
-                           <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                           <require from="ObjectKeysValueConverter"></require>
+                           <div class="index" style="visibility: hidden;">${$parentIndex = $index}</div>
                            <div class="row">
-                               <div class="col-sm-3" repeat.for="prop of item | objectKeys">
-                                   <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                   <input if.bind="prop.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="prop.value">
+                               <div repeat.for="prop of item | objectKeys">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                   <div class="col-sm-4">
+                                       <div>
+                                           <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                       </div>
+                                       <div>
+                                           <div class="inputContainer">
+                                               <input if.bind="prop.type  == 'input'" type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
+
+                                                <span if.bind="prop.name == 'lastName' || prop.name == 'firstName' || prop.name == 'socialSecurityNumber'">
+                                                    <div class="btn btn-green" id="${prop.name}-search-${$parentIndex}" click.delegate="victimSearch(prop.value, prop.name + '-search-' + $parentIndex  )" data-index="${$parentIndex}">
+                                                        Search
+                                                    </div>
+                                                </span>
+                                           </div>
+
+                                            <div if.bind="prop.type  == 'select'">
+                                                <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
+                                                    <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                </select>
+                                            </div>
+                                       </div>
+                                   </div>
                                </div>
                            </div>
                        </div>
                    </div>
                </div>
            </section>
+
            <button id="addVictim" class="btn btn-green" click.delegate="addVictim()">Add Victim</button>
        </div>
 
        <div id="offenderSection">
            <section id="offender">
-               <div repeat.for="item of offenderFieldData">
+               <div if.bind="data.offenders.length !== 0" repeat.for="item of offenderFieldData">
                    <div class="panel panel-default">
                        <div class="panel-heading">Offender ${$index + 1}</div>
                        <div class="panel-body">
                            <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                           <require from="ObjectKeysValueConverter"></require>
                            <div class="row">
-                               <div class="col-sm-3" repeat.for="prop of item | objectKeys">
-                                   <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                   <input if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="prop.value">
+                               <div repeat.for="prop of item | objectKeys">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                   <div class="col-sm-4">
+                                       <div>
+                                           <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
+                                       </div>
+                                       <div>
+                                            <span>
+                                                <input if.bind="prop.type  == 'input'" type="text" name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
+
+                                                <div if.bind="prop.type  == 'select'">
+                                                    <select name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="offenderFieldData[$parentIndex][prop.name]['value']">
+                                                        <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </span>
+                                       </div>
+                                   </div>
                                </div>
                            </div>
                        </div>
@@ -61,6 +141,54 @@
                </div>
            </section>
            <button id="addOffender" class="btn btn-orange" click.delegate="addOffender()">Add Offender</button>
+       </div>
+
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+           Launch demo modal
+       </button>
+
+       <div class="modal fade" id="victimModal" tabindex="-1" role="dialog" aria-labelledby="victimModalLabel">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                       <h4 class="modal-title" id="victimModalLabel">Victims</h4>
+                   </div>
+                   <div class="modal-body">
+                       <input type="hidden" name="modalVictimIndex" id="modalVictimIndex" value="">
+                       <table id="victimTable" class="table">
+                           <thead>
+                           <tr>
+                               <th>Victim ID</th>
+                               <th>Victim First Name</th>
+                               <th>Victim Last Name</th>
+                               <th>Action</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           <tr repeat.for="victim of victimSearchResults">
+                               <td>
+                                   ${victim.victimId}
+                               </td>
+                               <td>
+                                   ${victim.firstName}
+                               </td>
+                               <td>
+                                   ${victim.lastName}
+                               </td>
+                               <td>
+                                   <a click.delegate="populateVictim(victim)">Select</a>
+                               </td>
+                           </tr>
+                           </tbody>
+                       </table>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   </div>
+               </div>
+           </div>
        </div>
 
        <button type="submit">Submit</button>

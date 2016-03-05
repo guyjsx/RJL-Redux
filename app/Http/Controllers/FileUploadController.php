@@ -17,6 +17,7 @@ class FileUploadController extends Controller
     }
 
     public function uploadFile(Request $request) {
+
         return $this->fileUploadService->uploadFile($request);
     }
 

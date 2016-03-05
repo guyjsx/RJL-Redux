@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Entities\Offender;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -93,5 +94,15 @@ class OffenderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkIfExists(Request $request) {
+        $data = $request->all();
+
+        if (Offender::where('offenderId', '=', $data['offenderId'])->exists()) {
+            return "false";
+        }
+
+        return "true";
     }
 }

@@ -49,4 +49,34 @@ class RjCase extends Model
         return $this->hasMany('Entities\Note', 'rj_case_id');
     }
 
+    public static function fieldData() {
+        $fieldDataMapping = array(
+            'caseId' => array(
+                'name' => 'caseId', 'type' => 'input', 'namePretty' => 'Case ID', 'value' => "", 'placeholder' => ''
+            ),
+            'caseStatus'=> array(
+                'name' => 'caseStatus', 'type' => 'input', 'namePretty' => 'Case Status', 'value' => "", 'placeholder' => ''
+            ),
+            'casePhase' => array(
+                'name' => 'casePhase', 'type' => 'input', 'namePretty' => 'Case Phase', 'value' => "", 'placeholder' => ''
+            ),
+            'caseClose' => array(
+                'name' => 'caseClose', 'type' => 'input', 'namePretty' => 'Case Close', 'value' => "", 'placeholder' => ''
+            ),
+            'dateOfReferral' => array(
+                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+            ),
+            'dateClosed' => array(
+                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+            ),
+            'courtDate' => array(
+                'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+            ),
+            'caseDescription' => array(
+                'name' => 'caseDescription', 'type' => 'textarea', 'namePretty' => 'Case Description', 'value' => "", 'placeholder' => ''
+            )
+        );
+
+        return $fieldDataMapping;
+    }
 }
