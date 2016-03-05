@@ -1,0 +1,28 @@
+<template>
+    <table id="victimTable" class="table">
+        <thead>
+        <tr>
+            <th>Victim ID</th>
+            <th>Victim First Name</th>
+            <th>Victim Last Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="victim of victims">
+            <td>
+                ${victim.victimId}
+            </td>
+            <td>
+                ${victim.firstName}
+            </td>
+            <td>
+                ${victim.lastName}
+            </td>
+            <td>
+                <a click.delegate="selectVictim()">Select</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

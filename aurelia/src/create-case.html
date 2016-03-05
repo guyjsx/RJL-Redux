@@ -81,15 +81,21 @@
                                            <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
                                        </div>
                                        <div>
-                                            <span>
-                                                <input if.bind="prop.type  == 'input'" type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
+                                           <div class="inputContainer">
+                                               <input if.bind="prop.type  == 'input'" type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']" placeholder="${prop.placeholder}">
 
-                                                <div if.bind="prop.type  == 'select'">
-                                                    <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
-                                                        <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
-                                                    </select>
-                                                </div>
-                                            </span>
+                                                <span if.bind="prop.name == 'lastName' || prop.name == 'firstName' || prop.name == 'socialSecurityNumber'">
+                                                    <div class="btn btn-green" id="${prop.name}-search-${$parentIndex}" click.delegate="victimSearch(prop.value, prop.name + '-search-' + $parentIndex  )" data-index="${$parentIndex}">
+                                                        Search
+                                                    </div>
+                                                </span>
+                                           </div>
+
+                                            <div if.bind="prop.type  == 'select'">
+                                                <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="victimFieldData[$parentIndex][prop.name]['value']">
+                                                    <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                </select>
+                                            </div>
                                        </div>
                                    </div>
                                </div>
@@ -135,6 +141,54 @@
                </div>
            </section>
            <button id="addOffender" class="btn btn-orange" click.delegate="addOffender()">Add Offender</button>
+       </div>
+
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+           Launch demo modal
+       </button>
+
+       <div class="modal fade" id="victimModal" tabindex="-1" role="dialog" aria-labelledby="victimModalLabel">
+           <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                       <h4 class="modal-title" id="victimModalLabel">Victims</h4>
+                   </div>
+                   <div class="modal-body">
+                       <input type="hidden" name="modalVictimIndex" id="modalVictimIndex" value="">
+                       <table id="victimTable" class="table">
+                           <thead>
+                           <tr>
+                               <th>Victim ID</th>
+                               <th>Victim First Name</th>
+                               <th>Victim Last Name</th>
+                               <th>Action</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                           <tr repeat.for="victim of victimSearchResults">
+                               <td>
+                                   ${victim.victimId}
+                               </td>
+                               <td>
+                                   ${victim.firstName}
+                               </td>
+                               <td>
+                                   ${victim.lastName}
+                               </td>
+                               <td>
+                                   <a click.delegate="populateVictim(victim)">Select</a>
+                               </td>
+                           </tr>
+                           </tbody>
+                       </table>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   </div>
+               </div>
+           </div>
        </div>
 
        <button type="submit">Submit</button>

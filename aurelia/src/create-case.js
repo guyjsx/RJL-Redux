@@ -1,6 +1,7 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import validate from 'jquery-validation';
+import bootstrap from '../jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.min.js';
 
 @inject(HttpClient)
 export class CreateCase {
@@ -12,6 +13,15 @@ export class CreateCase {
         this.caseFieldData = [];
 
         this.victimFieldData = [];
+        this.victimSearchResults = [
+            {
+                victimId: "v1ID", firstName: "v1f", lastName: "v1l"
+            },
+            {
+                victimId: "v2ID", firstName: "v2f", lastName: "v2l"
+            }
+        ];
+
         this.offenderFieldData = [];
         this.selectedCharge = [];
         this.victimCount = 0;
@@ -43,9 +53,14 @@ export class CreateCase {
     }
 
     addOffender() {
+        this.newOffenderFieldMapping = [];
+        this.newOffenderFieldMapping = $.extend(true, {}, this.offenderFieldMapping);
+    
         this.offenderFieldData.push(
-            this.offenderFieldMapping
+            this.newOffenderFieldMapping
         );
+    
+        this.offenderCount++;
     }
 
     submitCase() {
@@ -90,9 +105,15 @@ export class CreateCase {
                 },
                 victimId: {
                     required: true,
+                    remote: {
+                        url: "/api/victim/exists"
+                    }
                 },
                 offenderId: {
-                    required: true
+                    required: true,
+                    remote: {
+                        url: "/api/offender/exists"
+                    }
                 },
                 caseStatus: {
                     required: true
@@ -155,7 +176,13 @@ export class CreateCase {
             },
             messages: {
                 caseId: {
-                    remote: "what the"
+                    remote: "This Case ID already exists"
+                },
+                victimId: {
+                    remote: "This Victim ID already exists"
+                },
+                offenderId: {
+                    remote: "This Offender ID already exists"
                 }
             },
             submitHandler: function(form) {
@@ -172,5 +199,33 @@ export class CreateCase {
 
     attached() {
         this.setupCaseValidation();
+
+        $('#victimModal').on('show.bs.modal', function(e) {
+            var victimIndex = $(e.relatedTarget).data('index');
+            $(e.currentTarget).find('input[name="modalVictimIndex"]').val(victimIndex);
+        });
+    }
+
+    victimSearch(searchStr, searchElement) {
+        //return this.http.get('/api/victim/search?q=' + searchStr ).then(response => {
+        //    this.victims = response.content.victims;
+        //    $('#victimModal').modal('show');
+        //});
+
+        //var victimIndex = $(e.target).data('index');
+
+        $('#victimModal').modal('show', $('#' + searchElement));
+    }
+
+    populateVictim(victim) {
+        console.log('log');
+        var prop = "";
+        var victimIndex =  parseInt($('input[name="modalVictimIndex"]').val());
+
+        for (prop in this.victimFieldData[victimIndex]) {
+            this.victimFieldData[victimIndex][prop].value = victim[prop];
+        }
+
+        $('#victimModal').modal('hide');
     }
 }

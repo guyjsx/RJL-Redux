@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Entities\Victim;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -94,5 +95,15 @@ class VictimController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkIfExists(Request $request) {
+        $data = $request->all();
+
+        if (Victim::where('victimId', '=', $data['victimId'])->exists()) {
+            return "false";
+        }
+
+        return "true";
     }
 }

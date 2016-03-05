@@ -120,6 +120,13 @@ input:not(.select2-search__field), select:not(charge-select) {
   margin-bottom: 20px;
   height: 26px; }
 
+.inputContainer {
+  margin-bottom: 20px; }
+  .inputContainer input {
+    margin: 0; }
+  .inputContainer .btn {
+    margin: 0; }
+
 textarea {
   width: 100%;
   color: black; }
@@ -206,6 +213,9 @@ label.error {
   color: #ff3232; }
   .charge-select2-container label.error {
     margin-top: 0; }
+
+.modal {
+  color: black; }
 
 .caseStatusReportContainer {
   display: block;
