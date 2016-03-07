@@ -8,4 +8,6 @@ interface VictimInterface
     public function getVictimById($victimId);
 
     public function getAllVictims();
+
+    public function searchVictims($searchType, $searchStr);
 }

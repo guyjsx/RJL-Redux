@@ -12,24 +12,28 @@
                                 <require from="ObjectKeysValueConverter"></require>
                                 <div>
                                     <div repeat.for="prop of item | objectKeys">
-                                        <div class="col-sm-4">
-                                            <div if.bind="prop.type == 'input'">
+                                        <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                        <div if.bind="prop.type == 'input'">
+                                            <div class="col-sm-4">
                                                 <div>
                                                     <label for="${prop.name}">${prop.namePretty} </label>
                                                 </div>
                                                 <div>
-                                            <span class="inputField" if.bind="prop.type == 'input'">
-                                                <input click.delegate="edit()" type="text" name="data[case][${prop.name}]" id="${prop.name}" value.bind="data[prop.name]" readonly>
-                                            </span>
+                                                    <span class="inputField">
+                                                        <input click.delegate="edit()" type="text" name="${prop.name}" id="${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <div if.bind="prop.type == 'textarea'">
+                                        </div>
+
+                                        <div if.bind="prop.type == 'textarea'">
+                                            <div class="col-sm-6">
                                                 <div>
                                                     <label for="${prop.name}">${prop.namePretty} </label>
                                                 </div>
-                                                <span class="textAreaField">
-                                                    <textarea rows="10" click.delegate="edit()" name="data[case][${prop.name}]" id="${prop.name}"  value.bind="data[prop.name]" readonly></textarea>
-                                                </span>
+                                               <span class="inputField textAreaField">
+                                                    <textarea click.delegate="edit()" rows="10" name="caseFieldData[case][${prop.name}]" id="${prop.name}"  value.bind="data[prop.name]" readonly></textarea>
+                                               </span>
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +58,7 @@
                                             <label for="charges">Charge(s): </label>
                                         </div>
 
-                                        <select id="charges" class="chargeSelect" select2.bind="options" value.bind="selectedCharge" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
+                                        <select id="charges" class="chargeSelect" select2.bind="options" value.bind="data['charges']" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
                                             <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
                                         </select>
                                     </div>
@@ -67,27 +71,32 @@
 
             <div id="victimSection">
                 <section id="victim">
-                    <div if.bind="data.victims.length !== 0" repeat.for="item of victimFieldData">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Victim ${$index + 1}</div>
-                            <div class="panel-body">
-                                <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                                <div class="row">
-                                    <div class="col-sm-4" repeat.for="prop of item | objectKeys">
-                                        <div>
-                                            <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                        </div>
-                                        <div>
-                                            <span class="inputField">
-                                                <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" readonly>
-
-                                                <div if.bind="prop.type  == 'select'">
-                                                    <div class="editOverlay" click.delegate="edit()"></div>
-                                                    <select name="data[victim][${$parentIndex}][${prop.name}]" id="victim-${prop.name}-${$parentIndex}" value.bind="data.victims[$parentIndex][prop.name]" disabled>
-                                                        <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
-                                                    </select>
+                    <div if.bind="data.victims.length !== 0" repeat.for="victim of data.victims">
+                        <div class="index" style="visibility: hidden;">${$parentIndex = $index}</div>
+                        <div repeat.for="item of victimFieldData">
+                            <div id="victim-${$parentIndex}" class="panel panel-default">
+                                <div class="panel-heading">Victim ${$parentIndex + 1}</div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div repeat.for="prop of item | objectKeys">
+                                            <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
                                                 </div>
-                                            </span>
+                                                <div>
+                                                    <div class="inputField" if.bind="prop.type  == 'input'">
+                                                        <input click.delegate="edit()" type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" readonly>
+                                                    </div>
+
+                                                    <div class="inputField" if.bind="prop.type  == 'select'">
+                                                        <div class="editOverlay" click.delegate="edit()"></div>
+                                                        <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" disabled>
+                                                            <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -99,27 +108,32 @@
 
             <div id="offenderSection">
                 <section id="offender">
-                    <div if.bind="data.offenders.length !== 0" repeat.for="item of offenderFieldData">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Victim ${$index + 1}</div>
-                            <div class="panel-body">
-                                <div class="index" style="display: none;">${$parentIndex = $index}</div>
-                                <div class="row">
-                                    <div class="col-sm-4" repeat.for="prop of item | objectKeys">
-                                        <div>
-                                            <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
-                                        </div>
-                                        <div>
-                                            <span class="inputField">
-                                                <input click.delegate="edit()" if.bind="prop.type  == 'input'" type="text" name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]" readonly>
-
-                                                <div if.bind="prop.type  == 'select'">
-                                                    <div class="editOverlay" click.delegate="edit()"></div>
-                                                    <select name="data[offender][${$parentIndex}][${prop.name}]" id="offender-${prop.name}-${$parentIndex}" value.bind="data.offenders[$parentIndex][prop.name]" disabled>
-                                                        <option repeat.for="option of prop.options | objectKeys" value.bind="option.value">${option.name}</option>
-                                                    </select>
+                    <div if.bind="data.offenders.length !== 0" repeat.for="offender of data.offenders">
+                        <div class="index" style="visibility: hidden;">${$parentIndex = $index}</div>
+                        <div repeat.for="item of offenderFieldData">
+                            <div id="offender-${$parentIndex}" class="panel panel-default">
+                                <div class="panel-heading">Offender ${$parentIndex + 1}</div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div repeat.for="prop of item | objectKeys">
+                                            <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                            <div class="col-sm-4">
+                                                <div>
+                                                    <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
                                                 </div>
-                                            </span>
+                                                <div>
+                                                    <div class="inputField" if.bind="prop.type  == 'input'">
+                                                        <input click.delegate="edit()" type="text" name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" readonly>
+                                                    </div>
+
+                                                    <div class="inputField" if.bind="prop.type  == 'select'">
+                                                        <div class="editOverlay" click.delegate="edit()"></div>
+                                                        <select name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" disabled>
+                                                            <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -147,14 +161,26 @@
                                 <button type="submit" class="btn  btn-default">Upload</button>
                             </div>
                             <div class="col-sm-6">
-                                <ul>
-                                    <li repeat.for="file of uploadedFiles | fileListToArray">
-                                        <h5><a href="/uploads/${file.filename}">${file.filename}</a></h5>
-                                    </li>
-                                </ul>
+                                <table id="filesTable" class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr repeat.for="file of uploadedFiles | fileListToArray">
+                                        <td>
+                                            ${file.filename}
+                                        </td>
+                                        <td>
+                                            <a href="/uploads/${file.filename}">Download</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </form>
@@ -178,7 +204,7 @@
                                 <div>
                                     <label for="noteContent">Note Content: </label>
                                 </div>
-                                <span class="textAreaField">
+                                <span class="inputField textAreaField">
                                     <textarea rows="10" click.delegate="edit()" name="data[noteData][noteContent]" id="noteContent" value.bind="noteData.noteContent" readonly></textarea>
                                 </span>
                                 <button type="submit" class="btn  btn-default">Add Note</button>

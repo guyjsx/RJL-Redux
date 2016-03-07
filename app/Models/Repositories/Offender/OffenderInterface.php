@@ -8,4 +8,6 @@ interface OffenderInterface
     public function getOffenderById($offenderId);
 
     public function getAllOffenders();
+
+    public function searchOffenders($searchType, $searchStr);
 }

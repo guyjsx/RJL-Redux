@@ -4,8 +4,7 @@
 
 input:not(.select2-search__field), select:not(charge-select) {
     color: black;
-    margin-bottom: 20px;
-    height: 26px;
+    height: 28px;
 }
 
 .inputContainer {
@@ -37,6 +36,16 @@ form {
         left: 0;
         bottom: 0;
         z-index: 9999;
+
+        //&:hover {
+        //    &:after {
+        //        content: "\f040";
+        //        font-family: FontAwesome;
+        //        position:absolute;
+        //        top:0;
+        //        right: -20px;
+        //    }
+        //}
     }
 }
 
@@ -46,27 +55,31 @@ span.textAreaField {
     margin-bottom: 20px;
 }
 
-span.inputField {
+.inputField {
     display: inline-block;
     position: relative;
     margin-bottom: 20px;
 }
 
-span.inputField, span.textAreaField {
+.inputField {
+    &.textAreaField{
+        display: block;
+    }
+
     input[readonly], select[disabled], textarea[readonly] {
         margin-bottom: 0;
         background: $color-main;
         color: $color-white;
         border: none;
+    }
 
-        &:hover {
+    &.showEditIcon {
+        input[readonly], select[disabled], textarea[readonly] {
             background: $color-seperator;
             cursor: pointer;
             color: black;
         }
-    }
 
-    &:hover {
         &:after {
             content: "\f040";
             font-family: FontAwesome;
@@ -74,6 +87,7 @@ span.inputField, span.textAreaField {
             top:0;
             right: -20px;
         }
+
     }
 
     &.removeEditIcon {
@@ -83,8 +97,9 @@ span.inputField, span.textAreaField {
             }
         }
     }
-
 }
+
+
 
 .charge-select-wrapper {
     margin-bottom: 20px;
@@ -98,6 +113,7 @@ select, .select2-dropdown {
 }
 
 #edit {
+
     .select2-selection.select2-selection--multiple {
         margin-bottom: 0;
         background-color: $color-main !important;
@@ -105,11 +121,12 @@ select, .select2-dropdown {
         border: none;
 
         &:hover {
-            background: $color-seperator;
+            background: $color-seperator !important;
             cursor: pointer;
             color: black;
 
             &:after {
+                color: $color-white;
                 content: "\f040";
                 font-family: FontAwesome;
                 position: absolute;
@@ -141,8 +158,14 @@ label.error {
     text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
     margin-top: -15px;
     color: #ff3232;
+
+    .inputContainer &, .inputField & {
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
 }
 
 .modal {
     color: black;
+    margin-left: 16.66666667%;
 }

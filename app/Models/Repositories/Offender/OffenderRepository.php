@@ -2,6 +2,7 @@
 
 namespace Repositories\Offender;
 
+use Entities\Offender;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,6 +41,17 @@ class OffenderRepository implements OffenderInterface
     {
         // Search for all
         $offenders = $this->offenderModel->all();
+
+        if ($offenders)
+        {
+            return $offenders;
+        }
+
+        return null;
+    }
+
+    public function searchOffenders($searchType, $searchStr) {
+        $offenders = Offender::where($searchType, 'LIKE', $searchStr)->get();
 
         if ($offenders)
         {

@@ -29,6 +29,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/api/home', 'HomeController@show');
     Route::get('/api/cases/exists', 'RjCaseController@checkIfExists');
     Route::get('/api/victim/exists', 'VictimController@checkIfExists');
+    Route::get('/api/victim/search', 'VictimController@searchVictims');
+    Route::get('/api/offender/search', 'OffenderController@searchOffenders');
     Route::get('/api/offender/exists', 'OffenderController@checkIfExists');
     Route::resource('/api/cases', 'RjCaseController');
     Route::resource('/api/offender', 'OffenderController');

@@ -2,6 +2,7 @@
 
 namespace Repositories\Victim;
 
+use Entities\Victim;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,6 +41,17 @@ class VictimRepository implements VictimInterface
     {
         // Search for all
         $victims = $this->victimModel->all();
+
+        if ($victims)
+        {
+            return $victims;
+        }
+
+        return null;
+    }
+
+    public function searchVictims($searchType, $searchStr) {
+        $victims = Victim::where($searchType, 'LIKE', $searchStr)->get();
 
         if ($victims)
         {
