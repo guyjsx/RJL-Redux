@@ -117,8 +117,7 @@
 
 input:not(.select2-search__field), select:not(charge-select) {
   color: black;
-  margin-bottom: 20px;
-  height: 26px; }
+  height: 28px; }
 
 .inputContainer {
   margin-bottom: 20px; }
@@ -149,29 +148,33 @@ span.textAreaField {
   position: relative;
   margin-bottom: 20px; }
 
-span.inputField {
+.inputField {
   display: inline-block;
   position: relative;
   margin-bottom: 20px; }
 
-span.inputField input[readonly], span.inputField select[disabled], span.inputField textarea[readonly], span.textAreaField input[readonly], span.textAreaField select[disabled], span.textAreaField textarea[readonly] {
+.inputField.textAreaField {
+  display: block; }
+
+.inputField input[readonly], .inputField select[disabled], .inputField textarea[readonly] {
   margin-bottom: 0;
   background: #32383d;
   color: white;
   border: none; }
-  span.inputField input[readonly]:hover, span.inputField select[disabled]:hover, span.inputField textarea[readonly]:hover, span.textAreaField input[readonly]:hover, span.textAreaField select[disabled]:hover, span.textAreaField textarea[readonly]:hover {
-    background: #989898;
-    cursor: pointer;
-    color: black; }
 
-span.inputField:hover:after, span.textAreaField:hover:after {
+.inputField.showEditIcon input[readonly], .inputField.showEditIcon select[disabled], .inputField.showEditIcon textarea[readonly] {
+  background: #989898;
+  cursor: pointer;
+  color: black; }
+
+.inputField.showEditIcon:after {
   content: "\f040";
   font-family: FontAwesome;
   position: absolute;
   top: 0;
   right: -20px; }
 
-span.inputField.removeEditIcon:hover:after, span.textAreaField.removeEditIcon:hover:after {
+.inputField.removeEditIcon:hover:after {
   content: ""; }
 
 .charge-select-wrapper {
@@ -186,10 +189,11 @@ select, .select2-dropdown {
   color: white;
   border: none; }
   #edit .select2-selection.select2-selection--multiple:hover {
-    background: #989898;
+    background: #989898 !important;
     cursor: pointer;
     color: black; }
     #edit .select2-selection.select2-selection--multiple:hover:after {
+      color: white;
       content: "\f040";
       font-family: FontAwesome;
       position: absolute;
@@ -213,9 +217,13 @@ label.error {
   color: #ff3232; }
   .charge-select2-container label.error {
     margin-top: 0; }
+  .inputContainer label.error, .inputField label.error {
+    margin-bottom: 5px;
+    margin-top: 5px; }
 
 .modal {
-  color: black; }
+  color: black;
+  margin-left: 16.66666667%; }
 
 .caseStatusReportContainer {
   display: block;

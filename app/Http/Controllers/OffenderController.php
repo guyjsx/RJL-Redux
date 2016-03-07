@@ -105,4 +105,15 @@ class OffenderController extends Controller
 
         return "true";
     }
+
+    public function searchOffenders(Request $request) {
+        $data = $request->all();
+        $searchType = $data["searchType"];
+        $searchStr = $data["searchStr"];
+
+        $offenders = $this->offenderService->searchOffenders($searchType, $searchStr);
+
+        return response()->json(array('offenders' => $offenders));
+
+    }
 }

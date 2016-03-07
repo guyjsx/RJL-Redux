@@ -61,13 +61,13 @@ class RjCase extends Model
                 'name' => 'casePhase', 'type' => 'input', 'namePretty' => 'Case Phase', 'value' => "", 'placeholder' => ''
             ),
             'caseClose' => array(
-                'name' => 'caseClose', 'type' => 'input', 'namePretty' => 'Case Close', 'value' => "", 'placeholder' => ''
+                'name' => 'caseClose', 'type' => 'input', 'namePretty' => 'Case Close', 'value' => 1, 'placeholder' => ''
             ),
             'dateOfReferral' => array(
                 'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
             ),
             'dateClosed' => array(
-                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => null, 'placeholder' => 'YYYY-MM-DD'
             ),
             'courtDate' => array(
                 'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'YYYY-MM-DD'

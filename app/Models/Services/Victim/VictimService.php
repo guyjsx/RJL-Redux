@@ -57,4 +57,13 @@ class VictimService
         // If nothing found, return this simple string
         return 'Victims Not Found';
     }
+
+    public function searchVictims($searchType, $searchStr) {
+       if (!empty($searchType) && !empty($searchStr)) {
+
+           return $this->victimRepo->searchVictims($searchType, $searchStr);
+       }
+
+        return "";
+    }
 }

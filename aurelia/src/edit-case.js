@@ -1,6 +1,7 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {Router} from 'aurelia-router';
+import validate from 'jquery-validation';
 
 @inject(HttpClient, Router)
 export class CreateCase {
@@ -68,49 +69,23 @@ export class CreateCase {
     }
 
     update(id) {
-        //$.ajax({
-        //    type: "PUT",
-        //    url: "/api/cases/" + id,
-        //    data: $('#editCaseForm').serialize(),
-        //    dataType: 'json',
-        //    success: function(data) {
-        //        this.router.navigate("");
-        //    }
-        //});
-
         this.http.put('/api/cases/' + id, this.data)
             .then(response => {
-                this.router.navigate("");
+               // this.router.navigate("");
             });
-
-        //this.http.fetch('/api/cases/' + id, {
-        //    method: "put",
-        //    body: this.caseData
-        //}).then(response => {
-        //    this.router.navigate("");
-        //})
     }
 
     edit() {
         $("input[readonly], textarea[readonly]").removeAttr('readonly');
-        $('.editOverlay').remove();
         $("select[disabled]").removeAttr('disabled');
-        $(".inputField, .textAreaField").addClass('removeEditIcon');
+        $('.editOverlay').remove();
+        $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
     }
 
     fileUpload() {
         this.fileData = new FormData();
         this.fileData.append('file', this.selectedFiles[0]);
         var self = this;
-
-        //this.http
-        //    .configure(x => {
-        //        x.withHeader('Accept', "application/json, text/javascript, */*; q=0.01");
-        //        x.withHeader('X-Requested-With', "XMLHttpRequest");
-        //        x.withHeader('Content-Type', "multipart/form-data; boundary=----WebKitFormBoundaryzFN9t06ME5jQVmtj");
-        //        x.withHeader('Content-Length', 48334);
-        //    });
-        //this.http.post('/api/file-upload', this.fileData);
 
         $.ajax({
             url: '/api/file-upload' + '?id=' + this.data.id ,
@@ -148,7 +123,116 @@ export class CreateCase {
             });
     }
 
+    setupCaseValidation() {
+        var self = this;
+        $.validator.addMethod(
+            "dateFormat",
+            function(value, element) {
+                return value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/);
+            },
+            "Please enter a date in the format YYYY-MM-DD"
+        );
+
+        $.validator.addMethod(
+            "states",
+            function(value, element) {
+                return value.match(/^(?:(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]))$/);
+            },
+            "Please enter a state in two letters, e.g., KY"
+        );
+
+        $("#editCaseForm").validate({
+            onkeyup: false,
+            rules: {
+                caseId: {
+                    required: true
+                },
+                victimId: {
+                    required: true
+                },
+                offenderId: {
+                    required: true
+                },
+                caseStatus: {
+                    required: true
+                },
+                courtDate: {
+                    required: true,
+                    dateFormat: true
+                },
+                charge: {
+                    required: true
+                },
+                dateOfCharge: {
+                    required: true,
+                    dateFormat: true
+                },
+                dateClosed: {
+                    dateFormat: true
+                },
+                dateOfReferral: {
+                    required: true,
+                    dateFormat: true
+                },
+                email: {
+                    email: true
+                },
+                firstName: {
+                    required: true
+                },
+                lastName: {
+                    required: true
+                },
+                dateOfBirth: {
+                    required: true,
+                    dateFormat: true
+                },
+                streetAddress: {
+                    required: true
+                },
+                city: {
+                    required: true
+                },
+                state: {
+                    states: true
+                },
+                zipCode: {
+                    required: true
+                },
+                phoneOne: {
+                    required: true
+                },
+                phoneOneType: {
+                    required: true
+                },
+                phoneTwo: {
+                },
+                zipCode: {
+                    required: true
+                }
+
+            },
+            messages: {
+            },
+            submitHandler: function(form) {
+                self.update();
+            }
+        });
+    }
+
     attached() {
         $(".charge-select2-container .chargeSelect").val(this.selectedCharge).trigger('change');
+
+        $('#edit').on('select2:open', function() {
+            console.log('open');
+        });
+
+        $(".inputField, .textArea").hover(function() {
+            $(".inputField").addClass('showEditIcon');
+        },function() {
+            $(".inputField").removeClass('showEditIcon');
+        });
+
+        this.setupCaseValidation();
     }
 }

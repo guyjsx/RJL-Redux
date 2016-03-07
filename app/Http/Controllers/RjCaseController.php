@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Entities\RjCase;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Schema;
 use Services\Charge\ChargeService;
 use Services\Offender\OffenderService;
 use Services\RjCase\RjCaseService;
@@ -69,19 +70,32 @@ class RjCaseController extends Controller
     {
         $data = $request->all();
 
+        $caseFields = Schema::connection('mysql')->getColumnListing('rj_cases');
+
         if (isset($data['case'][0])) {
             $case = new RjCase;
-            $case->caseId = $data['case'][0]['caseId']['value'];
-            $case->caseStatus = $data['case'][0]['caseStatus']['value'];
+
+            foreach($data['case'][0] as $field) {
+                if (in_array($field['name'], $caseFields)) {
+                    $case[$field['name']] = $field['value'];
+                }
+            }
+
             $case->save();
         }
 
-        if(isset($data['victim'])) {
+        if (isset($data['victim'])) {
+            $victimFields = Schema::connection('mysql')->getColumnListing('victims');
+
             foreach($data['victim'] as $newVictim) {
                 $victim = new Victim();
-                $victim->victimId = $newVictim['victimId']['value'];
-                $victim->firstName = $newVictim['firstName']['value'];
-                $victim->lastName = $newVictim['lastName']['value'];
+
+                foreach($newVictim as $victimField) {
+                    if (in_array($victimField['name'], $victimFields)) {
+                        $victim[$victimField['name']] = $victimField['value'];
+                    }
+                }
+
                 $victim->save();
 
                 $case->victims()->attach($victim->id);
@@ -89,12 +103,15 @@ class RjCaseController extends Controller
         }
 
         if (isset($data['offender'])) {
+            $offenderFields = Schema::connection('mysql')->getColumnListing('offenders');
+
             foreach($data['offender'] as $newOffender) {
                 $offender = new Offender();
 
-                $offender->offenderId = $newOffender['offenderId']['value'];
-                $offender->firstName = $newOffender['firstName']['value'];
-                $offender->lastName = $newOffender['lastName']['value'];
+                if (in_array($newOffender['name'], $offenderFields)) {
+                    $offender[$newOffender['name']] = $newOffender['value'];
+                }
+
                 $offender->save();
 
                 $case->offenders()->attach($offender->id);
@@ -157,12 +174,58 @@ class RjCaseController extends Controller
     {
         $data = $request->all();
 
-        $case = RjCase::find($data['id']);
+        $caseFields = Schema::connection('mysql')->getColumnListing('rj_cases');
 
-        $case->caseId = $data['caseId'];
-        $case->caseStatus = $data['caseStatus'];
+        if (isset($data)) {
+            $case = RjCase::find($data['id']);
 
-        $case->save();
+            foreach($data as $key => $value) {
+                if (in_array($key, $caseFields)) {
+                    $case[$key] = $value;
+                }
+            }
+
+            $case->save();
+        }
+
+        if (isset($data['victims'])) {
+            $victimFields = Schema::connection('mysql')->getColumnListing('victims');
+
+            foreach($data['victims'] as $newVictim) {
+                $victim = Victim::find($newVictim['id']);
+
+                foreach($newVictim as $key => $value) {
+                    if (in_array($key, $victimFields)) {
+                        $victim[$key] = $value;
+                    }
+                }
+
+                $victim->save();
+            }
+        }
+
+        if (isset($data['offenders'])) {
+            $offenderFields = Schema::connection('mysql')->getColumnListing('offenders');
+
+            foreach($data['offenders'] as $newOffender) {
+                $offender = Offender::find($newOffender['id']);
+
+                foreach($newOffender as $key => $value) {
+                    if (in_array($key, $offenderFields)) {
+                        $offender[$key] = $value;
+                    }
+                }
+
+                $offender->save();
+            }
+        }
+
+        if (isset($data['charges'])) {
+            foreach($data['charges'] as $newCharge) {
+                $case->charges()->attach($newCharge);
+            }
+        }
+
 
         return response()->json(array('success' => 'true'));
     }

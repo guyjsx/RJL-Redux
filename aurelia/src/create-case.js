@@ -13,14 +13,8 @@ export class CreateCase {
         this.caseFieldData = [];
 
         this.victimFieldData = [];
-        this.victimSearchResults = [
-            {
-                victimId: "v1ID", firstName: "v1f", lastName: "v1l"
-            },
-            {
-                victimId: "v2ID", firstName: "v2f", lastName: "v2l"
-            }
-        ];
+        this.victimSearchResults = [];
+        this.offenderSearchResults = [];
 
         this.offenderFieldData = [];
         this.selectedCharge = [];
@@ -78,6 +72,7 @@ export class CreateCase {
     }
 
     setupCaseValidation() {
+        var self = this;
         $.validator.addMethod(
                 "dateFormat",
                 function(value, element) {
@@ -186,14 +181,9 @@ export class CreateCase {
                 }
             },
             submitHandler: function(form) {
-                form.submit();
+                //form.submit();
+                self.submitCase();
             }
-        });
-    }
-
-    setupVictimValidation(index) {
-        $( "#casesForm" ).rules( "add", {
-            minlength: 2
         });
     }
 
@@ -204,17 +194,34 @@ export class CreateCase {
             var victimIndex = $(e.relatedTarget).data('index');
             $(e.currentTarget).find('input[name="modalVictimIndex"]').val(victimIndex);
         });
+
+        $('#victimModal').on('hide.bs.modal', $.proxy(function(e) {
+            this.victimSearchResults = [];
+        }, this));
+
+        $('#offenderModal').on('show.bs.modal', function(e) {
+            var offenderIndex = $(e.relatedTarget).data('index');
+            $(e.currentTarget).find('input[name="modalOffenderIndex"]').val(offenderIndex);
+        });
+
+        $('#offenderModal').on('hide.bs.modal', $.proxy(function(e) {
+            this.offenderSearchResults = [];
+        }, this));
     }
 
-    victimSearch(searchStr, searchElement) {
-        //return this.http.get('/api/victim/search?q=' + searchStr ).then(response => {
-        //    this.victims = response.content.victims;
-        //    $('#victimModal').modal('show');
-        //});
+    victimSearch(searchType, searchStr, searchElement) {
 
-        //var victimIndex = $(e.target).data('index');
+        return this.http.get('/api/victim/search?searchType=' + searchType + '&searchStr=' + searchStr  ).then(response => {
+            this.victimSearchResults = response.content.victims;
+            $('#victimModal').modal('show', $('#' + searchElement));
+        });
+    }
 
-        $('#victimModal').modal('show', $('#' + searchElement));
+    offenderSearch(searchType, searchStr, searchElement) {
+        return this.http.get('/api/offender/search?searchType=' + searchType + '&searchStr=' + searchStr  ).then(response => {
+            this.offenderSearchResults = response.content.offenders;
+            $('#offenderModal').modal('show', $('#' + searchElement));
+        });
     }
 
     populateVictim(victim) {
@@ -227,5 +234,17 @@ export class CreateCase {
         }
 
         $('#victimModal').modal('hide');
+    }
+
+    populateOffender(offender) {
+        console.log('log');
+        var prop = "";
+        var offenderIndex =  parseInt($('input[name="modalOffenderIndex"]').val());
+
+        for (prop in this.offenderFieldData[offenderIndex]) {
+            this.offenderFieldData[offenderIndex][prop].value = offender[prop];
+        }
+
+        $('#offenderModal').modal('hide');
     }
 }

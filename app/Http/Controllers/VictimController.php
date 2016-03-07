@@ -106,4 +106,15 @@ class VictimController extends Controller
 
         return "true";
     }
+
+    public function searchVictims(Request $request) {
+        $data = $request->all();
+        $searchType = $data["searchType"];
+        $searchStr = $data["searchStr"];
+
+        $victims = $this->victimService->searchVictims($searchType, $searchStr);
+
+        return response()->json(array('victims' => $victims));
+
+    }
 }

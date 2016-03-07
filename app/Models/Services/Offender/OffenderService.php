@@ -57,4 +57,13 @@ class OffenderService
         // If nothing found, return this simple string
         return 'Offenders Not Found';
     }
+
+    public function searchOffenders($searchType, $searchStr) {
+        if (!empty($searchType) && !empty($searchStr)) {
+
+            return $this->offenderRepo->searchOffenders($searchType, $searchStr);
+        }
+
+        return "";
+    }
 }
