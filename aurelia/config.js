@@ -38,6 +38,9 @@ System.config({
     "jquery-validation": "github:jzaefferer/jquery-validation@1.15.0",
     "select2": "github:select2/select2@4.0.1",
     "text": "github:systemjs/plugin-text@0.0.3",
+    "github:components/jqueryui@1.11.4": {
+      "jquery": "npm:jquery@2.2.1"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -51,6 +54,9 @@ System.config({
       "util": "npm:util@0.10.3"
     },
     "github:jzaefferer/jquery-validation@1.15.0": {
+      "jquery": "npm:jquery@2.2.1"
+    },
+    "github:select2/select2@4.0.1": {
       "jquery": "npm:jquery@2.2.1"
     },
     "github:twbs/bootstrap@3.3.6": {

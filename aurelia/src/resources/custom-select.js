@@ -1,5 +1,4 @@
 import {customAttribute, inject} from 'aurelia-framework';
-import $ from 'jquery';
 import select2 from 'select2'; // install the select2 jquery plugin
 
 @customAttribute('select2')
