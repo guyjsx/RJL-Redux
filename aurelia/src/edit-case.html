@@ -57,10 +57,12 @@
                                         <div>
                                             <label for="charges">Charge(s): </label>
                                         </div>
-
-                                        <select id="charges" class="chargeSelect" select2.bind="options" value.bind="data['charges']" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
-                                            <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
-                                        </select>
+                                        <div class="inputField">
+                                            <div class="editOverlay" click.delegate="edit()"></div>
+                                            <select disabled="true" id="charges" class="chargeSelect" select2.bind="options" value.bind="data['charges']" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
+                                                <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
