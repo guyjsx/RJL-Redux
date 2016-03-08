@@ -183,25 +183,26 @@ span.textAreaField {
 select, .select2-dropdown {
   color: black; }
 
-#edit .select2-selection.select2-selection--multiple {
-  margin-bottom: 0;
-  background-color: #32383d !important;
-  color: white;
-  border: none; }
-  #edit .select2-selection.select2-selection--multiple:hover {
-    background: #989898 !important;
-    cursor: pointer;
-    color: black; }
-    #edit .select2-selection.select2-selection--multiple:hover:after {
-      color: white;
-      content: "\f040";
-      font-family: FontAwesome;
-      position: absolute;
-      top: 0;
-      right: -20px; }
+#edit .showEditIcon .select2-selection.select2-selection--multiple {
+  background: #989898 !important;
+  cursor: pointer;
+  color: black; }
+
+#edit .select2-container--disabled .select2-selection--multiple {
+  background: #32383d !important;
+  border: none !important;
+  cursor: pointer;
+  color: black; }
 
 #edit .select2-search.select2-search--inline {
   height: 25px !important; }
+
+.select2-container {
+  width: 300px !important; }
+  .select2-container .select2-selection__rendered {
+    word-wrap: break-word;
+    text-overflow: inherit;
+    white-space: normal; }
 
 .select2-selection__choice {
   color: black; }
