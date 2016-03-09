@@ -38,13 +38,15 @@
             "app/models/repositories/charge",
             "app/models/repositories/fileupload",
             "app/models/repositories/note",
+            "app/models/repositories/user",
             "app/models/services",
             "app/models/services/rjcase",
             "app/models/services/victim",
             "app/models/services/offender",
             "app/models/services/charge",
             "app/models/services/fileupload",
-            "app/models/services/note"
+            "app/models/services/note",
+            "app/models/services/user"
         ],
         "psr-4": {
             "App\\": "app/"

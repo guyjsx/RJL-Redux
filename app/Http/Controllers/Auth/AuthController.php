@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -26,9 +27,9 @@ class AuthController extends Controller
     /**
      * Where to redirect users after login / registration.
      *
-     * @var string
-     */
-    protected $redirectTo = '/home';
+     * @var strin
+g     */
+    protected $redirectTo = '/#/';
 
     /**
      * Create a new authentication controller instance.
@@ -67,6 +68,26 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'role' => $data['role']['value']
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            return response()->json(array('success'=> 'false', 'data'=> $validator->errors()->all()));
+        }
+
+        $this->create($request->all());
+
+        return response()->json(array('success'=> 'true'));
     }
 }

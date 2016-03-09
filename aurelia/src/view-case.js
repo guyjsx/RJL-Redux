@@ -16,43 +16,39 @@ export class ViewCase {
     }
 
     attached() {
-        $('#casesTable').dataTable( {
-            scrollY:        '30vh',
-            scrollCollapse: true,
-            paging:         false
-        });
+        $('#casesTable').dataTable();
 
-        function resizeChart() {
-            $('.caseStatusReportContainer').css("height",  $('.panel.panel-default').height());
-        }
-
-        resizeChart();
-
-       $(window).resize(function() {
-            resizeChart();
-       }); 
-      
-
-
-        var ctx = document.getElementById("case-status-report").getContext("2d");
-
-        var data = {
-            labels: [ 'Open', 'Closed' ],
-            datasets: [
-                {
-                    data: [ 65, 59 ],
-                    fillColor: "#ff6000"
-                },
-                {
-                    data: [ 45, 80 ],
-                    fillColor: "#1ac65b"
-                }
-            ]
-        }
-
-        var caseStatusReportBarChart = new Chart(ctx).Bar(data, {
-            responsive: true,
-            maintainAspectRatio: false
-        });
+       // function resizeChart() {
+       //     $('.caseStatusReportContainer').css("height",  $('.panel.panel-default').height());
+       // }
+       //
+       // resizeChart();
+       //
+       //$(window).resize(function() {
+       //     resizeChart();
+       //});
+       //
+       //
+       //
+       // var ctx = document.getElementById("case-status-report").getContext("2d");
+       //
+       // var data = {
+       //     labels: [ 'Open', 'Closed' ],
+       //     datasets: [
+       //         {
+       //             data: [ 65, 59 ],
+       //             fillColor: "#ff6000"
+       //         },
+       //         {
+       //             data: [ 45, 80 ],
+       //             fillColor: "#1ac65b"
+       //         }
+       //     ]
+       // }
+       //
+       // var caseStatusReportBarChart = new Chart(ctx).Bar(data, {
+       //     responsive: true,
+       //     maintainAspectRatio: false
+       // });
     }
 }

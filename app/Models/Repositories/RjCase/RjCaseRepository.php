@@ -31,7 +31,7 @@ class RjCaseRepository implements RjCaseInterface
     */
     public function getCaseById($id)
     {
-        return $this->rjCaseModel->where('id', '=', $id)->with('victims', 'offenders', 'charges', 'files', 'notes')->get()->toArray()[0];
+        return $this->rjCaseModel->where('id', '=', $id)->with('victims', 'offenders', 'charges', 'files', 'notes', 'users')->get()->toArray()[0];
     }
 
     /**

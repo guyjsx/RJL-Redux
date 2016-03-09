@@ -150,6 +150,8 @@ return [
         'Collective\Html\HtmlServiceProvider',
         'Repositories\RjCase\RjCaseRepositoryServiceProvider',
         'Services\RjCase\RjCaseServiceServiceProvider',
+        'Repositories\User\UserRepositoryServiceProvider',
+        'Services\User\UserServiceServiceProvider',
         'Repositories\Offender\OffenderRepositoryServiceProvider',
         'Services\Offender\OffenderServiceServiceProvider',
         'Repositories\Victim\VictimRepositoryServiceProvider',

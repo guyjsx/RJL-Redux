@@ -158,16 +158,19 @@ span.textAreaField {
 
 .inputField input[readonly], .inputField select[disabled], .inputField textarea[readonly] {
   margin-bottom: 0;
+  transition: all 0.5s ease;
   background: #32383d;
   color: white;
   border: none; }
 
 .inputField.showEditIcon input[readonly], .inputField.showEditIcon select[disabled], .inputField.showEditIcon textarea[readonly] {
+  transition: all 0.5s ease;
   background: #989898;
   cursor: pointer;
   color: black; }
 
 .inputField.showEditIcon:after {
+  transition: all 0.5s;
   content: "\f040";
   font-family: FontAwesome;
   position: absolute;
@@ -184,11 +187,13 @@ select, .select2-dropdown {
   color: black; }
 
 #edit .showEditIcon .select2-selection.select2-selection--multiple {
+  transition: all 0.5s ease;
   background: #989898 !important;
   cursor: pointer;
   color: black; }
 
 #edit .select2-container--disabled .select2-selection--multiple {
+  transition: all 0.5s ease;
   background: #32383d !important;
   border: none !important;
   cursor: pointer;

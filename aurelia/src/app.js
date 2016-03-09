@@ -10,7 +10,8 @@ export class App {
 			config.parent = "true";
 		  	config.map([
 		  		{ route: ['', 'home/'], moduleId: 'home', nav: true, title:'Home' },
-		  		{ route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' }
+		  		{ route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' },
+				{ route: ['users/'], moduleId: 'users', nav: true, title:'Users' }
 		  	]);
 		});
 	}

@@ -68,6 +68,7 @@ span.textAreaField {
 
     input[readonly], select[disabled], textarea[readonly] {
         margin-bottom: 0;
+        transition: all 0.5s ease;
         background: $color-main;
         color: $color-white;
         border: none;
@@ -75,12 +76,14 @@ span.textAreaField {
 
     &.showEditIcon {
         input[readonly], select[disabled], textarea[readonly] {
+            transition: all 0.5s ease;
             background: $color-seperator;
             cursor: pointer;
             color: black;
         }
 
         &:after {
+            transition: all 0.5s;
             content: "\f040";
             font-family: FontAwesome;
             position:absolute;
@@ -115,12 +118,15 @@ select, .select2-dropdown {
 #edit {
 
     .showEditIcon .select2-selection.select2-selection--multiple {
+        transition: all 0.5s ease;
         background: $color-seperator !important;
         cursor: pointer;
         color: black;
+
     }
 
     .select2-container--disabled .select2-selection--multiple {
+        transition: all 0.5s ease;
         background: $color-main !important;
         border: none !important;
         cursor: pointer;

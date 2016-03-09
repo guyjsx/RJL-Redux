@@ -90,9 +90,9 @@ class RjCaseController extends Controller
             foreach($data['victim'] as $newVictim) {
                 $victim = new Victim();
 
-                foreach($newVictim as $victimField) {
-                    if (in_array($victimField['name'], $victimFields)) {
-                        $victim[$victimField['name']] = $victimField['value'];
+                foreach($newVictim as $key => $value) {
+                    if (in_array($key, $victimFields)) {
+                        $victim[$key] = $value['value'];
                     }
                 }
 
@@ -108,8 +108,10 @@ class RjCaseController extends Controller
             foreach($data['offender'] as $newOffender) {
                 $offender = new Offender();
 
-                if (in_array($newOffender['name'], $offenderFields)) {
-                    $offender[$newOffender['name']] = $newOffender['value'];
+                foreach($newOffender as $key => $value) {
+                    if (in_array($key, $offenderFields)) {
+                        $offender[$key] = $value['value'];
+                    }
                 }
 
                 $offender->save();
