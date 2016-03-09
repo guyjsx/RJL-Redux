@@ -26,6 +26,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/', 'HomeController@index');
+    Route::get('/api/users', 'UserController@index');
     Route::get('/api/home', 'HomeController@show');
     Route::get('/api/cases/exists', 'RjCaseController@checkIfExists');
     Route::get('/api/victim/exists', 'VictimController@checkIfExists');

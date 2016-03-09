@@ -49,6 +49,11 @@ class RjCase extends Model
         return $this->hasMany('Entities\Note', 'rj_case_id');
     }
 
+    public function users() {
+
+        return $this->belongsToMany('App\User', 'rj_cases_users', 'rj_case_id', 'user_id');
+    }
+
     public static function fieldData() {
         $fieldDataMapping = array(
             'caseId' => array(

@@ -4,7 +4,7 @@ import {Router} from 'aurelia-router';
 import validate from 'jquery-validation';
 
 @inject(HttpClient, Router)
-export class CreateCase {
+export class EditCase {
     constructor(http, router) {
         this.http = http;
         this.router = router;
@@ -71,7 +71,7 @@ export class CreateCase {
     update(id) {
         this.http.put('/api/cases/' + id, this.data)
             .then(response => {
-               // this.router.navigate("");
+               // this.router.reset();
             });
     }
 
@@ -215,7 +215,7 @@ export class CreateCase {
             messages: {
             },
             submitHandler: function(form) {
-                self.update();
+                self.update(self.data['id']);
             }
         });
     }

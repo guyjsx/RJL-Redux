@@ -1,6 +1,6 @@
 <div class="">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
 				<table id="casesTable" class="table">
 					<thead>
@@ -56,10 +56,10 @@
 				</table>
 			</div>
         </div>
-		<div class="col-sm-2">
-			<div class="caseStatusReportContainer">
-				<canvas id="case-status-report"></canvas>
-			</div>
-		</div>
+		{{--<div class="col-sm-2">--}}
+			{{--<div class="caseStatusReportContainer">--}}
+				{{--<canvas id="case-status-report"></canvas>--}}
+			{{--</div>--}}
+		{{--</div>--}}
     </div>
 </div>
