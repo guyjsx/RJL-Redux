@@ -31,7 +31,7 @@ class OffenderRepository implements OffenderInterface
      */
     public function getOffenderById($offenderId)
     {
-        return $this->offenderModel->find($offenderId);
+        return $this->offenderModel->with('rjCases')->find($offenderId);
     }
 
     /**
@@ -40,7 +40,7 @@ class OffenderRepository implements OffenderInterface
     public function getAllOffenders()
     {
         // Search for all
-        $offenders = $this->offenderModel->all();
+        $offenders = $this->offenderModel->with('rjCases')->get();
 
         if ($offenders)
         {

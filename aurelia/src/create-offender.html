@@ -1,0 +1,66 @@
+<template>
+    <form name="offendersForm" id="offendersForm" method="post" action="/api/offender/" submit.delegate="submitOffender()">
+        <section id="offender">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Offender</div>
+                        <div class="panel-body">
+                            <div repeat.for="item of offenderFieldData">
+                                <require from="ObjectKeysValueConverter"></require>
+                                <div>
+                                    <div repeat.for="prop of item | objectKeys">
+                                        <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                        <div class="col-sm-4">
+                                            <div>
+                                                <label for="offender-${prop.name}">${prop.namePretty}: </label>
+                                            </div>
+                                            <div>
+                                                <div class="inputField" if.bind="prop.type  == 'input'">
+                                                    <input click.delegate="edit()" type="text" name="${prop.name}" id="offender-${prop.name}" value.bind="offenderFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
+                                                </div>
+
+                                                <div class="inputField" if.bind="prop.type  == 'select'">
+                                                    <select name="${prop.name}" id="offender-${prop.name}" value.bind="offenderFieldData[0][prop.name]['value']">
+                                                        <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Case</div>
+                    <div class="panel-body">
+                        <div class="col-sm-3">
+                            <div class="case-select-wrapper">
+                                <div class="case-select2-container">
+                                    <require from="resources/custom-select"></require>
+
+                                    <div>
+                                        <label for="${case.id}">Case(s): </label>
+                                    </div>
+
+                                    <select class="case-select" select2.bind="options" value.bind="selectedCase" multiple="multiple" name="case">
+                                        <option repeat.for="case of cases" model.bind="case.id" id="${case.id}" value="${case.id}">${case.caseId}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</template>

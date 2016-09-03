@@ -18,11 +18,13 @@ export class CreateCase {
 
         this.offenderFieldData = [];
         this.selectedCharge = [];
+        this.selectedFacilitator = [];
         this.victimCount = 0;
         this.data = [];
 
         return this.http.get('/api/cases/create').then(response => {
-            this.charges = response.content.charges
+            this.charges = response.content.charges;
+            this.facilitators = response.content.facilitators;
             this.caseFieldData = [
                 response.content.caseFieldData
             ];
@@ -62,7 +64,8 @@ export class CreateCase {
             case: this.caseFieldData,
             victim: this.victimFieldData,
             offender: this.offenderFieldData,
-            charge: this.selectedCharge
+            charge: this.selectedCharge,
+            facilitator: this.selectedFacilitator
         }
 
         this.http.post('/api/cases', this.data)

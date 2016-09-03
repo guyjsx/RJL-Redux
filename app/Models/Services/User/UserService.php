@@ -57,4 +57,25 @@ class UserService
         // If nothing found, return this simple string
         return 'Users Not Found';
     }
+
+    /**
+     * Method to get all users by role
+     *
+     * @param string $role
+     *
+     * @return string
+     */
+    public function getAllUsersByRole($role)
+    {
+        $users = $this->userRepo->getAllUsersByRole($role);
+
+        // If Eloquent Object returned (rather than null) return the name of the pokemon
+        if ($users != null)
+        {
+            return $users;
+        }
+
+        // If nothing found, return this simple string
+        return 'Users with this role not Found';
+    }
 }

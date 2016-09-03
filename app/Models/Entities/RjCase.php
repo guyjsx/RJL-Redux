@@ -15,6 +15,8 @@ class RjCase extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['offender_id, victim_id', 'rj_case_id'];
+
     /**
      * The victims that belong to the case
      */
@@ -50,7 +52,6 @@ class RjCase extends Model
     }
 
     public function users() {
-
         return $this->belongsToMany('App\User', 'rj_cases_users', 'rj_case_id', 'user_id');
     }
 
@@ -77,9 +78,13 @@ class RjCase extends Model
             'courtDate' => array(
                 'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
             ),
+            'user_id' => array(
+                'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "", 'placeholder' => '',
+                'options' => array()
+            ),
             'caseDescription' => array(
                 'name' => 'caseDescription', 'type' => 'textarea', 'namePretty' => 'Case Description', 'value' => "", 'placeholder' => ''
-            )
+            ),
         );
 
         return $fieldDataMapping;

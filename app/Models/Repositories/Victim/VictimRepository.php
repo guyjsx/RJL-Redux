@@ -31,7 +31,7 @@ class VictimRepository implements VictimInterface
      */
     public function getVictimById($victimId)
     {
-        return $this->victimModel->find($victimId);
+        return $this->victimModel->with('rjCases')->find($victimId);
     }
 
     /**
@@ -40,7 +40,7 @@ class VictimRepository implements VictimInterface
     public function getAllVictims()
     {
         // Search for all
-        $victims = $this->victimModel->all();
+        $victims = $this->victimModel->with('rjCases')->get();
 
         if ($victims)
         {

@@ -8,12 +8,15 @@ class Offender extends Model
 {
 
     public $timestamps = false;
+
+    protected $fillable = ['rj_case_id'];
+
     /**
      * The cases that belong to the offender
      */
-    public function offenders()
+    public function rjCases()
     {
-        return $this->belongsToMany('Entities\RjCase', 'offenders_rj_cases');
+        return $this->belongsToMany('Entities\RjCase',  'offenders_rj_cases', 'rj_case_id','offender_id');
     }
 
     public static function fieldData() {

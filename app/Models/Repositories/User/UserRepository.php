@@ -48,4 +48,20 @@ class UserRepository implements UserInterface
 
         return null;
     }
+
+    /**
+     * Returns all users by role
+     */
+    public function getAllUsersByRole($role)
+    {
+        // Search for all users by role
+        $users = $this->userModel->where('role', '=', $role)->get();
+
+        if ($users)
+        {
+            return $users;
+        }
+
+        return null;
+    }
 }

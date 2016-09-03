@@ -4,18 +4,18 @@ import $ from 'jquery';
 import dataTable from 'datatables';
 
 @inject (HttpClient)
-export class ViewCase {
+export class ViewOffenders {
     constructor(http) {
         this.http = http;
     }
 
     activate() {
-        return this.http.get('/api/cases').then(response => {
+        return this.http.get('/api/offender').then(response => {
             this.html = response.content.html;
         });
     }
 
     attached() {
-        $('#casesTable').dataTable();
+        $('#offendersTable').dataTable();
     }
 }

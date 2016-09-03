@@ -1,0 +1,70 @@
+<template>
+    <div id="edit">
+        <form id="editOffenderForm" name="editOffenderForm" role="form" submit.delegate="update(data['id'])">
+            <input type="hidden" name="_token" value.bind="data['token']"]>
+            <input type="hidden" id="id" value.bind="data['offender']['id']" name="data[id]" >
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Offender</div>
+                        <div class="panel-body">
+                            <div repeat.for="item of offenderFieldData">
+                                <require from="ObjectKeysValueConverter"></require>
+                                <div repeat.for="prop of item | objectKeys">
+                                    <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                    <div class="col-sm-4">
+                                        <div>
+                                            <label for="offender-${prop.name}">${prop.namePretty}: </label>
+                                        </div>
+                                        <div>
+                                            <div class="inputField" if.bind="prop.type  == 'input'">
+                                                <input click.delegate="edit()" type="text" name="${prop.name}" id="offender-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                            </div>
+
+                                            <div class="inputField" if.bind="prop.type  == 'select'">
+                                                <div class="editOverlay" click.delegate="edit()"></div>
+                                                <select name="${prop.name}" id="offender-${prop.name}" value.bind="data[prop.name]" disabled>
+                                                    <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Charge</div>
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <div class="case-select-wrapper">
+                                    <div class="case-select2-container">
+                                        <require from="resources/custom-select"></require>
+
+                                        <div>
+                                            <label for="cases">Case(s): </label>
+                                        </div>
+                                        <div class="inputField">
+                                            <div class="editOverlay" click.delegate="edit()"></div>
+                                            <select disabled="true" id="cases" class="caseSelect" select2.bind="options" value.bind="data['cases']" selected.bind="selectedCase" multiple="multiple" name="data[case][]">
+                                                <option repeat.for="case of cases" model.bind="case.id" id="${case.id}" value="${case.id}">${case.caseId}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn  btn-default btn-green" type="submit">Update</button>
+        </form>
+    </div>
+</template>

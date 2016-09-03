@@ -8,4 +8,6 @@ interface UserInterface
     public function getUserById($userId);
 
     public function getAllUsers();
+
+    public function getAllUsersByRole($role);
 }

@@ -56,10 +56,5 @@
 				</table>
 			</div>
         </div>
-		{{--<div class="col-sm-2">--}}
-			{{--<div class="caseStatusReportContainer">--}}
-				{{--<canvas id="case-status-report"></canvas>--}}
-			{{--</div>--}}
-		{{--</div>--}}
     </div>
 </div>

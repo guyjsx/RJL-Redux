@@ -11,6 +11,8 @@ export class App {
 		  	config.map([
 		  		{ route: ['', 'home/'], moduleId: 'home', nav: true, title:'Home' },
 		  		{ route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' },
+				{ route: ['victim/'], moduleId: 'victims', nav: true, title:'Victims' },
+				{ route: ['offender/'], moduleId: 'offenders', nav: true, title:'Offenders' },
 				{ route: ['users/'], moduleId: 'users', nav: true, title:'Users' }
 		  	]);
 		});
