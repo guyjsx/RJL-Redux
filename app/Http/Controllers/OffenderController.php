@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Schema;
 use Services\Offender\OffenderService;
+use Services\RjCase\RjCaseService;
 
 class OffenderController extends Controller
 {
-    public function __construct(OffenderService $offenderService)
+    public function __construct(OffenderService $offenderService, RjCaseService $rjCaseService)
     {
         $this->offenderService = $offenderService;
+        $this->rjCaseService = $rjCaseService;
     }
 
     /**
@@ -23,7 +26,7 @@ class OffenderController extends Controller
      */
     public function index()
     {
-        $offenders = $this->offenderService->getAllOffenders();
+        $offenders = $this->offenderService->getAllOffenders()->toArray();
 
         return response()->json(array('html' =>view('offenders/index', [
             'offenders' => $offenders
@@ -37,7 +40,13 @@ class OffenderController extends Controller
      */
     public function create()
     {
-        //
+        $cases = $this->rjCaseService->getAllCases()->toArray();
+        $offenderFieldData = Offender::fieldData();
+
+        return response()->json(array(
+            'cases' => $cases,
+            'offenderFieldData' => $offenderFieldData,
+        ));
     }
 
     /**
@@ -48,7 +57,29 @@ class OffenderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $offenderData = isset($data['offender'][0]) ? $data['offender'][0] : null;
+        $offenderFields = Schema::connection('mysql')->getColumnListing('offenders');
+
+        if (isset($offenderData)) {
+            $offender = new Offender();
+
+            foreach($offenderData as $field) {
+                if (in_array($field['name'], $offenderFields)) {
+                    $offender[$field['name']] = $field['value'];
+                }
+            }
+
+            $offender->save();
+
+            if (isset($data['cases'])) {
+                foreach($data['cases'] as $newCase) {
+                    $offender->rjCases()->attach($newCase);
+                }
+            }
+        }
+
+        return response()->json(array('success' => 'true'));
     }
 
     /**
@@ -70,7 +101,17 @@ class OffenderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $token = csrf_token();
+        $offender = $this->offenderService->getOffenderById($id);
+        $cases = $this->rjCaseService->getAllCases()->toArray();
+        $offenderFieldData = Offender::fieldData();
+
+        return response()->json(array(
+            'data' => $offender,
+            'token' => $token,
+            'offenderFieldData' => $offenderFieldData,
+            'casesData' => $cases
+        ));
     }
 
     /**
@@ -82,7 +123,30 @@ class OffenderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $offenderFields = Schema::connection('mysql')->getColumnListing('offenders');
+
+        if (isset($data)) {
+            $offender = Offender::find($data['id']);
+
+            foreach($data as $key => $value) {
+                if (in_array($key, $offenderFields)) {
+                    $offender[$key] = $value;
+                }
+            }
+
+            $offender->save();
+
+            if (isset($data['cases'])) {
+                $offender->rjCases()->detach();
+                foreach($data['cases'] as $newCase) {
+                    $offender->rjCases()->attach($newCase);
+                }
+            }
+        }
+
+        return response()->json(array('success' => 'true'));
     }
 
     /**
@@ -114,6 +178,5 @@ class OffenderController extends Controller
         $offenders = $this->offenderService->searchOffenders($searchType, $searchStr);
 
         return response()->json(array('offenders' => $offenders));
-
     }
 }

@@ -35,6 +35,17 @@ class RjCaseRepository implements RjCaseInterface
     }
 
     /**
+     * Returns the pokemon object associated with the passed id
+     *
+     * @param mixed $caseId
+     * @return Model
+     */
+    public function getCaseObjectById($id)
+    {
+        return $this->rjCaseModel->where('id', '=', $id)->get();
+    }
+
+    /**
     * Returns all cases
     */
     public function getAllCases()

@@ -2,7 +2,7 @@
     margin-top: 100px;
 }
 
-input:not(.select2-search__field), select:not(charge-select) {
+input:not(.select2-search__field), select:not(charge-select):not(facilitator-select) {
     color: black;
     height: 28px;
 }
@@ -104,13 +104,11 @@ span.textAreaField {
 
 
 
-.charge-select-wrapper {
+.charge-select-wrapper, .facilitator-select-wrapper {
     margin-bottom: 20px;
-
-    .charge-select2-container {
-
-    }
 }
+
+
 select, .select2-dropdown {
     color: black;
 }
@@ -163,7 +161,7 @@ label {
 }
 label.error {
 
-    .charge-select2-container & {
+    .charge-select2-container &, .facilitator-select-container {
         margin-top: 0;
     }
 

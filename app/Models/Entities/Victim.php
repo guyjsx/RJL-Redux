@@ -8,13 +8,15 @@ class Victim extends Model
 {
     protected $table = 'victims';
 
+    protected $fillable = ['rj_case_id', 'victim_id'];
+
     public $timestamps = false;
     /**
      * The cases that belong to the victim
      */
     public function rjCases()
     {
-        return $this->belongsToMany('Entities\RjCase',  'rj_cases_victims', 'rj_case_id','victim_id');
+        return $this->belongsToMany('Entities\RjCase',  'rj_cases_victims', 'victim_id', 'rj_case_id');
     }
 
     public static function fieldData() {

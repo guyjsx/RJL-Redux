@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Entities\RjCase;
 use Entities\Victim;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Schema;
+use Services\RjCase\RjCaseService;
 use Services\Victim\VictimService;
 
 class VictimController extends Controller
 {
 
-    public function __construct(VictimService $victimService)
+    public function __construct(VictimService $victimService, RjCaseService $rjCaseService)
     {
         $this->victimService = $victimService;
+        $this->rjCaseService = $rjCaseService;
     }
 
     /**
@@ -24,7 +28,7 @@ class VictimController extends Controller
      */
     public function index()
     {
-        $victims = $this->victimService->getAllVictims();
+        $victims = $this->victimService->getAllVictims()->toArray();
 
         return response()->json(array('html' =>view('victims/index', [
             'victims' => $victims
@@ -38,7 +42,13 @@ class VictimController extends Controller
      */
     public function create()
     {
-        //
+        $cases = $this->rjCaseService->getAllCases()->toArray();
+        $victimFieldData = Victim::fieldData();
+
+        return response()->json(array(
+            'cases' => $cases,
+            'victimFieldData' => $victimFieldData,
+        ));
     }
 
     /**
@@ -49,7 +59,29 @@ class VictimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $victimData = isset($data['victim'][0]) ? $data['victim'][0] : null;
+        $victimFields = Schema::connection('mysql')->getColumnListing('victims');
+
+        if (isset($victimData)) {
+            $victim = new Victim();
+
+            foreach($victimData as $field) {
+                if (in_array($field['name'], $victimFields)) {
+                    $victim[$field['name']] = $field['value'];
+                }
+            }
+
+            $victim->save();
+
+            if (isset($data['cases'])) {
+                foreach($data['cases'] as $newCase) {
+                    $victim->rjCases()->attach($newCase);
+                }
+            }
+        }
+
+        return response()->json(array('success' => 'true'));
     }
 
     /**
@@ -71,7 +103,17 @@ class VictimController extends Controller
      */
     public function edit($id)
     {
-        //
+        $token = csrf_token();
+        $victim = $this->victimService->getVictimById($id);
+        $cases = $this->rjCaseService->getAllCases()->toArray();
+        $victimFieldData = Victim::fieldData();
+
+        return response()->json(array(
+            'data' => $victim,
+            'token' => $token,
+            'victimFieldData' => $victimFieldData,
+            'casesData' => $cases
+        ));
     }
 
     /**
@@ -83,7 +125,30 @@ class VictimController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $victimFields = Schema::connection('mysql')->getColumnListing('victims');
+
+        if (isset($data)) {
+            $victim = Victim::find($data['id']);
+
+            foreach($data as $key => $value) {
+                if (in_array($key, $victimFields)) {
+                    $victim[$key] = $value;
+                }
+            }
+
+            $victim->save();
+
+            if (isset($data['cases'])) {
+                $victim->rjCases()->detach();
+                foreach($data['cases'] as $newCase) {
+                    $victim->rjCases()->attach($newCase);
+                }
+            }
+        }
+
+        return response()->json(array('success' => 'true'));
     }
 
     /**

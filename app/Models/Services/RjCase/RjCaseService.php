@@ -62,4 +62,26 @@ class RjCaseService
         // If nothing found, return this simple string
         return 'Case Not Found';
     }
+
+    /**
+     * Method to get case object by ID
+     *
+     * @return string
+     */
+    public function getCaseObjectId($id)
+    {
+
+        $case = $this->rjCaseRepo->getCaseById($id);
+        // If pokemon variable is numeric, assume ID
+
+
+        // If Eloquent Object returned (rather than null) return the name of the pokemon
+        if ($case != null)
+        {
+            return $case;
+        }
+
+        // If nothing found, return this simple string
+        return 'Case Not Found';
+    }
 }

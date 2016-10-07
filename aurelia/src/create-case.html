@@ -23,6 +23,17 @@
                                        </div>
                                    </div>
 
+                                   <div if.bind="prop.type  == 'select'">
+                                       <div class="col-sm-4 inputContainer">
+                                           <div>
+                                               <label for="${prop.name}">${prop.namePretty} </label>
+                                           </div>
+                                           <select name="${prop.name}" id="{prop.name}" value.bind="caseFieldData[0][prop.name]['value']">
+                                               <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                           </select>
+                                       </div>
+                                   </div>
+
                                    <div if.bind="prop.type == 'textarea'">
                                        <div class="clearfix"></div>
                                        <div class="col-sm-6 inputContainer">
@@ -34,6 +45,31 @@
                                            </span>
                                        </div>
                                    </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="row">
+           <div class="col-sm-12">
+               <div class="panel panel-default">
+                   <div class="panel-heading">Facilitator</div>
+                   <div class="panel-body">
+                       <div class="col-sm-3">
+                           <div class="facilitator-select-wrapper">
+                               <div class="facilitator-select2-container">
+                                   <require from="resources/custom-select"></require>
+
+                                   <div>
+                                       <label for="${facilitator.id}">Facitlitator(s): </label>
+                                   </div>
+
+                                   <select class="facilitator-select" select2.bind="options" value.bind="selectedFacilitator" multiple="multiple" name="facilitator">
+                                       <option repeat.for="facilitator of facilitators" model.bind="facilitator.id" id="${facilitator.id}" value="${facilitator.id}">${facilitator.username}</option>
+                                   </select>
                                </div>
                            </div>
                        </div>

@@ -16,14 +16,16 @@ use Services\Charge\ChargeService;
 use Services\Offender\OffenderService;
 use Services\RjCase\RjCaseService;
 use Services\FileUpload\FileUploadService;
+use Services\User\UserService;
 
 class RjCaseController extends Controller
 {
 
-    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService, FileUploadService $fileUploadService)
+    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService, FileUploadService $fileUploadService, UserService $userService)
     {
         $this->rjCaseService = $rjCaseService;
         $this->chargeService = $chargeService;
+        $this->userService = $userService;
     }
 
     /**
@@ -51,12 +53,26 @@ class RjCaseController extends Controller
         $caseFieldData = RjCase::fieldData();
         $victimFieldData = Victim::fieldData();
         $offenderFieldData = Offender::fieldData();
+        $facilitators = $this->userService->getAllUsersByRole('facilitator')->toArray();
+        $caseManagerData  = $this->userService->getAllUsers()->toArray();
+        $caseManagerList = array();
+
+
+        foreach ($caseManagerData as $key => $value) {
+            if (!empty($value['username'])) {
+                $caseManagerList[$key]['name'] = $value['username'];
+                $caseManagerList[$key]['value'] = $value['id'];
+            }
+        }
+
+        $caseFieldData['user_id']['options'] = $caseManagerList;
 
         return response()->json(array(
             'charges' => $charges,
             'caseFieldData' => $caseFieldData,
             'victimFieldData' => $victimFieldData,
             'offenderFieldData' => $offenderFieldData,
+            'facilitators' => $facilitators
         ));
     }
 
@@ -126,6 +142,12 @@ class RjCaseController extends Controller
             }
         }
 
+        if (isset($data['facilitator'])) {
+            foreach($data['facilitator'] as $newFacilitator) {
+                $case->users()->attach($newFacilitator);
+            }
+        }
+
         return "success";
     }
 
@@ -154,6 +176,7 @@ class RjCaseController extends Controller
         $victimFieldData = Victim::fieldData();
         $offenderFieldData = Offender::fieldData();
         $charges = $this->chargeService->getAllCharges()->toArray();
+        $facilitators = $this->userService->getAllUsersByRole('facilitator')->toArray();
 
         return response()->json(array(
             'data' => $case,
@@ -161,7 +184,8 @@ class RjCaseController extends Controller
             'caseFieldData' => $caseFieldData,
             'victimFieldData' => $victimFieldData,
             'offenderFieldData' => $offenderFieldData,
-            'chargesData' => $charges
+            'chargesData' => $charges,
+            'facilitatorData' => $facilitators
         ));
     }
 
@@ -222,9 +246,32 @@ class RjCaseController extends Controller
             }
         }
 
+
         if (isset($data['charges'])) {
+            $existingCharges = RjCase::find($data['id'])->charges;
+
+            foreach($data['charges'] as $newCharge) {
+                if (!in_array($newCharge, $existingCharges->toArray())) {
+                    $case->charges()->detach();
+                }
+            }
+
             foreach($data['charges'] as $newCharge) {
                 $case->charges()->attach($newCharge);
+            }
+        }
+
+        if (isset($data['facilitators'])) {
+            $existingFacilitators = RjCase::find($data['id'])->users;
+
+            foreach($data['facilitators'] as $newFacilitator) {
+                if (!in_array($newFacilitator, $existingFacilitators->toArray())) {
+                    $case->users()->detach();
+                }
+            }
+
+            foreach($data['facilitators'] as $newFacilitator) {
+                $case->users()->attach($newFacilitator);
             }
         }
 
