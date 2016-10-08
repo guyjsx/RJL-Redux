@@ -20,11 +20,24 @@ export class Cases {
 	}
 
 	configureRouter(config, router) {
-		config.map([
-			{ route: ["","cases/view"], moduleId: 'view-case', nav: true, title:'Case View' },
-			{ route: ["create"], moduleId: 'create-case', nav: true, title:'Case Create' },
-			{ route: ["edit"], moduleId: 'edit-case', nav: false, title:'Edit Case' }
-		]);
+        var routerMap = [];
+
+        if (typeof userObj !== "undefined") {
+            if (userObj.role !== "facilitator") {
+                var routerMap = [
+                    { route: ["","cases/view"], moduleId: 'view-case', nav: true, title:'Case View' },
+                    { route: ["create"], moduleId: 'create-case', nav: true, title:'Case Create' },
+                    { route: ["edit"], moduleId: 'edit-case', nav: false, title:'Edit Case' }
+                ];
+            } else if (userObj.role == "facilitator") {
+                var routerMap = [
+                    { route: ["","cases/view"], moduleId: 'view-case', nav: true, title:'Case View' },
+                    { route: ["edit"], moduleId: 'edit-case', nav: false, title:'Edit Case' }
+                ];
+            }
+        }
+
+		config.map(routerMap);
 
 		this.router = router;
 	}

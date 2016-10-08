@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Entities\RjCase;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Services\Charge\ChargeService;
 use Services\Offender\OffenderService;
@@ -35,10 +36,16 @@ class RjCaseController extends Controller
      */
     public function index()
     {
-    	$cases = $this->rjCaseService->getAllCases()->toArray();
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        $cases = isset($user) && $user->role == "facilitator" ?
+            $this->userService->getAllUserCasesByUserId($user->id) :
+            $this->rjCaseService->getAllCases()->toArray();
 
         return response()->json(array('html' =>view('cases/index', [
-            'cases' => $cases   
+            'cases' => $cases
         ])->render()));
     }
 

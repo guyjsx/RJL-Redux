@@ -15,7 +15,7 @@ class RjCase extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['offender_id, victim_id', 'rj_case_id'];
+    protected $fillable = ['offender_id, victim_id', 'rj_case_id', 'user_id'];
 
     /**
      * The victims that belong to the case

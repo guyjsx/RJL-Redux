@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The cases that belong to the user
+     */
+    public function rjCases()
+    {
+        return $this->belongsToMany('Entities\RjCase',  'rj_cases_users', 'user_id','rj_case_id');
+    }
 }

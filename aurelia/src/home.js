@@ -18,9 +18,9 @@ export class Home {
     }
 
   activate() {
-    return this.http.get('/api/home').then(response => {
-      this.html = response.content.html;
-    });
+    //return this.http.get('/api/home').then(response => {
+    //  this.html = response.content.html;
+    //});
   }
 
   attached() {

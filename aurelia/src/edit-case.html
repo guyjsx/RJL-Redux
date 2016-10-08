@@ -172,7 +172,7 @@
                 </section>
             </div>
 
-            <button class="btn  btn-default btn-green" type="submit">Update Case</button>
+            <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-green" type="submit">Update Case</button>
         </form>
 
         <div id="fileSection">
@@ -228,13 +228,15 @@
                                     <label for="noteDate">Note Date: </label>
                                 </div>
                                 <span class="inputField">
-                                    <input click.delegate="edit()" type="text" name="data[noteData][noteDate]" id="noteDate" value.bind="noteData.noteDate" readonly>
+                                    <input if.bind="user.role !== 'facilitator'" click.delegate="edit()" type="text"  id="noteDate" value.bind="noteData.noteDate" name="noteDate" readonly>
+                                    <input if.bind="user.role == 'facilitator'" type="text" id="noteDate" value.bind="noteData.noteDate" name="noteDate">
                                 </span>
                                 <div>
                                     <label for="noteContent">Note Content: </label>
                                 </div>
                                 <span class="inputField textAreaField">
-                                    <textarea rows="10" click.delegate="edit()" name="data[noteData][noteContent]" id="noteContent" value.bind="noteData.noteContent" readonly></textarea>
+                                    <textarea if.bind="user.role !== 'facilitator'" rows="10" click.delegate="edit()"  id="noteContent" value.bind="noteData.noteContent" name="noteContent" readonly></textarea>
+                                    <textarea if.bind="user.role == 'facilitator'" rows="10" id="noteContent" value.bind="noteData.noteContent" name="noteContent"></textarea>
                                 </span>
                                 <button type="submit" class="btn  btn-default">Add Note</button>
                             </div>

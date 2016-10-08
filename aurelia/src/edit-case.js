@@ -11,6 +11,7 @@ export class EditCase {
     }
 
     activate(params) {
+        this.user = userObj;
         this.data = [];
         this.noteData = {};
         this.notes = [];
@@ -72,10 +73,12 @@ export class EditCase {
     }
 
     edit() {
-        $("input[readonly], textarea[readonly]").removeAttr('readonly');
-        $("select[disabled]").removeAttr('disabled');
-        $('.editOverlay').remove();
-        $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
+        if (userObj.role !== "facilitator") {
+            $("input[readonly], textarea[readonly]").removeAttr('readonly');
+            $("select[disabled]").removeAttr('disabled');
+            $('.editOverlay').remove();
+            $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
+        }
     }
 
     fileUpload() {
@@ -110,8 +113,8 @@ export class EditCase {
         }
     }
 
-    addNote() {
-        this.http.post('/api/note' + '?id=' + this.data.id, this.noteData)
+    addNote(id) {
+        this.http.post('/api/note' + '?id=' + id, this.noteData)
             .then(response => {
                 console.log(response);
                 this.noteSuccess = 1;
@@ -136,6 +139,20 @@ export class EditCase {
             },
             "Please enter a state in two letters, e.g., KY"
         );
+
+        $("#noteForm").validate({
+            rules: {
+                noteDate: {
+                    required: true,
+                    dateFormat: true
+                }
+            },
+            messages: {
+            },
+            submitHandler: function(form) {
+                self.addNote(self.data['id']);
+            }
+        });
 
         $("#editCaseForm").validate({
             onkeyup: false,
@@ -224,11 +241,14 @@ export class EditCase {
             console.log('open');
         });
 
-        $(".inputField, .textArea").hover(function() {
-            $(".inputField").addClass('showEditIcon');
-        },function() {
-            $(".inputField").removeClass('showEditIcon');
-        });
+        if (userObj.role !== "facilitator") {
+            $(".inputField, .textArea").hover(function() {
+                $(".inputField").addClass('showEditIcon');
+            },function() {
+                $(".inputField").removeClass('showEditIcon');
+            });
+        }
+
 
         this.setupCaseValidation();
     }
