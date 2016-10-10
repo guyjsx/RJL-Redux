@@ -3,6 +3,7 @@
 namespace Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Entities\States;
 
 class Victim extends Model
 {
@@ -37,7 +38,7 @@ class Victim extends Model
                 'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
             ),
             'dateOfBirth' => array(
-                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "",'placeholder' => 'YYYY-MM-DD'
+                'date'=> 'true', 'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "",'placeholder' => 'MM/DD/YYYY'
             ),
             'gender' => array(
                 'name' => 'gender', 'type' => 'select', 'namePretty' => 'Gender', 'value' => "",
@@ -70,7 +71,8 @@ class Victim extends Model
                 'name' => 'city', 'type' => 'input', 'namePretty' => 'City', 'value' => ""
             ),
             'state' => array(
-                'name' => 'state', 'type' => 'input', 'namePretty' => 'State', 'value' => ""
+                'name' => 'state', 'type' => 'select', 'namePretty' => 'State', 'value' => "",
+                'options' => States::getStates()
             ),
             'email' => array(
                 'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => ""

@@ -11,3 +11,32 @@
     background: $color-orange;
     margin-bottom: 20px;
 }
+
+.personHeading {
+  height: 35px;
+  clear: both;
+  #removeVictim, #removeOffender {
+    float: right;
+  }
+
+  .personNumber {
+    float: left;
+  }
+}
+
+.btn-fixed-large {
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: 130px;
+  padding: 12px 24px;
+  z-index: 100;
+  margin-top: -23px;
+  transition: all 0.2;
+}
+
+.show-button {
+  display: block;
+  right: 0;
+  transition: all 0.2;
+}

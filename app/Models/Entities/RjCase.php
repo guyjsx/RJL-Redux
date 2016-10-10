@@ -60,23 +60,47 @@ class RjCase extends Model
             'caseId' => array(
                 'name' => 'caseId', 'type' => 'input', 'namePretty' => 'Case ID', 'value' => "", 'placeholder' => ''
             ),
-            'caseStatus'=> array(
-                'name' => 'caseStatus', 'type' => 'input', 'namePretty' => 'Case Status', 'value' => "", 'placeholder' => ''
-            ),
-            'casePhase' => array(
-                'name' => 'casePhase', 'type' => 'input', 'namePretty' => 'Case Phase', 'value' => "", 'placeholder' => ''
+            'caseStatus' => array(
+                'name' => 'casePhase', 'type' => 'select', 'namePretty' => 'Case Status', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Open - Monitoring', 'value' => 'Open - Monitoring'),
+                    array('name' => 'Open - Pending', 'value' => 'Open - Pending'),
+                    array('name' => 'Closed', 'value' => 'Closed')
+                ]
             ),
             'caseClose' => array(
-                'name' => 'caseClose', 'type' => 'input', 'namePretty' => 'Case Close', 'value' => 1, 'placeholder' => ''
+                'name' => 'caseClose', 'type' => 'select', 'namePretty' => 'Case Close', 'value' => 1, 'placeholder' => '',
+                'options' => array(
+                    array('name' => 'Case has not been closed', 'value' => '1'),
+                    array('name' => 'Case closed successfully', 'value' => '2'),
+                    array('name' => 'Identified victim could not be located', 'value' => '3'),
+                    array('name' => 'No victim identified and representatives of the community could not be identified', 'value' => '4'),
+                    array('name' => 'Identified victim did not respond to contact from RJL.', 'value' => '5'),
+                    array('name' => 'Identified victim did not wish to participate in the conference process.', 'value' => '6'),
+                    array('name' => 'Identified victim did not wish to participate in the conference process/prosecution of case ', 'value' => '7'),
+                    array('name' => 'Identified offender did not wish to participate', 'value' => '8'),
+                    array('name' => 'Identified offender did not respond to contact from RJL', 'value' => '9'),
+                    array('name' => 'Identified victim did not attend conference meeting after several scheduled meetings', 'value' => '10'),
+                    array('name' => 'Identified offender did not attend preconference meeting after several scheduled meetings', 'value' => '11'),
+                    array('name' => 'No victim available with which to work', 'value' => '13'),
+                    array('name' => 'Case closed unsuccessfully', 'value' => '14'),
+                    array('name' => 'Offender did not complete agreement.', 'value' => '15'),
+                    array('name' => 'Offender not available to participate', 'value' => '16')
+                )
             ),
             'dateOfReferral' => array(
-                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
             ),
             'dateClosed' => array(
-                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => null, 'placeholder' => 'YYYY-MM-DD'
+                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => null, 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
             ),
             'courtDate' => array(
-                'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+                'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
             ),
             'user_id' => array(
                 'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "", 'placeholder' => '',

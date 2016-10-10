@@ -1,0 +1,48 @@
+<template>
+    <div id="edit">
+        <form id="editUserForm" name="editUserForm" role="form" submit.delegate="update(data['id'])">
+            <input type="hidden" name="_token" value.bind="data['token']">
+            <input type="hidden" id="id" value.bind="data['User']['id']" name="data[id]">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">User</div>
+                        <div class="panel-body">
+                            <div repeat.for="item of userFieldData">
+                                <require from="ObjectKeysValueConverter"></require>
+                                <div repeat.for="prop of item | objectKeys">
+                                    <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                    <div class="col-sm-4">
+                                        <div>
+                                            <label for="User-${prop.name}">${prop.namePretty}: </label>
+                                        </div>
+                                        <div>
+                                            <div class="inputField" if.bind="prop.type  == 'input'">
+                                                <input click.delegate="edit()" type="text" name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                            </div>
+
+                                            <div class="inputField" if.bind="prop.type  == 'email'">
+                                                <input click.delegate="edit()" type="email" name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                            </div>
+
+                                            <div class="inputField" if.bind="prop.type  == 'select'">
+                                                <div class="editOverlay" click.delegate="edit()"></div>
+
+                                                <select name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" disabled>
+                                                    <option repeat.for="option of prop.options | objectKeys" value="${option.value}">${option.name}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn  btn-default btn-green" type="submit">Update</button>
+        </form>
+    </div>
+</template>

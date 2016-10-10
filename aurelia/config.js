@@ -36,6 +36,7 @@ System.config({
     "font-awesome": "npm:font-awesome@4.5.0",
     "jquery-ui": "github:components/jqueryui@1.11.4",
     "jquery-validation": "github:jzaefferer/jquery-validation@1.15.0",
+    "moment": "npm:moment@2.15.1",
     "select2": "github:select2/select2@4.0.1",
     "text": "github:systemjs/plugin-text@0.0.3",
     "github:components/jqueryui@1.11.4": {

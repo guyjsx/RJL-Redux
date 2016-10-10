@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <ul id="childNav">
-                        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} col-sm-1 text-center">
+                        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} text-center">
                             <a href.bind="row.href">
                                 <span class="childNavItem">${row.title}</span>
                             </a>

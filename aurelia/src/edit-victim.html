@@ -1,7 +1,7 @@
 <template>
     <div id="edit">
         <form id="editVictimForm" name="editVictimForm" role="form" submit.delegate="update(data['id'])">
-            <input type="hidden" name="_token" value.bind="data['token']"]>
+            <input type="hidden" name="_token" value.bind="data['token']">
             <input type="hidden" id="id" value.bind="data['victim']['id']" name="data[id]" >
 
             <div class="row">
@@ -19,7 +19,7 @@
                                         </div>
                                         <div>
                                             <div class="inputField" if.bind="prop.type  == 'input'">
-                                                <input click.delegate="edit()" type="text" name="${prop.name}" id="victim-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                                <input click.delegate="edit()" type="text" name="${prop.name}" id="victim-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
                                             </div>
 
                                             <div class="inputField" if.bind="prop.type  == 'select'">

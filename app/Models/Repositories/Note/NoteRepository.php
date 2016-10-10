@@ -4,6 +4,7 @@ namespace Repositories\Note;
 
 use Entities\Note;
 use Illuminate\Database\Eloquent\Model;
+use Services\Utility\UtilityService;
 
 /**
  * Note repository, containing commonly used queries
@@ -16,11 +17,13 @@ class NoteRepository implements NoteInterface
     /**
      * Setting our class $noteModel to the injected model
      *
-     * @param Model $note
+     * @param Model          $note
+     * @param UtilityService $utilityService
      */
-    public function __construct(Model $note)
+    public function __construct(Model $note, UtilityService $utilityService)
     {
         $this->noteModel = $note;
+        $this->utilityService = $utilityService;
     }
 
     /**
@@ -53,6 +56,8 @@ class NoteRepository implements NoteInterface
     public function saveNote($data)
     {
         if (isset($data)) {
+            $data['noteDate']= $this->utilityService->parseToMysqlDate($data['noteDate']);
+
             $note = new Note(
                 array(
                     "noteDate" => $data["noteDate"],

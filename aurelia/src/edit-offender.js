@@ -2,6 +2,7 @@ import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {Router} from 'aurelia-router';
 import validate from 'jquery-validation';
+import moment from 'moment';
 
 @inject(HttpClient, Router)
 export class EditOffender {
@@ -57,9 +58,9 @@ export class EditOffender {
         $.validator.addMethod(
             "dateFormat",
             function(value, element) {
-                return value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/);
+                return value.match(/^\d{2}\/\d{2}\/\d{4}$/);
             },
-            "Please enter a date in the format YYYY-MM-DD"
+            "Please enter a date in the format MM/DD/YYYY"
         );
 
         $.validator.addMethod(
@@ -149,6 +150,21 @@ export class EditOffender {
         });
     }
 
+    parseDates() {
+        var dateArr = $('body [data-date="true"]');
+
+        for (var i = 0; i < dateArr.length; i++) {
+            console.log('hello');
+
+            var date = $(dateArr[i]);
+            var dateVal = date.val();
+            if (dateVal !== "") {
+                var parsedDate = moment(dateVal).format('L');
+                date.val(parsedDate);
+            }
+        }
+    }
+
     attached() {
         $(".case-select2-container .caseSelect").val(this.selectedCase).trigger('change');
 
@@ -162,6 +178,7 @@ export class EditOffender {
             $(".inputField").removeClass('showEditIcon');
         });
 
+        this.parseDates();
         this.setupOffenderValidation();
     }
 }

@@ -10,15 +10,17 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Schema;
 use Services\RjCase\RjCaseService;
+use Services\Utility\UtilityService;
 use Services\Victim\VictimService;
 
 class VictimController extends Controller
 {
 
-    public function __construct(VictimService $victimService, RjCaseService $rjCaseService)
+    public function __construct(VictimService $victimService, RjCaseService $rjCaseService, UtilityService $utilityService)
     {
         $this->victimService = $victimService;
         $this->rjCaseService = $rjCaseService;
+        $this->utilityService = $utilityService;
     }
 
     /**
@@ -68,6 +70,9 @@ class VictimController extends Controller
 
             foreach($victimData as $field) {
                 if (in_array($field['name'], $victimFields)) {
+                    if ($this->utilityService->isDateField($field['name'])) {
+                        $field['value'] = $this->utilityService->parseToMysqlDate($field['value']);
+                    }
                     $victim[$field['name']] = $field['value'];
                 }
             }
@@ -134,6 +139,10 @@ class VictimController extends Controller
 
             foreach($data as $key => $value) {
                 if (in_array($key, $victimFields)) {
+                    if ($this->utilityService->isDateField($key)) {
+                        $value = $this->utilityService->parseToMysqlDate($value);
+                    }
+
                     $victim[$key] = $value;
                 }
             }
@@ -141,7 +150,14 @@ class VictimController extends Controller
             $victim->save();
 
             if (isset($data['cases'])) {
-                $victim->rjCases()->detach();
+                $existingCases = $this->victimService->getVictimById($data['id'])->rjCases;
+
+                foreach($data['cases'] as $newCase) {
+                    if (!in_array($newCase, $existingCases->toArray())) {
+                        $victim->rjCases()->detach();
+                    }
+                }
+
                 foreach($data['cases'] as $newCase) {
                     $victim->rjCases()->attach($newCase);
                 }

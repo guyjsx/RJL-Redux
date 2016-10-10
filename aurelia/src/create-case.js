@@ -48,6 +48,10 @@ export class CreateCase {
         this.victimCount++;
     }
 
+    removeVictim(i) {
+        this.victimFieldData.splice(i, 1);
+    }
+
     addOffender() {
         this.newOffenderFieldMapping = [];
         this.newOffenderFieldMapping = $.extend(true, {}, this.offenderFieldMapping);
@@ -57,6 +61,10 @@ export class CreateCase {
         );
     
         this.offenderCount++;
+    }
+
+    removeOffender(i) {
+        this.offenderFieldData.splice(i, 1);
     }
 
     submitCase() {
