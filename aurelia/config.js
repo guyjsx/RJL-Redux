@@ -102,6 +102,8 @@ System.config({
       "npm:aurelia-templating-router@1.0.0-beta.1.0.5/router-view.js",
       "npm:aurelia-templating@1.0.0-beta.1.0.3.js",
       "npm:aurelia-templating@1.0.0-beta.1.0.3/aurelia-templating.js",
+      "npm:babel-core@5.8.34.js",
+      "npm:babel-core@5.8.34/browser.js",
       "npm:core-js@1.2.6.js",
       "npm:core-js@1.2.6/client/shim.min.js",
       "npm:process@0.11.2.js",

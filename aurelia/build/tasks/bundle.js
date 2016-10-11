@@ -32,7 +32,8 @@ var config = {
                 "aurelia-logging-console",
                 "bootstrap",
                 "bootstrap/css/bootstrap.css!text",
-                "fetch"
+                "fetch",
+                "babel",
             ],
             options: {
                 inject: true,
