@@ -74,6 +74,7 @@
     display: block;
     position: fixed;
     background: black;
+    transition: all 0.2s ease-out;
     top: 0;
     bottom: 0;
     left: 0;
@@ -106,7 +107,8 @@
   #childNav li {
     display: inline-block;
     float: none;
-    padding: 5px 0;
+    padding: 5px 5px;
+    min-width: 8.33333333%;
     margin-right: 10px;
     border: 1px solid #989898; }
     #childNav li a .childNavItem {
@@ -115,7 +117,7 @@
 #login {
   margin-top: 100px; }
 
-input:not(.select2-search__field), select:not(charge-select) {
+input:not(.select2-search__field), select:not(charge-select):not(facilitator-select) {
   color: black;
   height: 28px; }
 
@@ -158,19 +160,19 @@ span.textAreaField {
 
 .inputField input[readonly], .inputField select[disabled], .inputField textarea[readonly] {
   margin-bottom: 0;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   background: #32383d;
   color: white;
   border: none; }
 
 .inputField.showEditIcon input[readonly], .inputField.showEditIcon select[disabled], .inputField.showEditIcon textarea[readonly] {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   background: #989898;
   cursor: pointer;
   color: black; }
 
 .inputField.showEditIcon:after {
-  transition: all 0.5s;
+  transition: all 0.2s;
   content: "\f040";
   font-family: FontAwesome;
   position: absolute;
@@ -180,20 +182,20 @@ span.textAreaField {
 .inputField.removeEditIcon:hover:after {
   content: ""; }
 
-.charge-select-wrapper {
+.charge-select-wrapper, .facilitator-select-wrapper {
   margin-bottom: 20px; }
 
 select, .select2-dropdown {
   color: black; }
 
 #edit .showEditIcon .select2-selection.select2-selection--multiple {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   background: #989898 !important;
   cursor: pointer;
   color: black; }
 
 #edit .select2-container--disabled .select2-selection--multiple {
-  transition: all 0.5s ease;
+  transition: all 0.2s ease;
   background: #32383d !important;
   border: none !important;
   cursor: pointer;
@@ -221,7 +223,7 @@ label.error {
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
   margin-top: -15px;
   color: #ff3232; }
-  .charge-select2-container label.error {
+  .charge-select2-container label.error, label.error .facilitator-select-container {
     margin-top: 0; }
   .inputContainer label.error, .inputField label.error {
     margin-bottom: 5px;
@@ -230,6 +232,12 @@ label.error {
 .modal {
   color: black;
   margin-left: 16.66666667%; }
+
+input[type="text"], textarea {
+  border-radius: 4px; }
+
+input[type="text"], select {
+  width: 153px; }
 
 .caseStatusReportContainer {
   display: block;
@@ -247,6 +255,29 @@ label.error {
 .btn-orange {
   background: #ff6000;
   margin-bottom: 20px; }
+
+.personHeading {
+  height: 35px;
+  clear: both; }
+  .personHeading #removeVictim, .personHeading #removeOffender {
+    float: right; }
+  .personHeading .personNumber {
+    float: left; }
+
+.btn-fixed-large {
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: 130px;
+  padding: 12px 24px;
+  z-index: 100;
+  margin-top: -23px;
+  transition: all 0.2; }
+
+.show-button {
+  display: block;
+  right: 0;
+  transition: all 0.2; }
 
 body {
   background: #32383d;
