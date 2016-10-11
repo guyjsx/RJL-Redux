@@ -9,7 +9,7 @@
                         <div class="panel-heading">Case</div>
                         <div class="panel-body">
                             <div repeat.for="item of caseFieldData">
-                                <require from="ObjectKeysValueConverter"></require>
+                                <require from="src/ObjectKeysValueConverter"></require>
                                 <div>
                                     <div repeat.for="prop of item | objectKeys">
                                         <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
@@ -67,7 +67,7 @@
                             <div class="col-sm-3">
                                 <div class="facilitator-select-wrapper">
                                     <div class="facilitator-select2-container">
-                                        <require from="resources/custom-select"></require>
+                                        <require from="src/resources/custom-select"></require>
 
                                         <div>
                                             <label for="facilitators">Facilitator(s): </label>
@@ -94,7 +94,7 @@
                             <div class="col-sm-3">
                                 <div class="charge-select-wrapper">
                                     <div class="charge-select2-container">
-                                        <require from="resources/custom-select"></require>
+                                        <require from="src/resources/custom-select"></require>
 
                                         <div>
                                             <label for="charges">Charge(s): </label>
@@ -192,7 +192,7 @@
 
         <div id="fileSection">
             <form id="fileUploadForm" name="fileUploadForm" role="form" submit.delegate="fileUpload()" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
-                <require from="FileListToArrayValueConverter"></require>
+                <require from="src/FileListToArrayValueConverter"></require>
                 <div class="panel panel-default">
                     <div class="panel-heading">Case Files</div>
                     <div class="panel-body">

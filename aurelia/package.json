@@ -36,6 +36,7 @@
       "datatables": "npm:datatables@^1.10.9",
       "fetch": "github:github/fetch@^0.10.1",
       "font-awesome": "npm:font-awesome@^4.4.0",
+      "jquery": "npm:jquery@2.2.1",
       "jquery-ui": "github:components/jqueryui@^1.11.4",
       "jquery-validation": "github:jzaefferer/jquery-validation@^1.15.0",
       "moment": "npm:moment@^2.15.1",

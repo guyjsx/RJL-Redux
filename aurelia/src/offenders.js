@@ -1,7 +1,5 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
-import $ from 'jquery';
-import dataTable from 'datatables';
 
 @inject (HttpClient)
 export class Offenders {
@@ -21,9 +19,9 @@ export class Offenders {
 
     configureRouter(config, router) {
         config.map([
-            { route: ["","offender/view/"], moduleId: 'view-offenders', nav: true, title:'Offender View' },
-            { route: ["create"], moduleId: 'create-offender', nav: true, title:'Offender Create' },
-            { route: ["edit"], name:'edit-offender', moduleId: 'edit-offender', nav: false, title:'Offender Edit' }
+            { route: ["","offender/view/"], moduleId: 'src/view-offenders', nav: true, title:'Offender View' },
+            { route: ["create"], moduleId: 'src/create-offender', nav: true, title:'Offender Create' },
+            { route: ["edit"], name:'edit-offender', moduleId: 'src/edit-offender', nav: false, title:'Offender Edit' }
         ]);
 
         this.router = router;

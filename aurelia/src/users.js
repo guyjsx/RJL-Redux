@@ -1,6 +1,5 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
-import dataTable from 'datatables';
 
 @inject (HttpClient)
 export class Users {
@@ -20,9 +19,9 @@ export class Users {
 
     configureRouter(config, router) {
         config.map([
-            { route: [""], moduleId: 'user-index', nav: true, title:'View All Users' },
-            { route: ["/register"], moduleId: 'user-register', nav: true, title:'User Register' },
-            { route: ["/edit/"], moduleId: 'user-edit', nav: false }
+            { route: [""], moduleId: 'src/user-index', nav: true, title:'View All Users' },
+            { route: ["/register"], moduleId: 'src/user-register', nav: true, title:'User Register' },
+            { route: ["/edit/"], moduleId: 'src/user-edit', nav: false }
         ]);
 
         this.router = router;
