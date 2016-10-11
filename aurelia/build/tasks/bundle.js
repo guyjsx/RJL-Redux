@@ -6,7 +6,7 @@ var config = {
     baseURL: '.',
     configPath: './config.js',
     bundles: {
-        "src/src/app-build": {
+        "src/dist/app-build": {
             includes: [
                 "[**/*.js]",
                 "**/*.html!text",
@@ -17,12 +17,22 @@ var config = {
                 minify: true
             }
         },
-        "src/src/aurelia": {
+        "src/dist/vendor-build": {
             includes: [
-                'aurelia-bootstrapper',
-                'aurelia-fetch-client',
-                'aurelia-router',
-                'aurelia-animator-css',
+                "aurelia-framework",
+                "aurelia-bootstrapper",
+                "aurelia-fetch-client",
+                "aurelia-router",
+                "aurelia-animator-css",
+                "aurelia-templating-binding",
+                "aurelia-templating-resources",
+                "aurelia-templating-router",
+                "aurelia-loader-default",
+                "aurelia-history-browser",
+                "aurelia-logging-console",
+                "bootstrap",
+                "bootstrap/css/bootstrap.css!text",
+                "fetch"
             ],
             options: {
                 inject: true,

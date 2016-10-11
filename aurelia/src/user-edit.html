@@ -10,7 +10,7 @@
                         <div class="panel-heading">User</div>
                         <div class="panel-body">
                             <div repeat.for="item of userFieldData">
-                                <require from="ObjectKeysValueConverter"></require>
+                                <require from="src/ObjectKeysValueConverter"></require>
                                 <div repeat.for="prop of item | objectKeys">
                                     <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
                                     <div class="col-sm-4">

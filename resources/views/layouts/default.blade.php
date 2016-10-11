@@ -30,7 +30,7 @@
     <link href="{{ URL::asset('/aurelia/jspm_packages/github/select2/select2@4.0.1/css/select2.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body id="app-layout">
-    <div aurelia-app="main"></div>
+    <div aurelia-app="src/main"></div>
     <script type="text/javascript" src="aurelia/jspm_packages/system.js"></script>
     <script type="text/javascript" src="aurelia/config.js"></script>
     <script>
