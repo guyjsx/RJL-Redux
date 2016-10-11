@@ -86,7 +86,9 @@ class VictimController extends Controller
             }
         }
 
-        return response()->json(array('success' => 'true'));
+        return response()->json(
+            array('success' => 'true', 'id' => $victim->id)
+        );
     }
 
     /**

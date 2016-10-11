@@ -26,6 +26,21 @@
                                             </div>
                                         </div>
 
+                                        <div if.bind="prop.type  == 'select'">
+                                            <div class="col-sm-4 inputContainer">
+                                                <div>
+                                                    <label for="${prop.name}">${prop.namePretty} </label>
+                                                </div>
+                                                <div class="inputField">
+                                                    <div class="editOverlay" click.delegate="edit()"></div>
+
+                                                    <select name="${prop.name}" id="${prop.name}" value.bind="data[prop.name]" disabled>
+                                                        <option repeat.for="option of prop.options | objectKeys" value="${option.value}">${option.name}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div if.bind="prop.type == 'textarea'">
                                             <div class="col-sm-6">
                                                 <div>

@@ -61,16 +61,16 @@ class RjCase extends Model
                 'name' => 'caseId', 'type' => 'input', 'namePretty' => 'Case ID', 'value' => "", 'placeholder' => ''
             ),
             'caseStatus' => array(
-                'name' => 'casePhase', 'type' => 'select', 'namePretty' => 'Case Status', 'value' => "",
-                'options' => [
+                'name' => 'caseStatus', 'type' => 'select', 'namePretty' => 'Case Status', 'value' => "",
+                'options' => array(
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Open - Monitoring', 'value' => 'Open - Monitoring'),
                     array('name' => 'Open - Pending', 'value' => 'Open - Pending'),
                     array('name' => 'Closed', 'value' => 'Closed')
-                ]
+                )
             ),
             'caseClose' => array(
-                'name' => 'caseClose', 'type' => 'select', 'namePretty' => 'Case Close', 'value' => 1, 'placeholder' => '',
+                'name' => 'caseClose', 'type' => 'select', 'namePretty' => 'Case Close', 'value' => '1', 'placeholder' => '',
                 'options' => array(
                     array('name' => 'Case has not been closed', 'value' => '1'),
                     array('name' => 'Case closed successfully', 'value' => '2'),

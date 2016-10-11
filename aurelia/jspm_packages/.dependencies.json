@@ -200,5 +200,6 @@
   "npm:jquery@2.2.1": {},
   "github:jzaefferer/jquery-validation@1.15.0": {
     "jquery": "jspm:jquery"
-  }
+  },
+  "npm:moment@2.15.1": {}
 }

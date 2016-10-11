@@ -167,7 +167,10 @@ class RjCaseController extends Controller
             }
         }
 
-        return "success";
+        return array(
+            'status' => 'success',
+            'id' => $case->id
+        );
     }
 
     /**
@@ -196,6 +199,18 @@ class RjCaseController extends Controller
         $offenderFieldData = Offender::fieldData();
         $charges = $this->chargeService->getAllCharges()->toArray();
         $facilitators = $this->userService->getAllUsersByRole('facilitator')->toArray();
+        $caseManagerData  = $this->userService->getAllUsers()->toArray();
+        $caseManagerList = array();
+
+
+        foreach ($caseManagerData as $key => $value) {
+            if (!empty($value['username'])) {
+                $caseManagerList[$key]['name'] = $value['username'];
+                $caseManagerList[$key]['value'] = $value['id'];
+            }
+        }
+
+        $caseFieldData['user_id']['options'] = $caseManagerList;
 
         return response()->json(array(
             'data' => $case,

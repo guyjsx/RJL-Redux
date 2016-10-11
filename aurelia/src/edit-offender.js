@@ -39,7 +39,7 @@ export class EditOffender {
     update(id) {
         this.http.put('/api/offender/' + id, this.data)
             .then(response => {
-                // this.router.reset();
+                window.location.reload(true);
             });
     }
 
@@ -49,9 +49,6 @@ export class EditOffender {
         $('.editOverlay').remove();
         $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
     }
-
-
-
 
     setupOffenderValidation() {
         var self = this;

@@ -85,7 +85,7 @@ class OffenderController extends Controller
             }
         }
 
-        return response()->json(array('success' => 'true'));
+        return response()->json(array('success' => 'true', 'id' => $offender->id));
     }
 
     /**

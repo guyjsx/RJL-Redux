@@ -1,12 +1,14 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
+import {Router} from 'aurelia-router';
 import validate from 'jquery-validation';
 import bootstrap from '../jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.min.js';
 
-@inject(HttpClient)
+@inject(HttpClient, Router)
 export class CreateCase {
-    constructor(http) {
+    constructor(http, router) {
         this.http = http;
+        this.router = router;
     }
 
     activate() {
@@ -79,18 +81,19 @@ export class CreateCase {
         this.http.post('/api/cases', this.data)
             .then(response => {
                 console.log('done');
+                this.router.navigateToRoute('edit-case', {'id': response.content.id });
             });
     }
 
     setupCaseValidation() {
         var self = this;
         $.validator.addMethod(
-                "dateFormat",
-                function(value, element) {
-                    return value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/);
-                },
-                "Please enter a date in the format YYYY-MM-DD"
-            );
+            "dateFormat",
+            function(value, element) {
+                return value.match(/^\d{2}\/\d{2}\/\d{4}$/);
+            },
+            "Please enter a date in the format MM/DD/YYYY"
+        );
 
         $.validator.addMethod(
                 "states",

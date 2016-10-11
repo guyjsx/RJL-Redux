@@ -33,9 +33,6 @@ class Offender extends Model
             'socialSecurityNumber' => array(
                 'name' => 'socialSecurityNumber', 'type' => 'input', 'namePretty' => 'SSN', 'value' => ""
             ),
-            'age' => array(
-                'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
-            ),
             'dateOfBirth' => array(
                 'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"

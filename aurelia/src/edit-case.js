@@ -21,6 +21,8 @@ export class EditCase {
         this.facilitators = [];
         this.selectedCharge = [];
         this.selectedFacilitator = [];
+        this.selectedCaseClose = [];
+        this.selectedCaseManager = [];
 
         this.fileSuccess = 0;
         this.noteSuccess = 0;
@@ -36,6 +38,9 @@ export class EditCase {
                 this.data = response.content.data;
                 this.uploadedFiles = this.data.files;
                 this.notes = this.data.notes;
+
+                this.data['caseClose'] = response.content.data.caseClose.toString();
+                this.data['user_id'] = response.content.data.user_id.toString();
 
                 if (this.notes) {
                     for (var i=0; i < this.notes.length; i++) {
@@ -76,7 +81,7 @@ export class EditCase {
     update(id) {
         this.http.put('/api/cases/' + id, this.data)
             .then(response => {
-               // this.router.reset();
+                window.location.reload(true);
             });
     }
 

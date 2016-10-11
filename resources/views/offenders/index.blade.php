@@ -9,7 +9,6 @@
                         <th>Case ID</th>
                         <th>Offender First Name</th>
                         <th>Offender Last Name</th>
-                        <th>Age</th>
                         <th>Primary Phone</th>
                         <th>Action</th>
                     </tr>
@@ -35,11 +34,6 @@
                             <td>
                                 @if( !empty($offender['lastName']))
                                     {{ $offender['lastName'] }}
-                                @endif
-                            </td>
-                            <td>
-                                @if( !empty($offender['age']))
-                                    {{ $offender['age'] }}
                                 @endif
                             </td>
                             <td>

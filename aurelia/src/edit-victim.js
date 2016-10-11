@@ -39,7 +39,7 @@ export class EditVictim {
     update(id) {
         this.http.put('/api/victim/' + id, this.data)
             .then(response => {
-                // this.router.reset();
+                window.location.reload(true);
             });
     }
 
