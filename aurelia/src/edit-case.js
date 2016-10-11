@@ -2,6 +2,7 @@ import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {Router} from 'aurelia-router';
 import validate from 'jquery-validation';
+import moment from 'moment';
 
 @inject(HttpClient, Router)
 export class EditCase {
@@ -11,6 +12,7 @@ export class EditCase {
     }
 
     activate(params) {
+        this.user = userObj;
         this.data = [];
         this.noteData = {};
         this.notes = [];
@@ -19,6 +21,8 @@ export class EditCase {
         this.facilitators = [];
         this.selectedCharge = [];
         this.selectedFacilitator = [];
+        this.selectedCaseClose = [];
+        this.selectedCaseManager = [];
 
         this.fileSuccess = 0;
         this.noteSuccess = 0;
@@ -34,6 +38,16 @@ export class EditCase {
                 this.data = response.content.data;
                 this.uploadedFiles = this.data.files;
                 this.notes = this.data.notes;
+
+                this.data['caseClose'] = response.content.data.caseClose.toString();
+                this.data['user_id'] = response.content.data.user_id.toString();
+
+                if (this.notes) {
+                    for (var i=0; i < this.notes.length; i++) {
+                        this.notes[i].noteDate = moment(this.notes[i].noteDate).format('L');
+                    }
+                }
+
                 this.charges = response.content.chargesData;
                 this.facilitators = response.content.facilitatorData;
                 
@@ -67,15 +81,18 @@ export class EditCase {
     update(id) {
         this.http.put('/api/cases/' + id, this.data)
             .then(response => {
-               // this.router.reset();
+                window.location.reload(true);
             });
     }
 
     edit() {
-        $("input[readonly], textarea[readonly]").removeAttr('readonly');
-        $("select[disabled]").removeAttr('disabled');
-        $('.editOverlay').remove();
-        $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
+        if (userObj.role !== "facilitator") {
+            $("input[readonly], textarea[readonly]").removeAttr('readonly');
+            $("select[disabled]").removeAttr('disabled');
+            $('.editOverlay').remove();
+            $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
+            $('.btn-fixed-large').addClass('show-button');
+        }
     }
 
     fileUpload() {
@@ -110,11 +127,13 @@ export class EditCase {
         }
     }
 
-    addNote() {
-        this.http.post('/api/note' + '?id=' + this.data.id, this.noteData)
+    addNote(id) {
+        this.http.post('/api/note' + '?id=' + id, this.noteData)
             .then(response => {
                 console.log(response);
                 this.noteSuccess = 1;
+                response.content.note.noteDate = moment(response.content.note.noteDate).format('L');
+
                 this.notes.push(response.content.note);
             });
     }
@@ -124,9 +143,9 @@ export class EditCase {
         $.validator.addMethod(
             "dateFormat",
             function(value, element) {
-                return value.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/);
+                return value.match(/^\d{2}\/\d{2}\/\d{4}$/);
             },
-            "Please enter a date in the format YYYY-MM-DD"
+            "Please enter a date in the format MM/DD/YYYY"
         );
 
         $.validator.addMethod(
@@ -136,6 +155,20 @@ export class EditCase {
             },
             "Please enter a state in two letters, e.g., KY"
         );
+
+        $("#noteForm").validate({
+            rules: {
+                noteDate: {
+                    required: true,
+                    dateFormat: true
+                }
+            },
+            messages: {
+            },
+            submitHandler: function(form) {
+                self.addNote(self.data['id']);
+            }
+        });
 
         $("#editCaseForm").validate({
             onkeyup: false,
@@ -216,6 +249,21 @@ export class EditCase {
         });
     }
 
+    parseDates() {
+        var dateArr = $('body [data-date="true"]');
+
+        for (var i = 0; i < dateArr.length; i++) {
+            console.log('hello');
+
+            var date = $(dateArr[i]);
+            var dateVal = date.val();
+            if (dateVal !== "") {
+                var parsedDate = moment(dateVal).format('L');
+                date.val(parsedDate);
+            }
+        }
+    }
+
     attached() {
         $(".charge-select2-container .chargeSelect").val(this.selectedCharge).trigger('change');
         $(".facilitator-select2-container .facilitatorSelect").val(this.selectedFacilitator).trigger('change');
@@ -224,12 +272,14 @@ export class EditCase {
             console.log('open');
         });
 
-        $(".inputField, .textArea").hover(function() {
-            $(".inputField").addClass('showEditIcon');
-        },function() {
-            $(".inputField").removeClass('showEditIcon');
-        });
-
+        if (userObj.role !== "facilitator") {
+            $(".inputField, .textArea").hover(function() {
+                $(".inputField").addClass('showEditIcon');
+            },function() {
+                $(".inputField").removeClass('showEditIcon');
+            });
+        }
+        this.parseDates();
         this.setupCaseValidation();
     }
 }

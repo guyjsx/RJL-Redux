@@ -64,4 +64,11 @@ class UserRepository implements UserInterface
 
         return null;
     }
+
+    public function getAllUserCasesByUserId($userId) {
+        $user = $this->userModel->where('id', '=', $userId)->with('rjCases')->get()->toArray()[0];
+        $cases = isset($user['rj_cases']) ? $user['rj_cases'] : array();
+
+        return $cases;
+    }
 }

@@ -78,4 +78,22 @@ class UserService
         // If nothing found, return this simple string
         return 'Users with this role not Found';
     }
+
+    /**
+     * Method to get all the cases assigned to a user
+     *
+     * @param string $userId
+     *
+     * @return array
+     *
+     */
+    public function getAllUserCasesByUserId($userId) {
+        $cases = $this->userRepo->getAllUserCasesByUserId($userId);
+
+        if (isset($cases)) {
+            return $cases;
+        }
+
+        return array();
+    }
 }

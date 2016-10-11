@@ -33,11 +33,9 @@ class Offender extends Model
             'socialSecurityNumber' => array(
                 'name' => 'socialSecurityNumber', 'type' => 'input', 'namePretty' => 'SSN', 'value' => ""
             ),
-            'age' => array(
-                'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
-            ),
             'dateOfBirth' => array(
-                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "", 'placeholder' => 'YYYY-MM-DD'
+                'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
             ),
             'gender' => array(
                 'name' => 'gender', 'type' => 'select', 'namePretty' => 'Gender', 'value' => "",
@@ -70,7 +68,8 @@ class Offender extends Model
                 'name' => 'city', 'type' => 'input', 'namePretty' => 'City', 'value' => ""
             ),
             'state' => array(
-                'name' => 'state', 'type' => 'input', 'namePretty' => 'State', 'value' => ""
+                'name' => 'state', 'type' => 'select', 'namePretty' => 'State', 'value' => "KY",
+                'options' => States::getStates()
             ),
             'email' => array(
                 'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => ""

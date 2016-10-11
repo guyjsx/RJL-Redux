@@ -11,21 +11,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Entities\RjCase;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Services\Charge\ChargeService;
 use Services\Offender\OffenderService;
 use Services\RjCase\RjCaseService;
 use Services\FileUpload\FileUploadService;
 use Services\User\UserService;
+use Services\Utility\UtilityService;
 
 class RjCaseController extends Controller
 {
 
-    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService, FileUploadService $fileUploadService, UserService $userService)
+    public function __construct(RjCaseService $rjCaseService, ChargeService $chargeService, FileUploadService $fileUploadService, UserService $userService, UtilityService $utilityService)
     {
         $this->rjCaseService = $rjCaseService;
         $this->chargeService = $chargeService;
         $this->userService = $userService;
+        $this->utilityService = $utilityService;
     }
 
     /**
@@ -35,10 +38,16 @@ class RjCaseController extends Controller
      */
     public function index()
     {
-    	$cases = $this->rjCaseService->getAllCases()->toArray();
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        $cases = isset($user) && $user->role == "facilitator" ?
+            $this->userService->getAllUserCasesByUserId($user->id) :
+            $this->rjCaseService->getAllCases()->toArray();
 
         return response()->json(array('html' =>view('cases/index', [
-            'cases' => $cases   
+            'cases' => $cases
         ])->render()));
     }
 
@@ -93,6 +102,10 @@ class RjCaseController extends Controller
 
             foreach($data['case'][0] as $field) {
                 if (in_array($field['name'], $caseFields)) {
+                    if ($this->utilityService->isDateField($field['name'])) {
+                        $field['value'] = $this->utilityService->parseToMysqlDate($field['value']);
+                    }
+
                     $case[$field['name']] = $field['value'];
                 }
             }
@@ -108,6 +121,9 @@ class RjCaseController extends Controller
 
                 foreach($newVictim as $key => $value) {
                     if (in_array($key, $victimFields)) {
+                        if ($this->utilityService->isDateField($key)) {
+                            $value['value'] = $this->utilityService->parseToMysqlDate($value['value']);
+                        }
                         $victim[$key] = $value['value'];
                     }
                 }
@@ -126,6 +142,9 @@ class RjCaseController extends Controller
 
                 foreach($newOffender as $key => $value) {
                     if (in_array($key, $offenderFields)) {
+                        if ($this->utilityService->isDateField($key)) {
+                            $value['value'] = $this->utilityService->parseToMysqlDate($value['value']);
+                        }
                         $offender[$key] = $value['value'];
                     }
                 }
@@ -148,7 +167,10 @@ class RjCaseController extends Controller
             }
         }
 
-        return "success";
+        return array(
+            'status' => 'success',
+            'id' => $case->id
+        );
     }
 
     /**
@@ -177,6 +199,18 @@ class RjCaseController extends Controller
         $offenderFieldData = Offender::fieldData();
         $charges = $this->chargeService->getAllCharges()->toArray();
         $facilitators = $this->userService->getAllUsersByRole('facilitator')->toArray();
+        $caseManagerData  = $this->userService->getAllUsers()->toArray();
+        $caseManagerList = array();
+
+
+        foreach ($caseManagerData as $key => $value) {
+            if (!empty($value['username'])) {
+                $caseManagerList[$key]['name'] = $value['username'];
+                $caseManagerList[$key]['value'] = $value['id'];
+            }
+        }
+
+        $caseFieldData['user_id']['options'] = $caseManagerList;
 
         return response()->json(array(
             'data' => $case,
@@ -207,6 +241,10 @@ class RjCaseController extends Controller
 
             foreach($data as $key => $value) {
                 if (in_array($key, $caseFields)) {
+                    if ($this->utilityService->isDateField($key)) {
+                        $value = $this->utilityService->parseToMysqlDate($value);
+                    }
+
                     $case[$key] = $value;
                 }
             }
@@ -222,6 +260,10 @@ class RjCaseController extends Controller
 
                 foreach($newVictim as $key => $value) {
                     if (in_array($key, $victimFields)) {
+                        if ($this->utilityService->isDateField($key)) {
+                            $value = $this->utilityService->parseToMysqlDate($value);
+                        }
+
                         $victim[$key] = $value;
                     }
                 }
@@ -238,6 +280,10 @@ class RjCaseController extends Controller
 
                 foreach($newOffender as $key => $value) {
                     if (in_array($key, $offenderFields)) {
+                        if ($this->utilityService->isDateField($key)) {
+                            $value = $this->utilityService->parseToMysqlDate($value);
+                        }
+
                         $offender[$key] = $value;
                     }
                 }
@@ -276,7 +322,7 @@ class RjCaseController extends Controller
         }
 
 
-        return response()->json(array('success' => 'true'));
+        return response()->json(array('id' => $case->id));
     }
 
     /**

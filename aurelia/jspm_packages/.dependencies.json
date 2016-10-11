@@ -194,9 +194,12 @@
   "github:components/jqueryui@1.11.4": {
     "jquery": "jspm:jquery"
   },
-  "github:select2/select2@4.0.1": {},
+  "github:select2/select2@4.0.1": {
+    "jquery": "jspm:jquery"
+  },
   "npm:jquery@2.2.1": {},
   "github:jzaefferer/jquery-validation@1.15.0": {
     "jquery": "jspm:jquery"
-  }
+  },
+  "npm:moment@2.15.1": {}
 }

@@ -68,7 +68,7 @@ span.textAreaField {
 
     input[readonly], select[disabled], textarea[readonly] {
         margin-bottom: 0;
-        transition: all 0.5s ease;
+        transition: all 0.2s ease;
         background: $color-main;
         color: $color-white;
         border: none;
@@ -76,14 +76,14 @@ span.textAreaField {
 
     &.showEditIcon {
         input[readonly], select[disabled], textarea[readonly] {
-            transition: all 0.5s ease;
+            transition: all 0.2s ease;
             background: $color-seperator;
             cursor: pointer;
             color: black;
         }
 
         &:after {
-            transition: all 0.5s;
+            transition: all 0.2s;
             content: "\f040";
             font-family: FontAwesome;
             position:absolute;
@@ -116,7 +116,7 @@ select, .select2-dropdown {
 #edit {
 
     .showEditIcon .select2-selection.select2-selection--multiple {
-        transition: all 0.5s ease;
+        transition: all 0.2s ease;
         background: $color-seperator !important;
         cursor: pointer;
         color: black;
@@ -124,7 +124,7 @@ select, .select2-dropdown {
     }
 
     .select2-container--disabled .select2-selection--multiple {
-        transition: all 0.5s ease;
+        transition: all 0.2s ease;
         background: $color-main !important;
         border: none !important;
         cursor: pointer;
@@ -180,4 +180,13 @@ label.error {
 .modal {
     color: black;
     margin-left: 16.66666667%;
+}
+
+input[type="text"], textarea {
+  border-radius: 4px;
+}
+
+
+input[type="text"], select {
+  width: 153px;
 }

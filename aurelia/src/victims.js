@@ -23,7 +23,7 @@ export class Victims {
         config.map([
             { route: ["","victim/view/"], moduleId: 'view-victims', nav: true, title:'Victim View' },
             { route: ["create"], moduleId: 'create-victim', nav: true, title:'Victim Create' },
-            { route: ["edit"], moduleId: 'edit-victim', nav: false, title:'Victim Edit' }
+            { route: ["edit"], name:'edit-victim', moduleId: 'edit-victim', nav: false, title:'Victim Edit' }
         ]);
 
         this.router = router;

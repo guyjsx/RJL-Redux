@@ -10,4 +10,6 @@ interface UserInterface
     public function getAllUsers();
 
     public function getAllUsersByRole($role);
+
+    public function getAllUserCasesByUserId($userId);
 }

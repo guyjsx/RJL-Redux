@@ -17,7 +17,7 @@
                                             </div>
                                             <div>
                                                 <div class="inputField" if.bind="prop.type  == 'input'">
-                                                    <input click.delegate="edit()" type="text" name="${prop.name}" id="victim-${prop.name}" value.bind="victimFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
+                                                    <input type="text" name="${prop.name}" id="victim-${prop.name}" value.bind="victimFieldData[0][prop.name]['value']" placeholder="${prop.placeholder}">
                                                 </div>
 
                                                 <div class="inputField" if.bind="prop.type  == 'select'">

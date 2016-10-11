@@ -9,8 +9,8 @@
                            <require from="ObjectKeysValueConverter"></require>
                            <div>
                                <div repeat.for="prop of item | objectKeys">
-                                   <div class="clearfix" if.bind="$index % 4 == 0 && $index !== 0"></div>
-                                   <div if.bind="prop.type == 'input' && prop.name !== 'caseClose' && prop.name !== 'dateClosed'">
+                                   <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                   <div if.bind="prop.type == 'input'">
                                        <div class="col-sm-4 inputContainer">
                                            <div>
                                                <label for="${prop.name}">${prop.namePretty} </label>
@@ -29,7 +29,7 @@
                                                <label for="${prop.name}">${prop.namePretty} </label>
                                            </div>
                                            <select name="${prop.name}" id="{prop.name}" value.bind="caseFieldData[0][prop.name]['value']">
-                                               <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
+                                               <option repeat.for="option of prop.options | objectKeys" value="${option.value}">${option.name}</option>
                                            </select>
                                        </div>
                                    </div>
@@ -107,7 +107,12 @@
            <section id="victim">
                <div if.bind="victimFieldData.length !== 0" repeat.for="item of victimFieldData">
                    <div id="victim-${$index}" class="panel panel-default">
-                       <div class="panel-heading">Victim ${$index + 1}</div>
+                       <div class="panel-heading">
+                           <div class="personHeading">
+                               <span class="personNumber">Victim ${$index + 1}</span>
+                               <span class="removeContainer"><button id="removeVictim" class="btn btn-orange" click.delegate="removeVictim($index)">Remove Victim ${$index + 1}</button></span>
+                           </div>
+                       </div>
                        <div class="panel-body">
                            <div class="index" style="visibility: hidden;">${$parentIndex = $index}</div>
                            <div class="row">
@@ -149,7 +154,12 @@
            <section id="offender">
                <div if.bind="offenderFieldData.length !== 0" repeat.for="item of offenderFieldData">
                    <div id="offender-${$index}" class="panel panel-default">
-                       <div class="panel-heading">Offender ${$index + 1}</div>
+                       <div class="panel-heading">
+                           <div class="personHeading">
+                               <span class="personNumber">Offender ${$index + 1}</span>
+                               <span class="removeContainer"><button id="removeOffender" class="btn btn-orange" click.delegate="removeOffender($index)">Remove Offender ${$index + 1}</button></span>
+                           </div>
+                       </div>
                        <div class="panel-body">
                            <div class="index" style="visibility: hidden;">${$parentIndex = $index}</div>
                            <div class="row">

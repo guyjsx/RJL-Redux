@@ -23,7 +23,7 @@ export class Offenders {
         config.map([
             { route: ["","offender/view/"], moduleId: 'view-offenders', nav: true, title:'Offender View' },
             { route: ["create"], moduleId: 'create-offender', nav: true, title:'Offender Create' },
-            { route: ["edit"], moduleId: 'edit-offender', nav: false, title:'Offender Edit' }
+            { route: ["edit"], name:'edit-offender', moduleId: 'edit-offender', nav: false, title:'Offender Edit' }
         ]);
 
         this.router = router;
