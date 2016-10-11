@@ -33,7 +33,6 @@ var config = {
                 "bootstrap",
                 "bootstrap/css/bootstrap.css!text",
                 "fetch",
-                "babel",
             ],
             options: {
                 inject: true,
