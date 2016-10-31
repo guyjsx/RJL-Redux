@@ -1,6 +1,6 @@
 <div class="">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <table id="victimsTable" class="table">
                     <thead>
@@ -48,7 +48,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/#/victim/edit/?id=@if( !empty($victim['id'])){{ $victim['id'] }}@endif">View</a>
+                                <a class="btn btn-default btn-info table-btn" href="/#/victim/edit/?id=@if( !empty($victim['id'])){{ $victim['id'] }}@endif">View</a>
                             </td>
                         </tr>
                     @endforeach

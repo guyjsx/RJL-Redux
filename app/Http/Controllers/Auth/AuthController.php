@@ -66,6 +66,7 @@ g     */
     {
         return User::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role' => $data['role']['value']
@@ -86,8 +87,8 @@ g     */
             return response()->json(array('success'=> 'false', 'data'=> $validator->errors()->all()));
         }
 
-        $this->create($request->all());
+        $userData = $this->create($request->all());
 
-        return response()->json(array('success'=> 'true'));
+        return response()->json(array('user'=> $userData->toArray()));
     }
 }

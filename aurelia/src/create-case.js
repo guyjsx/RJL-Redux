@@ -138,9 +138,6 @@ export class CreateCase {
                     required: true,
                     dateFormat: true
                 },
-                dateClosed: {
-                    dateFormat: true
-                },
                 dateOfReferral: {
                     required: true,
                     dateFormat: true

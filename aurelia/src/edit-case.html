@@ -6,7 +6,15 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Case</div>
+                        <div class="panel-heading">
+                            <div class="personHeading">
+                                <span>Case</span>
+                                <span class="submitContainer float-right">
+                                    <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-success edit-button show-button" click.delegate="edit()">Edit Case</button>
+                                    <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-danger update-button" type="submit">Update Case</button>
+                                </span>
+                            </div>
+                        </div>
                         <div class="panel-body">
                             <div repeat.for="item of caseFieldData">
                                 <require from="src/ObjectKeysValueConverter"></require>
@@ -20,7 +28,7 @@
                                                 </div>
                                                 <div>
                                                     <span class="inputField">
-                                                        <input click.delegate="edit()" type="text" name="${prop.name}" id="${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
+                                                        <input type="text" name="${prop.name}" id="${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
                                                     </span>
                                                 </div>
                                             </div>
@@ -32,7 +40,6 @@
                                                     <label for="${prop.name}">${prop.namePretty} </label>
                                                 </div>
                                                 <div class="inputField">
-                                                    <div class="editOverlay" click.delegate="edit()"></div>
 
                                                     <select name="${prop.name}" id="${prop.name}" value.bind="data[prop.name]" disabled>
                                                         <option repeat.for="option of prop.options | objectKeys" value="${option.value}">${option.name}</option>
@@ -47,63 +54,43 @@
                                                     <label for="${prop.name}">${prop.namePretty} </label>
                                                 </div>
                                                <span class="inputField textAreaField">
-                                                    <textarea click.delegate="edit()" rows="10" name="caseFieldData[case][${prop.name}]" id="${prop.name}"  value.bind="data[prop.name]" readonly></textarea>
+                                                    <textarea rows="10" name="caseFieldData[case][${prop.name}]" id="${prop.name}"  value.bind="data[prop.name]" readonly></textarea>
                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-6">
+                                        <div class="charge-select-wrapper">
+                                            <div class="charge-select2-container">
+                                                <require from="src/resources/custom-select"></require>
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Facilitator</div>
-                        <div class="panel-body">
-                            <div class="col-sm-3">
-                                <div class="facilitator-select-wrapper">
-                                    <div class="facilitator-select2-container">
-                                        <require from="src/resources/custom-select"></require>
-
-                                        <div>
-                                            <label for="facilitators">Facilitator(s): </label>
-                                        </div>
-                                        <div class="inputField">
-                                            <div class="editOverlay" click.delegate="edit()"></div>
-                                            <select disabled="true" id="facilitators" class="facilitatorSelect" select2.bind="options" value.bind="data['facilitators']" selected.bind="selectedFacilitator" multiple="multiple" name="data[facilitator][]">
-                                                <option repeat.for="facilitator of facilitators" model.bind="facilitator.id" id="${facilitator.id}" value="${facilitator.id}">${facilitator.username}</option>
-                                            </select>
+                                                <div>
+                                                    <label for="charges">Charge(s): </label>
+                                                </div>
+                                                <div class="inputField">
+                                                    <select disabled="true" id="charges" class="chargeSelect" select2.bind="options" value.bind="data['charges']" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
+                                                        <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Charge</div>
-                        <div class="panel-body">
-                            <div class="col-sm-3">
-                                <div class="charge-select-wrapper">
-                                    <div class="charge-select2-container">
-                                        <require from="src/resources/custom-select"></require>
+                                    <div class="col-sm-3">
+                                        <div class="facilitator-select-wrapper">
+                                            <div class="facilitator-select2-container">
+                                                <require from="src/resources/custom-select"></require>
 
-                                        <div>
-                                            <label for="charges">Charge(s): </label>
-                                        </div>
-                                        <div class="inputField">
-                                            <div class="editOverlay" click.delegate="edit()"></div>
-                                            <select disabled="true" id="charges" class="chargeSelect" select2.bind="options" value.bind="data['charges']" selected.bind="selectedCharge" multiple="multiple" name="data[charge][]">
-                                                <option repeat.for="charge of charges" model.bind="charge.id" id="${charge.id}" value="${charge.id}">${charge.charges}</option>
-                                            </select>
+                                                <div>
+                                                    <label for="facilitators">Facilitator(s): </label>
+                                                </div>
+                                                <div class="inputField">
+                                                    <select disabled="true" id="facilitators" class="facilitatorSelect" select2.bind="options" value.bind="data['facilitators']" selected.bind="selectedFacilitator" multiple="multiple" name="data[facilitator][]">
+                                                        <option repeat.for="facilitator of facilitators" model.bind="facilitator.id" id="${facilitator.id}" value="${facilitator.id}">${facilitator.username}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -125,20 +112,31 @@
                                         <div repeat.for="prop of item | objectKeys">
                                             <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
                                             <div class="col-sm-4">
-                                                <div>
+                                                <div if.bind="prop.type !== 'textarea'">
                                                     <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
                                                 </div>
                                                 <div>
                                                     <div class="inputField" if.bind="prop.type  == 'input'">
-                                                        <input click.delegate="edit()" type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
+                                                        <input type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
                                                     </div>
 
                                                     <div class="inputField" if.bind="prop.type  == 'select'">
-                                                        <div class="editOverlay" click.delegate="edit()"></div>
                                                         <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" disabled>
                                                             <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
                                                         </select>
                                                     </div>
+                                                </div>
+                                            </div>
+
+                                            <div if.bind="prop.type == 'textarea'">
+                                                <div class="clearfix"></div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="${prop.name}">${prop.namePretty}: </label>
+                                                    </div>
+                                                   <span class="inputField textAreaField">
+                                                        <textarea rows="10" name="{prop.name}" id="victim-${prop.name}-${$parentIndex}"  value.bind="data['victims'][$parentIndex][prop.name]" readonly></textarea>
+                                                   </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,20 +160,31 @@
                                         <div repeat.for="prop of item | objectKeys">
                                             <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
                                             <div class="col-sm-4">
-                                                <div>
+                                                <div if.bind="prop.type !== 'textarea'">
                                                     <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
                                                 </div>
                                                 <div>
                                                     <div class="inputField" if.bind="prop.type  == 'input'">
-                                                        <input click.delegate="edit()" type="text" name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
+                                                        <input type="text" name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
                                                     </div>
 
                                                     <div class="inputField" if.bind="prop.type  == 'select'">
-                                                        <div class="editOverlay" click.delegate="edit()"></div>
                                                         <select name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" disabled>
                                                             <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
                                                         </select>
                                                     </div>
+                                                </div>
+                                            </div>
+
+                                            <div if.bind="prop.type == 'textarea'">
+                                                <div class="clearfix"></div>
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        <label for="${prop.name}">${prop.namePretty}: </label>
+                                                    </div>
+                                                   <span class="inputField textAreaField">
+                                                        <textarea rows="10" name="{prop.name}" id="offender-${prop.name}-${$parentIndex}"  value.bind="data['offenders'][$parentIndex][prop.name]" readonly></textarea>
+                                                   </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,8 +195,6 @@
                     </div>
                 </section>
             </div>
-
-            <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-green btn-fixed-large" type="submit">Update Case</button>
         </form>
 
         <div id="fileSection">
@@ -200,11 +207,11 @@
                         <div class="row">
                             <div show.bind="fileSuccess">File Uploaded Successfully!</div>
                             <div class="fileError"></div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <input type="file" multiple files.bind="selectedFiles">
-                                <button type="submit" class="btn  btn-default">Upload</button>
+                                <button type="submit" class="btn btn-lg btn-default btn-warning">Upload</button>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <table id="filesTable" class="table">
                                     <thead>
                                     <tr>
@@ -218,7 +225,8 @@
                                             ${file.filename}
                                         </td>
                                         <td>
-                                            <a href="/uploads/${file.filename}">Download</a>
+                                            <a href="/uploads/${file.filename} " download><span class="btn btn-success">Download</span></a>
+                                            <a click.delegate="deleteFile(file.id, $index)"><span class="btn btn-danger">Delete</span></a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -233,50 +241,111 @@
         <div id="noteSection">
             <form id="noteForm" name="noteForm" role="form" submit.delegate="addNote()" method="post">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Case Notes</div>
+                    <div class="panel-heading">Add Note</div>
                     <div class="panel-body">
                         <input type="hidden" type="text" value.bind="data[id]" name="data[id]">
                         <div class="row">
                             <div show.bind="noteSuccess">Note Added Successfully!</div>
-                            <div class="col-sm-6">
-                                <div>
-                                    <label for="noteDate">Note Date: </label>
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <div>
+                                            <label for="noteDate">Note Date: </label>
+                                        </div>
+                                        <span class="inputField">
+                                            <input type="text" id="noteDate" value.bind="noteData.noteDate" name="noteDate" data-date="true" placeholder="MM/DD/YYYY">
+                                        </span>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div>
+                                            <label for="noteContact">Note Contact: </label>
+                                        </div>
+                                        <span class="inputField">
+                                            <input id="noteContact" value.bind="noteData.noteContact" name="noteContact">
+                                        </span>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div>
+                                            <label for="noteContactType">Note Contact Type: </label>
+                                        </div>
+                                        <span class="inputField">
+                                            <input id="noteContactType" value.bind="noteData.noteContactType" name="noteContactType">
+                                        </span>
+                                    </div>
                                 </div>
-                                <span class="inputField">
-                                    <input type="text" id="noteDate" value.bind="noteData.noteDate" name="noteDate" data-date="true" placeholder="MM/DD/YYYY">
-                                </span>
-                                <div>
-                                    <label for="noteContent">Note Content: </label>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div>
+                                            <label for="noteContent">Note Content: </label>
+                                        </div>
+                                        <span class="inputField textAreaField">
+                                            <textarea rows="10" id="noteContent" value.bind="noteData.noteContent" name="noteContent"></textarea>
+                                        </span>
+                                    </div>
                                 </div>
-                                <span class="inputField textAreaField">
-                                    <textarea rows="10" id="noteContent" value.bind="noteData.noteContent" name="noteContent"></textarea>
-                                </span>
-                                <button type="submit" class="btn  btn-default">Add Note</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <table id="notesTable" class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Note Date</th>
-                                            <th>Note Contents</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr repeat.for="note of notes">
-                                            <td>
-                                                ${note.noteDate}
-                                            </td>
-                                            <td>
-                                                ${note.noteContent}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                                <button type="submit" class="btn btn-lg btn-default btn-info">Add Note</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
+            <div class="panel panel-default">
+                <div class="panel-heading">Case Notes</div>
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <table id="notesTable" class="table">
+                            <thead>
+                            <tr>
+                                <th class="col-sm-2">Added By</th>
+                                <th class="col-sm-2">Note Date</th>
+                                <th class="col-sm-2">Contact Name</th>
+                                <th class="col-sm-2">Contact Type</th>
+                                <th>Note Contents</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr repeat.for="note of notes">
+                                <td>
+                                    <div>${note.userName}</div>
+                                </td>
+                                <td>
+                                    <div if.bind="user.role == 'facilitator'">${note.noteDate}</div>
+                                    <div if.bind="user.role !== 'facilitator'">
+                                        <a class="editableInput" data-index="${$index}" data-name="noteDate" data-date="true">${note.noteDate}</a>
+                                        <input class="inlineEdit hide" name="noteDate" type="text" value="${note.noteDate}">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div if.bind="user.role == 'facilitator'">${note.noteContact}</div>
+                                    <div if.bind="user.role !== 'facilitator'">
+                                        <a class="editableInput" data-index="${$index}" data-name="noteContact">${note.noteContact}</a>
+                                        <input class="inlineEdit hide" name="noteContact" type="text" value="${note.noteContact}">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div if.bind="user.role == 'facilitator'">${note.noteContactType}</div>
+                                    <div if.bind="user.role !== 'facilitator'">
+                                        <a class="editableInput" data-index="${$index}" data-name="noteContactType">${note.noteContactType}</a>
+                                        <input class="inlineEdit hide" name="noteContactType" type="text" value="${note.noteContactType}">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div if.bind="user.role == 'facilitator'">${note.noteContent}</div>
+                                    <div if.bind="user.role !== 'facilitator'">
+                                        <a class="editableInput" data-index="${$index}" data-name="noteContent">${note.noteContent}</a>
+                                        <textarea rows="10" class="inlineEdit hide" name="noteContent" type="text" value="${note.noteContent}"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

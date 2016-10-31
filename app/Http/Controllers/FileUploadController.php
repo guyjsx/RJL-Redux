@@ -16,9 +16,14 @@ class FileUploadController extends Controller
         $this->fileUploadService = $fileUploadService;
     }
 
-    public function uploadFile(Request $request) {
+    public function store(Request $request) {
 
         return $this->fileUploadService->uploadFile($request);
+    }
+
+    public function destroy($id) {
+
+        return $this->fileUploadService->deleteFile($id);
     }
 
 }

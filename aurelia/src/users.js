@@ -19,9 +19,9 @@ export class Users {
 
     configureRouter(config, router) {
         config.map([
-            { route: [""], moduleId: 'src/user-index', nav: true, title:'View All Users' },
-            { route: ["/register"], moduleId: 'src/user-register', nav: true, title:'User Register' },
-            { route: ["/edit/"], moduleId: 'src/user-edit', nav: false }
+            { route: [""], name:"user-index", moduleId: 'src/user-index', nav: true, title:'View All Users' },
+            { route: ["/register"], name: "user-register", moduleId: 'src/user-register', nav: true, title:'User Register' },
+            { route: ["/edit/"], name: "user-edit", moduleId: 'src/user-edit', nav: false }
         ]);
 
         this.router = router;

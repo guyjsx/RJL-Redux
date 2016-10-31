@@ -11,6 +11,6 @@ class Note extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['noteContent', 'noteDate', 'rj_case_id'];
+    protected $fillable = ['noteContent', 'noteDate', 'noteContact', 'noteContactType', 'userName', 'rj_case_id'];
 
 }

@@ -68,4 +68,9 @@ class FileUploadService
     {
         return $this->fileRepo->uploadFile($request);
     }
+
+    public function deleteFile($id) {
+
+        return $this->fileRepo->deleteFile($id);
+    }
 }

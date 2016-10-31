@@ -24,7 +24,7 @@ export class EditUser {
     update(id) {
         this.http.put('/api/user/' + id, this.data)
             .then(response => {
-                // this.router.reset();
+                window.location.reload(true);
             });
     }
 
@@ -33,6 +33,8 @@ export class EditUser {
         $("select[disabled]").removeAttr('disabled');
         $('.editOverlay').remove();
         $('.inputField').removeClass('showEditIcon').unbind('mouseenter mouseleave');
+        $('.edit-button').removeClass('show-button');
+        $('.update-button').addClass('show-button');
     }
 
 

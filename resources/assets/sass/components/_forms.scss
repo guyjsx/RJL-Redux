@@ -25,28 +25,6 @@ textarea {
 
 form {
     position: relative;
-
-    .editOverlay {
-        cursor: pointer;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        z-index: 9999;
-
-        //&:hover {
-        //    &:after {
-        //        content: "\f040";
-        //        font-family: FontAwesome;
-        //        position:absolute;
-        //        top:0;
-        //        right: -20px;
-        //    }
-        //}
-    }
 }
 
 span.textAreaField {
@@ -72,33 +50,6 @@ span.textAreaField {
         background: $color-main;
         color: $color-white;
         border: none;
-    }
-
-    &.showEditIcon {
-        input[readonly], select[disabled], textarea[readonly] {
-            transition: all 0.2s ease;
-            background: $color-seperator;
-            cursor: pointer;
-            color: black;
-        }
-
-        &:after {
-            transition: all 0.2s;
-            content: "\f040";
-            font-family: FontAwesome;
-            position:absolute;
-            top:0;
-            right: -20px;
-        }
-
-    }
-
-    &.removeEditIcon {
-        &:hover {
-            &:after {
-                content: "";
-            }
-        }
     }
 }
 
@@ -188,5 +139,59 @@ input[type="text"], textarea {
 
 
 input[type="text"], select {
-  width: 153px;
+  width: 200px;
+}
+
+input, select, textarea, a, p, div, label, button {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+button {
+  color: $color-white;
+}
+
+input[type="file"] {
+  color: $color-white;
+  font-size: 16px;
+}
+
+.select2-selection--multiple {
+  height: 100% !important;
+}
+.select2-selection__rendered{
+  word-wrap: break-word !important;
+  text-overflow: inherit !important;
+  white-space: normal !important;
+}
+
+table {
+  table-layout: fixed;
+
+  td {
+    word-wrap: break-word;
+    
+    a.editableInput {
+      text-decoration: none;
+      cursor: pointer;
+      color: $color-white;
+
+      &:hover {
+        text-decoration: none;
+        color: $color-white;
+      }
+    }
+
+    .inlineEdit {
+      width: 100%;
+    }
+  }
+}
+
+.panel-heading, .personHeading span:not(.submitContainer) {
+  font-size: 20px;
+  font-width: 700;
 }

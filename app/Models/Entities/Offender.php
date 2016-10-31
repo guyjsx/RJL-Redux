@@ -30,9 +30,6 @@ class Offender extends Model
             'lastName' => array(
                 'name' => 'lastName', 'type' => 'input', 'namePretty' => 'Last Name', 'value' => ""
             ),
-            'socialSecurityNumber' => array(
-                'name' => 'socialSecurityNumber', 'type' => 'input', 'namePretty' => 'SSN', 'value' => ""
-            ),
             'dateOfBirth' => array(
                 'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
@@ -57,6 +54,9 @@ class Offender extends Model
                     array('name' => 'Native American/Alaska Native', 'value' => 'Native American/Alaska Native'),
                     array('name' => 'Other/Mixed', 'value' => 'Other/Mixed')
                 )
+            ),
+            'school' => array(
+                'name' => 'school', 'type' => 'input', 'namePretty' => 'School', 'value' => ""
             ),
             'streetAddress' => array(
                 'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => ""
@@ -116,6 +116,21 @@ class Offender extends Model
                     array('name' => 'Home', 'value' => 'Home')
                 ]
             ),
+            'phoneThree' => array(
+                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => ""
+            ),
+            'phoneThreeType' => array(
+                'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Three Type', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Mobile', 'value' => 'Mobile'),
+                    array('name' => 'Work', 'value' => 'Work'),
+                    array('name' => 'Home', 'value' => 'Home')
+                ]
+            ),
+            'comments' => array(
+                'name' => 'comments', 'type' => 'textarea', 'namePretty' => 'Comments', 'value' => ""
+            )
         );
 
         return $fieldDataMapping;

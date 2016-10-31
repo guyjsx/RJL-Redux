@@ -59,10 +59,10 @@ class RjCaseController extends Controller
     public function create()
     {
         $charges = $this->chargeService->getAllCharges()->toArray();
-        $caseFieldData = RjCase::fieldData();
+        $caseFieldData = RjCase::createCaseFieldData();
         $victimFieldData = Victim::fieldData();
         $offenderFieldData = Offender::fieldData();
-        $facilitators = $this->userService->getAllUsersByRole('facilitator')->toArray();
+        $facilitators = $this->userService->getAllUsers()->toArray();
         $caseManagerData  = $this->userService->getAllUsers()->toArray();
         $caseManagerList = array();
 
@@ -194,7 +194,7 @@ class RjCaseController extends Controller
     {
         $token = csrf_token();
         $case = $this->rjCaseService->getCaseById($id);
-        $caseFieldData = RjCase::fieldData();
+        $caseFieldData = RjCase::editCaseFieldData();
         $victimFieldData = Victim::fieldData();
         $offenderFieldData = Offender::fieldData();
         $charges = $this->chargeService->getAllCharges()->toArray();
@@ -242,7 +242,7 @@ class RjCaseController extends Controller
             foreach($data as $key => $value) {
                 if (in_array($key, $caseFields)) {
                     if ($this->utilityService->isDateField($key)) {
-                        $value = $this->utilityService->parseToMysqlDate($value);
+                        $value = !empty($value) ? $this->utilityService->parseToMysqlDate($value) : null;
                     }
 
                     $case[$key] = $value;

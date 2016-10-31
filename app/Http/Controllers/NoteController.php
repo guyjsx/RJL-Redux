@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Schema;
 use Entities\Note;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Services\Note\NoteService;
+use Services\Utility\UtilityService;
 
 class NoteController extends Controller
 {
-    public function __construct(NoteService $noteService)
+    public function __construct(NoteService $noteService, UtilityService $utilityService)
     {
         $this->noteService = $noteService;
+        $this->utilityService = $utilityService;
     }
 
     /**
@@ -82,7 +85,25 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $noteFields = Schema::connection('mysql')->getColumnListing('notes');
+
+        if (isset($data)) {
+            $note = Note::find($id);
+
+            if (in_array($data['name'], $noteFields)) {
+                if ($this->utilityService->isDateField($data['name'])) {
+                    $data['value'] = $this->utilityService->parseToMysqlDate($data['value']);
+                }
+
+                $note[$data['name']] = $data['value'];
+            }
+
+            $note->save();
+        }
+
+        return response()->json(array('note' => $note->toArray()));
     }
 
     /**

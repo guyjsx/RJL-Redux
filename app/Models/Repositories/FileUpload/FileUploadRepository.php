@@ -72,4 +72,15 @@ class FileUploadRepository implements FileUploadInterface
 
         return response()->json($responseData);
     }
+
+    public function deleteFile($id) {
+
+        $file = $this->fileUploadModel->find($id);
+
+        $file->delete();
+
+        return response()->json(
+            array('status' => 'success')
+        );
+    }
 }

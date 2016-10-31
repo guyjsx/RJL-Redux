@@ -7,7 +7,15 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">User</div>
+                        <div class="panel-heading">
+                            <div class="personHeading">
+                                <span>User</span>
+                                <span class="submitContainer float-right">
+                                    <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-success edit-button show-button" click.delegate="edit()">Edit User</button>
+                                    <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-danger update-button" type="submit">Update User</button>
+                                </span>
+                            </div>
+                        </div>
                         <div class="panel-body">
                             <div repeat.for="item of userFieldData">
                                 <require from="src/ObjectKeysValueConverter"></require>
@@ -19,15 +27,15 @@
                                         </div>
                                         <div>
                                             <div class="inputField" if.bind="prop.type  == 'input'">
-                                                <input click.delegate="edit()" type="text" name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                                <input type="text" name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
                                             </div>
 
                                             <div class="inputField" if.bind="prop.type  == 'email'">
-                                                <input click.delegate="edit()" type="email" name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
+                                                <input type="email" name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" placeholder="${prop.placeholder}" readonly>
                                             </div>
 
                                             <div class="inputField" if.bind="prop.type  == 'select'">
-                                                <div class="editOverlay" click.delegate="edit()"></div>
+                                                <div class="editOverlay"></div>
 
                                                 <select name="${prop.name}" id="User-${prop.name}" value.bind="data[prop.name]" disabled>
                                                     <option repeat.for="option of prop.options | objectKeys" value="${option.value}">${option.name}</option>
@@ -41,8 +49,6 @@
                     </div>
                 </div>
             </div>
-
-            <button class="btn  btn-default btn-green" type="submit">Update</button>
         </form>
     </div>
 </template>

@@ -31,9 +31,6 @@ class Victim extends Model
             'lastName' => array(
                 'name' => 'lastName', 'type' => 'input', 'namePretty' => 'Last Name', 'value' => ""
             ),
-            'socialSecurityNumber' => array(
-                'name' => 'socialSecurityNumber', 'type' => 'input', 'namePretty' => 'SSN', 'value' => ""
-            ),
             'age' => array(
                 'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
             ),
@@ -100,6 +97,21 @@ class Victim extends Model
                         array('name' => 'Work', 'value' => 'Work', 'selected'=> ''),
                         array('name' => 'Home', 'value' => 'Home', 'selected'=> '')
                     ]
+            ),
+            'phoneThree' => array(
+                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => ""
+            ),
+            'phoneThreeType' => array(
+                'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Three Type', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Mobile', 'value' => 'Mobile'),
+                    array('name' => 'Work', 'value' => 'Work'),
+                    array('name' => 'Home', 'value' => 'Home')
+                ]
+            ),
+            'comments' => array(
+                'name' => 'comments', 'type' => 'textarea', 'namePretty' => 'Comments', 'value' => ""
             ),
         );
 

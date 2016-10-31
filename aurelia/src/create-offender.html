@@ -12,7 +12,7 @@
                                     <div repeat.for="prop of item | objectKeys">
                                         <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
                                         <div class="col-sm-4">
-                                            <div>
+                                            <div if.bind="prop.type !== 'textarea'">
                                                 <label for="offender-${prop.name}">${prop.namePretty}: </label>
                                             </div>
                                             <div>
@@ -25,6 +25,18 @@
                                                         <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <div if.bind="prop.type == 'textarea'">
+                                            <div class="clearfix"></div>
+                                            <div class="col-sm-6 inputContainer">
+                                                <div>
+                                                    <label for="offender-${prop.name}">${prop.namePretty} </label>
+                                                </div>
+                                           <span>
+                                                <textarea rows="10" name="${prop.name}" id="offender-${prop.name}"  value.bind="offenderFieldData[0][prop.name]['value']"></textarea>
+                                           </span>
                                             </div>
                                         </div>
                                     </div>
@@ -61,6 +73,8 @@
             </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <div class="submitContainer">
+            <button class="btn btn-default btn-lg btn-danger btn-submit-item" type="submit">Submit</button>
+        </div>
     </form>
 </template>

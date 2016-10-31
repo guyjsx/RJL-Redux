@@ -1,10 +1,13 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
+import {Router} from 'aurelia-router';
 
-@inject(HttpClient)
+@inject(HttpClient, Router)
 export class UserRegister {
-    constructor(http) {
+    constructor(http, router) {
         this.http = http;
+        this.router = router;
+
     }
 
     activate() {
@@ -34,6 +37,8 @@ export class UserRegister {
         this.http.post('/register', this.userData).then(response => {
             if(response.content.success == "false") {
                 this.errors = response.content.data;
+            } else {
+                this.router.navigateToRoute('user-edit', {'id': response.content.user.id });
             }
         });
     }

@@ -1,29 +1,26 @@
-.test {
-  background: blue; }
-
 .panel-default, .panel {
   padding: 5px;
   background: #4c555c;
   border: none; }
   .panel-default > .panel-heading, .panel > .panel-heading {
-    color: white; }
+    color: #EEEEEE; }
   .panel-default .dataTables_wrapper, .panel .dataTables_wrapper {
-    padding-top: 10px;
-    color: white; }
+    padding-top: 10px !important;
+    color: #EEEEEE !important; }
     .panel-default .dataTables_wrapper *, .panel-default .dataTables_wrapper .dataTables_paginate .paginate_button, .panel .dataTables_wrapper *, .panel .dataTables_wrapper .dataTables_paginate .paginate_button {
-      color: white !important; }
+      color: #EEEEEE !important; }
     .panel-default .dataTables_wrapper select, .panel-default .dataTables_wrapper input, .panel .dataTables_wrapper select, .panel .dataTables_wrapper input {
       color: black !important; }
     .panel-default .dataTables_wrapper td, .panel .dataTables_wrapper td {
-      border-color: #989898; }
+      border-color: #989898 !important; }
     .panel-default .dataTables_wrapper th, .panel .dataTables_wrapper th {
-      border: none; }
+      border: none !important; }
     .panel-default .dataTables_wrapper table.dataTable.no-footer, .panel .dataTables_wrapper table.dataTable.no-footer {
-      border-bottom: 1px solid #989898; }
+      border-bottom: 1px solid #989898 !important; }
   .panel-default .panel-heading, .panel .panel-heading {
     background: #4c555c; }
   .panel-default .even, .panel-default .odd, .panel .even, .panel .odd {
-    background: #4c555c; }
+    background: #4c555c !important; }
 
 #navbar-app {
   display: block;
@@ -67,7 +64,7 @@
         top: 50%;
         margin-top: -8px; }
       #navbar-app ul li a {
-        color: white;
+        color: #EEEEEE;
         text-decoration: none; }
   #navbar-app .loaderOverlay {
     margin-left: 16.66666667%;
@@ -96,7 +93,7 @@
       height: 3em;
       width: 3em; }
     #navbar-app .loaderOverlay .icon-white {
-      color: white; }
+      color: #EEEEEE; }
 
 #childNav {
   border-bottom: 1px solid #989898;
@@ -112,7 +109,7 @@
     margin-right: 10px;
     border: 1px solid #989898; }
     #childNav li a .childNavItem {
-      color: white; }
+      color: #EEEEEE; }
 
 #login {
   margin-top: 100px; }
@@ -134,16 +131,6 @@ textarea {
 
 form {
   position: relative; }
-  form .editOverlay {
-    cursor: pointer;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 9999; }
 
 span.textAreaField {
   display: block;
@@ -162,25 +149,8 @@ span.textAreaField {
   margin-bottom: 0;
   transition: all 0.2s ease;
   background: #32383d;
-  color: white;
+  color: #EEEEEE;
   border: none; }
-
-.inputField.showEditIcon input[readonly], .inputField.showEditIcon select[disabled], .inputField.showEditIcon textarea[readonly] {
-  transition: all 0.2s ease;
-  background: #989898;
-  cursor: pointer;
-  color: black; }
-
-.inputField.showEditIcon:after {
-  transition: all 0.2s;
-  content: "\f040";
-  font-family: FontAwesome;
-  position: absolute;
-  top: 0;
-  right: -20px; }
-
-.inputField.removeEditIcon:hover:after {
-  content: ""; }
 
 .charge-select-wrapper, .facilitator-select-wrapper {
   margin-bottom: 20px; }
@@ -237,7 +207,46 @@ input[type="text"], textarea {
   border-radius: 4px; }
 
 input[type="text"], select {
-  width: 153px; }
+  width: 200px; }
+
+input, select, textarea, a, p, div, label, button {
+  font-size: 16px; }
+
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+button {
+  color: #EEEEEE; }
+
+input[type="file"] {
+  color: #EEEEEE;
+  font-size: 16px; }
+
+.select2-selection--multiple {
+  height: 100% !important; }
+
+.select2-selection__rendered {
+  word-wrap: break-word !important;
+  text-overflow: inherit !important;
+  white-space: normal !important; }
+
+table {
+  table-layout: fixed; }
+  table td {
+    word-wrap: break-word; }
+    table td a.editableInput {
+      text-decoration: none;
+      cursor: pointer;
+      color: #EEEEEE; }
+      table td a.editableInput:hover {
+        text-decoration: none;
+        color: #EEEEEE; }
+    table td .inlineEdit {
+      width: 100%; }
+
+.panel-heading, .personHeading span:not(.submitContainer) {
+  font-size: 20px;
+  font-width: 700; }
 
 .caseStatusReportContainer {
   display: block;
@@ -246,15 +255,28 @@ input[type="text"], select {
   width: 100%; }
 
 .btn {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  font-size: 16px; }
 
 .btn-green {
   background: #1ac65b;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  color: #EEEEEE; }
 
 .btn-orange {
   background: #ff6000;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  color: #EEEEEE; }
+
+.btn-red {
+  background: red;
+  margin-bottom: 20px;
+  color: #EEEEEE; }
+
+.submitContainer {
+  text-align: right; }
+  .submitContainer .btn-submit-item {
+    display: inline-block; }
 
 .personHeading {
   height: 35px;
@@ -265,23 +287,44 @@ input[type="text"], select {
     float: left; }
 
 .btn-fixed-large {
+  font-weight: 600;
   display: none;
   position: fixed;
   top: 50%;
-  right: 130px;
-  padding: 12px 24px;
+  right: 0;
+  padding: 0;
   z-index: 100;
   margin-top: -23px;
-  transition: all 0.2; }
+  transition: all 0.2;
+  border-radius: 0;
+  border: none;
+  color: #EEEEEE;
+  font-size: 20px;
+  width: 130px;
+  height: 130px; }
+  .btn-fixed-large:focus {
+    outline: none; }
+
+.edit-button, .update-button {
+  display: none; }
 
 .show-button {
-  display: block;
+  display: inline-block;
   right: 0;
   transition: all 0.2; }
 
+.btn-xl {
+  padding: 20px 32px; }
+
+.float-right {
+  float: right; }
+
+.table-btn {
+  margin-bottom: 0; }
+
 body {
   background: #32383d;
-  color: white; }
+  color: #EEEEEE; }
 
 .test {
   background: #000; }

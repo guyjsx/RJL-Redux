@@ -48,6 +48,8 @@ export class EditOffender {
         $("select[disabled]").removeAttr('disabled');
         $('.editOverlay').remove();
         $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
+        $('.edit-button').removeClass('show-button');
+        $('.update-button').addClass('show-button');
     }
 
     setupOffenderValidation() {
@@ -167,12 +169,6 @@ export class EditOffender {
 
         $('#edit').on('select2:open', function() {
             console.log('open');
-        });
-
-        $(".inputField, .textArea").hover(function() {
-            $(".inputField").addClass('showEditIcon');
-        },function() {
-            $(".inputField").removeClass('showEditIcon');
         });
 
         this.parseDates();

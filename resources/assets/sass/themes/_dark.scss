@@ -8,26 +8,26 @@
     }
 
     .dataTables_wrapper {
-        padding-top: 10px;
-        color: $color-white;
+        padding-top: 10px !important;
+        color: $color-white !important;
         *, .dataTables_paginate .paginate_button {
             color: $color-white !important;
         }
-        
+
         select, input {
             color: black !important;
         }
 
         td {
-            border-color: $color-seperator;
+            border-color: $color-seperator !important;
         }
 
         th {
-            border: none;
+            border: none !important;
         }
 
         table.dataTable.no-footer {
-            border-bottom: 1px solid $color-seperator;
+            border-bottom: 1px solid $color-seperator !important;
         }
     }
 
@@ -36,6 +36,6 @@
    }
 
     .even, .odd {
-        background: $color-secondary;
+        background: $color-secondary !important;
     }
 }

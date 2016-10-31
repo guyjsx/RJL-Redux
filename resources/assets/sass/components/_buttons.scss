@@ -1,15 +1,31 @@
 .btn {
     margin-bottom: 20px;
+    font-size: 16px;
 }
 
 .btn-green {
     background: $color-green;
     margin-bottom: 20px;
+    color: $color-white;
 }
 
 .btn-orange {
     background: $color-orange;
     margin-bottom: 20px;
+    color: $color-white;
+}
+
+.btn-red {
+  background: $color-red;
+  margin-bottom: 20px;
+  color: $color-white;
+}
+
+.submitContainer {
+  text-align: right;
+  .btn-submit-item {
+    display: inline-block;
+  }
 }
 
 .personHeading {
@@ -25,18 +41,45 @@
 }
 
 .btn-fixed-large {
+  font-weight: 600;
   display: none;
   position: fixed;
   top: 50%;
-  right: 130px;
-  padding: 12px 24px;
+  right: 0;
+  padding: 0;
   z-index: 100;
   margin-top: -23px;
   transition: all 0.2;
+  border-radius: 0;
+  border: none;
+  color: $color-white;
+  font-size: 20px;
+  width: 130px;
+  height: 130px;
+
+   &:focus {
+     outline:none;
+   }
+}
+
+.edit-button, .update-button {
+  display: none;
 }
 
 .show-button {
-  display: block;
+  display: inline-block;
   right: 0;
   transition: all 0.2;
+}
+
+.btn-xl {
+  padding: 20px 32px;
+}
+
+.float-right {
+  float: right;
+}
+
+.table-btn {
+  margin-bottom: 0;
 }

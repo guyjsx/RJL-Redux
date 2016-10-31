@@ -55,7 +55,48 @@ class RjCase extends Model
         return $this->belongsToMany('App\User', 'rj_cases_users', 'rj_case_id', 'user_id');
     }
 
-    public static function fieldData() {
+    public static function createCaseFieldData()
+    {
+        $fieldDataMapping = array(
+            'caseId' => array(
+                'name' => 'caseId', 'type' => 'input', 'namePretty' => 'Case ID', 'value' => "", 'placeholder' => ''
+            ),
+            'caseStatus' => array(
+                'name' => 'caseStatus', 'type' => 'select', 'namePretty' => 'Case Status', 'value' => "",
+                'options' => array(
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Open - Monitoring', 'value' => 'Open - Monitoring'),
+                    array('name' => 'Open - Pending', 'value' => 'Open - Pending'),
+                    array('name' => 'Closed', 'value' => 'Closed')
+                )
+            ),
+            'dateOfReferral' => array(
+                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
+            'dateOfCharge' => array(
+                'name' => 'dateOfCharge', 'type' => 'input', 'namePretty' => 'Date of Charge', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
+            'courtDate' => array(
+                'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'user_id' => array(
+                'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "", 'placeholder' => '',
+                'options' => array()
+            ),
+            'caseDescription' => array(
+                'name' => 'caseDescription', 'type' => 'textarea', 'namePretty' => 'Case Description', 'value' => "", 'placeholder' => ''
+            ),
+        );
+
+        return $fieldDataMapping;
+    }
+
+
+    public static function editCaseFieldData() {
         $fieldDataMapping = array(
             'caseId' => array(
                 'name' => 'caseId', 'type' => 'input', 'namePretty' => 'Case ID', 'value' => "", 'placeholder' => ''
@@ -91,6 +132,10 @@ class RjCase extends Model
             ),
             'dateOfReferral' => array(
                 'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
+            'dateOfCharge' => array(
+                'name' => 'dateOfCharge', 'type' => 'input', 'namePretty' => 'Date of Charge', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
             ),
             'dateClosed' => array(

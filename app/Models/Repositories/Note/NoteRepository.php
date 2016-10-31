@@ -4,6 +4,7 @@ namespace Repositories\Note;
 
 use Entities\Note;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Services\Utility\UtilityService;
 
 /**
@@ -58,11 +59,16 @@ class NoteRepository implements NoteInterface
         if (isset($data)) {
             $data['noteDate']= $this->utilityService->parseToMysqlDate($data['noteDate']);
 
+            $userName = Auth::user()->username;
+
             $note = new Note(
                 array(
                     "noteDate" => $data["noteDate"],
+                    "noteContact" => $data["noteContact"],
+                    "noteContactType" => $data["noteContactType"],
                     "noteContent" => $data["noteContent"],
-                    "rj_case_id" => $data["id"]
+                    "rj_case_id" => $data["id"],
+                    "userName" => $userName
                 )
             );
 
