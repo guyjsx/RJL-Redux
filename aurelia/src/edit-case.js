@@ -284,7 +284,7 @@ export class EditCase {
     setupEditableTable() {
         var self = this;
 
-        $('.editableInput').on('click', function(e) {
+        $('#notesTable').on('click', '.editableInput', function(e) {
             $(this).addClass('hide');
             var $input = $(this).next();
             $input.removeClass('hide');

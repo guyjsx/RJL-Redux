@@ -93,7 +93,7 @@
                        <div class="panel-heading">
                            <div class="personHeading">
                                <span class="personNumber">Victim ${$index + 1}</span>
-                               <span class="removeContainer"><button id="removeVictim" class="btn btn-danger" click.delegate="removeVictim($index)">Remove Victim ${$index + 1}</button></span>
+                               <span class="removeContainer"><button type="button" id="removeVictim" class="btn btn-danger" click.delegate="removeVictim($index)">Remove Victim ${$index + 1}</button></span>
                            </div>
                        </div>
                        <div class="panel-body">
@@ -142,7 +142,7 @@
                </div>
            </section>
 
-           <button id="addVictim" class="btn btn-success" click.delegate="addVictim()">Add Victim</button>
+           <button type="button" id="addVictim" class="btn btn-success" click.delegate="addVictim()">Add Victim</button>
        </div>
 
        <div id="offenderSection">
@@ -152,7 +152,7 @@
                        <div class="panel-heading">
                            <div class="personHeading">
                                <span class="personNumber">Offender ${$index + 1}</span>
-                               <span class="removeContainer"><button id="removeOffender" class="btn btn-danger" click.delegate="removeOffender($index)">Remove Offender ${$index + 1}</button></span>
+                               <span class="removeContainer"><button type="button" id="removeOffender" class="btn btn-danger" click.delegate="removeOffender($index)">Remove Offender ${$index + 1}</button></span>
                            </div>
                        </div>
                        <div class="panel-body">
@@ -200,7 +200,7 @@
                </div>
            </section>
 
-           <button id="addOffender" class="btn btn-warning" click.delegate="addOffender()">Add Offender</button>
+           <button type="button" id="addOffender" class="btn btn-warning" click.delegate="addOffender()">Add Offender</button>
        </div>
 
        <div class="modal fade" id="victimModal" tabindex="-1" role="dialog" aria-labelledby="victimModalLabel">
