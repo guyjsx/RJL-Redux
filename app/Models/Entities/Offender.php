@@ -32,7 +32,7 @@ class Offender extends Model
             ),
             'dateOfBirth' => array(
                 'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
-                'date' => "true"
+                'date' => "true", 'clearfix' => 'true'
             ),
             'gender' => array(
                 'name' => 'gender', 'type' => 'select', 'namePretty' => 'Gender', 'value' => "",
@@ -56,7 +56,7 @@ class Offender extends Model
                 )
             ),
             'school' => array(
-                'name' => 'school', 'type' => 'input', 'namePretty' => 'School', 'value' => ""
+                'name' => 'school', 'type' => 'input', 'namePretty' => 'School', 'value' => "", 'clearfix' => 'true'
             ),
             'streetAddress' => array(
                 'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => ""
@@ -65,7 +65,7 @@ class Offender extends Model
                 'name' => 'zipCode', 'type' => 'input', 'namePretty' => 'Zip Code', 'value' => ""
             ),
             'city' => array(
-                'name' => 'city', 'type' => 'input', 'namePretty' => 'City', 'value' => ""
+                'name' => 'city', 'type' => 'input', 'namePretty' => 'City', 'value' => "", 'clearfix' => 'true'
             ),
             'state' => array(
                 'name' => 'state', 'type' => 'select', 'namePretty' => 'State', 'value' => "KY",
@@ -75,7 +75,7 @@ class Offender extends Model
                 'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => ""
             ),
             'guardianOneFirstName' => array(
-                'name' => 'guardianOneFirstName', 'type' => 'input', 'namePretty' => 'Guardian One First Name', 'value' => ""
+                'name' => 'guardianOneFirstName', 'type' => 'input', 'namePretty' => 'Guardian One First Name', 'value' => "",'clearfix' => "true"
             ),
             'guardianOneLastName' => array(
                 'name' => 'guardianOneLastName', 'type' =>'input', 'namePretty' => 'Guardian One Last Name', 'value' => ""
@@ -83,17 +83,8 @@ class Offender extends Model
             'guardianOneRelation' => array(
                 'name' => 'guardianOneRelation', 'type' => 'input', 'namePretty' => 'Guardian One Relation', 'value' => ""
             ),
-            'guardianTwoFirstName' => array(
-                'name' => 'guardianTwoFirstName', 'type' => 'input', 'namePretty' => 'Guardian Two First Name', 'value' => ""
-            ),
-            'guardianTwoLastName' => array(
-                'name' => 'guardianTwoLastName', 'type' => 'input', 'namePretty' => 'Guardian Two Last Name', 'value' => ""
-            ),
-            'guardianTwoRelation' => array(
-                'name' => 'guardianTwoRelation', 'type' => 'input', 'namePretty' => 'Guardian Two Relation', 'value' => ""
-            ),
             'phoneOne' => array(
-                'name' => 'phoneOne', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => ""
+                'name' => 'phoneOne', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => "",'clearfix' => "true"
             ),
             'phoneOneType' => array(
                 'name' => 'phoneOneType', 'type' => 'select', 'namePretty' => 'Phone One Type', 'value' => "",
@@ -104,8 +95,29 @@ class Offender extends Model
                     array('name' => 'Home', 'value' => 'Home')
                 ]
             ),
+            'phoneThree' => array(
+                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => "",'clearfix' => "true"
+            ),
+            'phoneThreeType' => array(
+                'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Three Type', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Mobile', 'value' => 'Mobile'),
+                    array('name' => 'Work', 'value' => 'Work'),
+                    array('name' => 'Home', 'value' => 'Home')
+                ]
+            ),
+            'guardianTwoFirstName' => array(
+                'name' => 'guardianTwoFirstName', 'type' => 'input', 'namePretty' => 'Guardian Two First Name', 'value' => "",'clearfix' => "true"
+            ),
+            'guardianTwoLastName' => array(
+                'name' => 'guardianTwoLastName', 'type' => 'input', 'namePretty' => 'Guardian Two Last Name', 'value' => ""
+            ),
+            'guardianTwoRelation' => array(
+                'name' => 'guardianTwoRelation', 'type' => 'input', 'namePretty' => 'Guardian Two Relation', 'value' => ""
+            ),
             'phoneTwo' => array(
-                'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => ""
+                'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => "",'clearfix' => "true"
             ),
             'phoneTwoType' => array(
                 'name' => 'phoneTwoType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
@@ -116,11 +128,44 @@ class Offender extends Model
                     array('name' => 'Home', 'value' => 'Home')
                 ]
             ),
-            'phoneThree' => array(
-                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => ""
+            'phoneFour' => array(
+                'name' => 'phoneFour', 'type' => 'input', 'namePretty' => 'Phone Four', 'value' => "",'clearfix' => "true"
             ),
-            'phoneThreeType' => array(
-                'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Three Type', 'value' => "",
+            'phoneFourType' => array(
+                'name' => 'phoneFourType', 'type' => 'select', 'namePretty' => 'Phone Four Type', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Mobile', 'value' => 'Mobile'),
+                    array('name' => 'Work', 'value' => 'Work'),
+                    array('name' => 'Home', 'value' => 'Home')
+                ]
+            ),
+            'guardianThreeFirstName' => array(
+                'name' => 'guardianThreeFirstName', 'type' => 'input', 'namePretty' => 'Guardian Three First Name', 'value' => "",'clearfix' => "true"
+            ),
+            'guardianThreeLastName' => array(
+                'name' => 'guardianThreeLastName', 'type' => 'input', 'namePretty' => 'Guardian Three Last Name', 'value' => ""
+            ),
+            'guardianThreeRelation' => array(
+                'name' => 'guardianThreeRelation', 'type' => 'input', 'namePretty' => 'Guardian Three Relation', 'value' => ""
+            ),
+            'phoneFive' => array(
+                'name' => 'phoneFive', 'type' => 'input', 'namePretty' => 'Phone Five', 'value' => "",'clearfix' => "true"
+            ),
+            'phoneFiveType' => array(
+                'name' => 'phoneFiveType', 'type' => 'select', 'namePretty' => 'Phone Five Type', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Mobile', 'value' => 'Mobile'),
+                    array('name' => 'Work', 'value' => 'Work'),
+                    array('name' => 'Home', 'value' => 'Home')
+                ]
+            ),
+            'phoneSix' => array(
+                'name' => 'phoneSix', 'type' => 'input', 'namePretty' => 'Phone Six', 'value' => "",'clearfix' => "true"
+            ),
+            'phoneSixType' => array(
+                'name' => 'phoneSixType', 'type' => 'select', 'namePretty' => 'Phone Six Type', 'value' => "",
                 'options' => [
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),

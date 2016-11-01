@@ -10,7 +10,7 @@
                                 <require from="src/ObjectKeysValueConverter"></require>
                                 <div>
                                     <div repeat.for="prop of item | objectKeys">
-                                        <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                        <div class="clearfix" if.bind="prop.clearfix == 'true'"></div>
                                         <div class="col-sm-4">
                                             <div if.bind="prop.type !== 'textarea'">
                                                 <label for="offender-${prop.name}">${prop.namePretty}: </label>

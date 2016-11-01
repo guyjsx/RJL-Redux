@@ -70,6 +70,12 @@ class RjCase extends Model
                     array('name' => 'Closed', 'value' => 'Closed')
                 )
             ),
+            'study' => array(
+                'name' => 'study', 'type' => 'input', 'namePretty' => 'Study', 'value' => "", 'placeholder' => ''
+            ),
+            'referralSource' => array(
+                'name' => 'referralSource', 'type' => 'input', 'namePretty' => 'Referral Source', 'value' => "", 'placeholder' => ''
+            ),
             'dateOfReferral' => array(
                 'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
@@ -80,6 +86,21 @@ class RjCase extends Model
             ),
             'courtDate' => array(
                 'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'preConferenceDate' => array(
+                'name' => 'preConferenceDate', 'type' => 'input', 'namePretty' => 'Pre-Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'conferenceDate' => array(
+                'name' => 'conferenceDAte', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'agreementEndDate' => array(
+                'name' => 'agreementEndDate', 'type' => 'input', 'namePretty' => 'Agreement End Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
 
             ),
@@ -130,6 +151,12 @@ class RjCase extends Model
                     array('name' => 'Offender not available to participate', 'value' => '16')
                 )
             ),
+            'study' => array(
+                'name' => 'study', 'type' => 'input', 'namePretty' => 'Study', 'value' => "", 'placeholder' => ''
+            ),
+            'referralSource' => array(
+                'name' => 'referralSource', 'type' => 'input', 'namePretty' => 'Referral Source', 'value' => "", 'placeholder' => ''
+            ),
             'dateOfReferral' => array(
                 'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
@@ -144,6 +171,21 @@ class RjCase extends Model
             ),
             'courtDate' => array(
                 'name' => 'courtDate', 'type' => 'input', 'namePretty' => 'Court Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'preConferenceDate' => array(
+                'name' => 'preConferenceDate', 'type' => 'input', 'namePretty' => 'Pre-Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'conferenceDate' => array(
+                'name' => 'conferenceDAte', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+
+            ),
+            'agreementEndDate' => array(
+                'name' => 'agreementEndDate', 'type' => 'input', 'namePretty' => 'Agreement End Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
 
             ),

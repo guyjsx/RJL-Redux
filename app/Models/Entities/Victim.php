@@ -32,7 +32,7 @@ class Victim extends Model
                 'name' => 'lastName', 'type' => 'input', 'namePretty' => 'Last Name', 'value' => ""
             ),
             'age' => array(
-                'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => ""
+                'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => "",'clearfix' => 'true'
             ),
             'dateOfBirth' => array(
                 'date'=> 'true', 'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "",'placeholder' => 'MM/DD/YYYY'
@@ -46,7 +46,7 @@ class Victim extends Model
                 )
             ),
             'race' => array(
-                'name' => 'race', 'type' => 'select', 'namePretty' => 'Race', 'value' => "",
+                'name' => 'race', 'type' => 'select', 'namePretty' => 'Race', 'value' => "",'clearfix' => 'true',
                     'options' => array(
                         array('name' => 'Select an option...', 'value' => '', 'selected'=> 'true'),
                         array('name' => 'White', 'value' => 'White', 'selected'=> ''),
@@ -59,13 +59,13 @@ class Victim extends Model
                     )
             ),
             'streetAddress' => array(
-                'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => ""
+                'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => "",
             ),
             'zipCode' => array(
                 'name' => 'zipCode', 'type' => 'input', 'namePretty' => 'Zip Code', 'value' => ""
             ),
             'city' => array(
-                'name' => 'city', 'type' => 'input', 'namePretty' => 'City', 'value' => ""
+                'name' => 'city', 'type' => 'input', 'namePretty' => 'City', 'value' => "",'clearfix' => 'true'
             ),
             'state' => array(
                 'name' => 'state', 'type' => 'select', 'namePretty' => 'State', 'value' => "",
@@ -75,7 +75,7 @@ class Victim extends Model
                 'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => ""
             ),
             'phoneOne' => array(
-                'name' => 'phoneOne', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => ""
+                'name' => 'phoneOne', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => "", 'clearfix' => 'true'
             ),
             'phoneOneType' => array(
                 'name' => 'phoneOneType', 'type' => 'select', 'namePretty' => 'Phone One Type', 'value' => "",
@@ -87,7 +87,7 @@ class Victim extends Model
                     )
             ),
             'phoneTwo' => array(
-                'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => ""
+                'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => "",'clearfix' => "true"
             ),
             'phoneTwoType' => array(
                 'name' => 'phoneTwoType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
@@ -99,7 +99,7 @@ class Victim extends Model
                     ]
             ),
             'phoneThree' => array(
-                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => ""
+                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => "", 'clearfix' => "true"
             ),
             'phoneThreeType' => array(
                 'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Three Type', 'value' => "",
