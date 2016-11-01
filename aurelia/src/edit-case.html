@@ -110,7 +110,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div repeat.for="prop of item | objectKeys">
-                                            <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                            <div class="clearfix" if.bind="prop.clearfix == 'true'"></div>
                                             <div class="col-sm-4">
                                                 <div if.bind="prop.type !== 'textarea'">
                                                     <label for="victim-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
@@ -158,7 +158,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div repeat.for="prop of item | objectKeys">
-                                            <div class="clearfix" if.bind="$index % 3 == 0 && $index !== 0"></div>
+                                            <div class="clearfix" if.bind="prop.clearfix == 'true'"></div>
                                             <div class="col-sm-4">
                                                 <div if.bind="prop.type !== 'textarea'">
                                                     <label for="offender-${prop.name}-${$parentIndex}">${prop.namePretty}: </label>
