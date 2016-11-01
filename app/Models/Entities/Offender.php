@@ -96,10 +96,10 @@ class Offender extends Model
                 ]
             ),
             'phoneThree' => array(
-                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Three', 'value' => "",'clearfix' => "true"
+                'name' => 'phoneThree', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => "",'clearfix' => "true"
             ),
             'phoneThreeType' => array(
-                'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Three Type', 'value' => "",
+                'name' => 'phoneThreeType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
                 'options' => [
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
@@ -117,10 +117,10 @@ class Offender extends Model
                 'name' => 'guardianTwoRelation', 'type' => 'input', 'namePretty' => 'Guardian Two Relation', 'value' => ""
             ),
             'phoneTwo' => array(
-                'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => "",'clearfix' => "true"
+                'name' => 'phoneTwo', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => "",'clearfix' => "true"
             ),
             'phoneTwoType' => array(
-                'name' => 'phoneTwoType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
+                'name' => 'phoneTwoType', 'type' => 'select', 'namePretty' => 'Phone One Type', 'value' => "",
                 'options' => [
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
@@ -129,10 +129,10 @@ class Offender extends Model
                 ]
             ),
             'phoneFour' => array(
-                'name' => 'phoneFour', 'type' => 'input', 'namePretty' => 'Phone Four', 'value' => "",'clearfix' => "true"
+                'name' => 'phoneFour', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => "",'clearfix' => "true"
             ),
             'phoneFourType' => array(
-                'name' => 'phoneFourType', 'type' => 'select', 'namePretty' => 'Phone Four Type', 'value' => "",
+                'name' => 'phoneFourType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
                 'options' => [
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
@@ -150,10 +150,10 @@ class Offender extends Model
                 'name' => 'guardianThreeRelation', 'type' => 'input', 'namePretty' => 'Guardian Three Relation', 'value' => ""
             ),
             'phoneFive' => array(
-                'name' => 'phoneFive', 'type' => 'input', 'namePretty' => 'Phone Five', 'value' => "",'clearfix' => "true"
+                'name' => 'phoneFive', 'type' => 'input', 'namePretty' => 'Phone One', 'value' => "",'clearfix' => "true"
             ),
             'phoneFiveType' => array(
-                'name' => 'phoneFiveType', 'type' => 'select', 'namePretty' => 'Phone Five Type', 'value' => "",
+                'name' => 'phoneFiveType', 'type' => 'select', 'namePretty' => 'Phone One Type', 'value' => "",
                 'options' => [
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
@@ -162,10 +162,10 @@ class Offender extends Model
                 ]
             ),
             'phoneSix' => array(
-                'name' => 'phoneSix', 'type' => 'input', 'namePretty' => 'Phone Six', 'value' => "",'clearfix' => "true"
+                'name' => 'phoneSix', 'type' => 'input', 'namePretty' => 'Phone Two', 'value' => "",'clearfix' => "true"
             ),
             'phoneSixType' => array(
-                'name' => 'phoneSixType', 'type' => 'select', 'namePretty' => 'Phone Six Type', 'value' => "",
+                'name' => 'phoneSixType', 'type' => 'select', 'namePretty' => 'Phone Two Type', 'value' => "",
                 'options' => [
                     array('name' => 'Select an option..', 'value' => ''),
                     array('name' => 'Mobile', 'value' => 'Mobile'),
