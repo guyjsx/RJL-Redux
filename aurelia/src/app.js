@@ -11,16 +11,16 @@ export class App {
         if (typeof userObj !== "undefined") {
             if (userObj.role !== "facilitator") {
                 var routerMap = [
-                    { route: ['', 'home/'], moduleId: 'src/home', nav: true, title:'Home' },
-                    { route: ['cases/'], moduleId: 'src/cases', nav: true, title:'Cases' },
-                    { route: ['victim/'], moduleId: 'src/victims', nav: true, title:'Victims' },
-                    { route: ['offender/'], moduleId: 'src/offenders', nav: true, title:'Offenders' },
-                    { route: ['users/'], moduleId: 'src/users', nav: true, title:'Users' }
+                    { route: ['', 'home/'], moduleId: 'home', nav: true, title:'Home' },
+                    { route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' },
+                    { route: ['victim/'], moduleId: 'victims', nav: true, title:'Victims' },
+                    { route: ['offender/'], moduleId: 'offenders', nav: true, title:'Offenders' },
+                    { route: ['users/'], moduleId: 'users', nav: true, title:'Users' }
                 ];
             } else if (userObj.role == "facilitator") {
                 var routerMap = [
-                    { route: ['', 'home/'], moduleId: 'src/home', nav: true, title:'Home' },
-                    { route: ['cases/'], moduleId: 'src/cases', nav: true, title:'Cases' }
+                    { route: ['', 'home/'], moduleId: 'home', nav: true, title:'Home' },
+                    { route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' }
                 ];
             }
         }

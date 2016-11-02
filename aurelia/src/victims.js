@@ -19,9 +19,9 @@ export class Victims {
 
     configureRouter(config, router) {
         config.map([
-            { route: ["","victim/view/"], moduleId: 'src/view-victims', nav: true, title:'Victim View' },
-            { route: ["create"], moduleId: 'src/create-victim', nav: true, title:'Victim Create' },
-            { route: ["edit"], name:'edit-victim', moduleId: 'src/edit-victim', nav: false, title:'Victim Edit' }
+            { route: ["","victim/view/"], moduleId: 'view-victims', nav: true, title:'Victim View' },
+            { route: ["create"], moduleId: 'create-victim', nav: true, title:'Victim Create' },
+            { route: ["edit"], name:'edit-victim', moduleId: 'edit-victim', nav: false, title:'Victim Edit' }
         ]);
 
         this.router = router;

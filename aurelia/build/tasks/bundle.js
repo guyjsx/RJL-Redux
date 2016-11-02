@@ -3,14 +3,12 @@ var bundler = require('aurelia-bundler');
 
 var config = {
     force: true,
-    baseURL: '.',
-    configPath: './config.js',
+    packagePath: '.',
+    configPath: '../../config.js',
     bundles: {
         "src/dist/app-build": {
             includes: [
-                "[**/*.js]",
-                "**/*.html!text",
-                "**/*.css!text"
+                '[*.js]'
             ],
             options: {
                 inject: true,

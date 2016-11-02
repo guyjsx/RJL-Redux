@@ -23,14 +23,14 @@ export class Cases {
         if (typeof userObj !== "undefined") {
             if (userObj.role !== "facilitator") {
                 var routerMap = [
-                    { route: ["","cases/view"], moduleId: 'src/view-case', nav: true, title:'Case View' },
-                    { route: ["create"], moduleId: 'src/create-case', nav: true, title:'Case Create' },
-                    { route: ["edit"], name: 'edit-case', moduleId: 'src/edit-case', nav: false, title:'Edit Case' }
+                    { route: ["","cases/view"], moduleId: 'view-case', nav: true, title:'Case View' },
+                    { route: ["create"], moduleId: 'create-case', nav: true, title:'Case Create' },
+                    { route: ["edit"], name: 'edit-case', moduleId: 'edit-case', nav: false, title:'Edit Case' }
                 ];
             } else if (userObj.role == "facilitator") {
                 var routerMap = [
-                    { route: ["","cases/view"], moduleId: 'src/view-case', nav: true, title:'Case View' },
-                    { route: ["edit/"], name: 'edit-case', moduleId: 'src/edit-case', nav: false, title:'Edit Case' }
+                    { route: ["","cases/view"], moduleId: 'view-case', nav: true, title:'Case View' },
+                    { route: ["edit/"], name: 'edit-case', moduleId: 'edit-case', nav: false, title:'Edit Case' }
                 ];
             }
         }

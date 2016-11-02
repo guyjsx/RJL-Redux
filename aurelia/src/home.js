@@ -9,9 +9,9 @@ export class Home {
 
     configureRouter(config, router) {
         config.map([
-            {route: ["", "cases/view"], moduleId: 'src/view-case', nav: true, title: 'Case View'},
-            {route: ["create"], moduleId: 'src/create-case', nav: true, title: 'Case Create'},
-            {route: ["edit"], moduleId: 'src/edit-case', nav: false, title: 'Edit Case'}
+            {route: ["", "cases/view"], moduleId: 'view-case', nav: true, title: 'Case View'},
+            {route: ["create"], moduleId: 'create-case', nav: true, title: 'Case Create'},
+            {route: ["edit"], moduleId: 'edit-case', nav: false, title: 'Edit Case'}
         ]);
     }
 
