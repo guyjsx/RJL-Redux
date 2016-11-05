@@ -12,4 +12,6 @@ interface UserInterface
     public function getAllUsersByRole($role);
 
     public function getAllUserCasesByUserId($userId);
+
+    public function getFacilitatorAssignments();
 }

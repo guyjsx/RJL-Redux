@@ -96,4 +96,10 @@ class UserService
 
         return array();
     }
+
+    public function getFacilitatorAssignments() {
+        $assignments = $this->userRepo->getFacilitatorAssignments();
+
+        return $assignments;
+    }
 }

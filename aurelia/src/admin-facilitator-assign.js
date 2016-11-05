@@ -10,13 +10,12 @@ export class ViewCase {
     }
 
     activate() {
-        return this.http.get('/api/cases').then(response => {
-            this.html = response.content.html;
+        return this.http.get('/api/user/assignments').then(response => {
+            this.assignments = response.content
         });
     }
 
     attached() {
-        $('#openCasesTable').dataTable();
-        $('#closedCasesTable').dataTable();
+        $('#facilitatorAssignTable').dataTable();
     }
 }

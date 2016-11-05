@@ -320,6 +320,10 @@ System.config({
       "FileListToArrayValueConverter.js",
       "ObjectKeysValueConverter.js",
       "ObjectValuesValueConverter.js",
+      "admin-facilitator-assign.html!github:systemjs/plugin-text@0.0.8.js",
+      "admin-facilitator-assign.js",
+      "admin.html!github:systemjs/plugin-text@0.0.8.js",
+      "admin.js",
       "app.html!github:systemjs/plugin-text@0.0.8.js",
       "app.js",
       "cases.html!github:systemjs/plugin-text@0.0.8.js",
@@ -362,6 +366,7 @@ System.config({
       "victim-table.js",
       "victims.html!github:systemjs/plugin-text@0.0.8.js",
       "victims.js",
+      "view-admin.js",
       "view-case.html!github:systemjs/plugin-text@0.0.8.js",
       "view-case.js",
       "view-offenders.html!github:systemjs/plugin-text@0.0.8.js",
@@ -371,6 +376,16 @@ System.config({
     ]
   },
   depCache: {
+    "admin-facilitator-assign.js": [
+      "aurelia-framework",
+      "aurelia-http-client",
+      "jquery",
+      "datatables"
+    ],
+    "admin.js": [
+      "aurelia-framework",
+      "aurelia-http-client"
+    ],
     "app.js": [
       "aurelia-router",
       "aurelia-http-client"
@@ -387,21 +402,21 @@ System.config({
       "aurelia-http-client",
       "aurelia-router",
       "jquery-validation",
-      "../jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.min.js"
+      "bootstrap"
     ],
     "create-offender.js": [
       "aurelia-framework",
       "aurelia-http-client",
       "aurelia-router",
       "jquery-validation",
-      "../jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.min.js"
+      "bootstrap"
     ],
     "create-victim.js": [
       "aurelia-framework",
       "aurelia-http-client",
       "aurelia-router",
       "jquery-validation",
-      "../jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.min.js"
+      "bootstrap"
     ],
     "edit-case.js": [
       "aurelia-framework",
@@ -476,6 +491,10 @@ System.config({
       "datatables"
     ],
     "victims.js": [
+      "aurelia-framework",
+      "aurelia-http-client"
+    ],
+    "view-admin.js": [
       "aurelia-framework",
       "aurelia-http-client"
     ],

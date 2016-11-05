@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="col-sm-8 nav-item-title">
-                    <a>Hello ${user.username}!</a>
+                    <a>Hello ${router.title.username}!</a>
                 </div>
             </li>
             <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
@@ -27,6 +27,9 @@
                     </div>
                     <div if.bind="row.title == 'Users'">
                         <i class="fa fa-users fa-2x"></i>
+                    </div>
+                    <div if.bind="row.title == 'Admin'">
+                        <i class="fa fa-lock fa-2x"></i>
                     </div>
                 </div>
                 <div class="col-sm-8 nav-item-title">

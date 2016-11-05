@@ -42,12 +42,17 @@ class RjCaseController extends Controller
             $user = Auth::user();
         }
 
-        $cases = isset($user) && $user->role == "facilitator" ?
+        $openCases = isset($user) && $user->role == "facilitator" ?
             $this->userService->getAllUserCasesByUserId($user->id) :
-            $this->rjCaseService->getAllCases()->toArray();
+            $this->rjCaseService->getAllOpenCases()->toArray();
+
+        $closedCases = isset($user) && $user->role !== "facilitator" ?
+            $this->rjCaseService->getAllClosedCases()->toArray() :
+            array();
 
         return response()->json(array('html' =>view('cases/index', [
-            'cases' => $cases
+            'openCases' => $openCases,
+            'closedCases' => $closedCases
         ])->render()));
     }
 

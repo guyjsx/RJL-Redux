@@ -14,19 +14,10 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
     <base href="/"></base>
     <script>var userObj = {!! $user or 'undefined' !!}</script>
     <link href="{{ URL::asset('/public/css/app.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ URL::asset('/aurelia/jspm_packages/github/select2/select2@4.0.1/css/select2.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ URL::asset('/aurelia/jspm_packages/github/select2/select2@4.0.3/css/select2.min.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body id="app-layout">
     <div aurelia-app="main"></div>

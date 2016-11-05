@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Services\User\UserService;
 
@@ -30,6 +31,27 @@ class UserController extends Controller
         return response()->json(array('data' => $users));
     }
 
+    public function getUser() {
+        $user = null;
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        $userName = isset($user->username) ? $user->username : null;
+        $role = isset($user->role) ? $user->role : null;
+
+        $userArr = array(
+            'username' => $userName,
+            'role' => $role
+        );
+
+        return response()->json($userArr);
+    }
+
+    public function getFacilitatorAssignments() {
+
+        return $this->userService->getFacilitatorAssignments();
+    }
     /**
      * Show the form for creating a new resource.
      *

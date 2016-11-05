@@ -60,4 +60,38 @@ class RjCaseRepository implements RjCaseInterface
         
         return null;
     }
+
+    /**
+     * Returns all open cases
+     */
+    public function getAllOpenCases()
+    {
+        // Search for all
+        $cases = $this->rjCaseModel->where('caseStatus', '=', 'Open - Pending')->orWhere('caseStatus', '=', 'Open - Monitoring')->with('victims', 'offenders')->get();
+
+        if ($cases)
+        {
+            return $cases;
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns all closed cases
+     */
+    public function getAllClosedCases()
+    {
+        // Search for all
+        $cases = $this->rjCaseModel->where('caseStatus', '=', 'Closed')->with('victims', 'offenders')->get();
+
+        if ($cases)
+        {
+            return $cases;
+        }
+
+        return null;
+    }
+
+
 }

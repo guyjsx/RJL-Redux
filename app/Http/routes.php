@@ -44,6 +44,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/api/victim/search', 'VictimController@searchVictims');
     Route::get('/api/offender/search', 'OffenderController@searchOffenders');
     Route::get('/api/offender/exists', 'OffenderController@checkIfExists');
+    Route::get('api/user/get-user', 'UserController@getUser');
+    Route::get('api/user/assignments', 'UserController@getFacilitatorAssignments');
     Route::resource('/api/cases', 'RjCaseController');
     Route::resource('/api/offender', 'OffenderController');
     Route::resource('/api/victim', 'VictimController');

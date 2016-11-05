@@ -117,11 +117,11 @@
                                                 </div>
                                                 <div>
                                                     <div class="inputField" if.bind="prop.type  == 'input'">
-                                                        <input type="text" name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
+                                                        <input type="text" name="victim-${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
                                                     </div>
 
                                                     <div class="inputField" if.bind="prop.type  == 'select'">
-                                                        <select name="${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" disabled>
+                                                        <select name="victim-${prop.name}" id="victim-${prop.name}-${$parentIndex}" value.bind="data['victims'][$parentIndex][prop.name]" disabled>
                                                             <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
                                                         </select>
                                                     </div>
@@ -135,7 +135,7 @@
                                                         <label for="${prop.name}">${prop.namePretty}: </label>
                                                     </div>
                                                    <span class="inputField textAreaField">
-                                                        <textarea rows="10" name="{prop.name}" id="victim-${prop.name}-${$parentIndex}"  value.bind="data['victims'][$parentIndex][prop.name]" readonly></textarea>
+                                                        <textarea rows="10" name="victim-{prop.name}" id="victim-${prop.name}-${$parentIndex}"  value.bind="data['victims'][$parentIndex][prop.name]" readonly></textarea>
                                                    </span>
                                                 </div>
                                             </div>
@@ -165,11 +165,11 @@
                                                 </div>
                                                 <div>
                                                     <div class="inputField" if.bind="prop.type  == 'input'">
-                                                        <input type="text" name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
+                                                        <input type="text" name="offender-${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" placeholder="${prop.placeholder}" data-date="${prop.date}" readonly>
                                                     </div>
 
                                                     <div class="inputField" if.bind="prop.type  == 'select'">
-                                                        <select name="${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" disabled>
+                                                        <select name="offender-${prop.name}" id="offender-${prop.name}-${$parentIndex}" value.bind="data['offenders'][$parentIndex][prop.name]" disabled>
                                                             <option repeat.for="option of prop.options | objectKeys">${option.name}</option>
                                                         </select>
                                                     </div>
@@ -183,7 +183,7 @@
                                                         <label for="${prop.name}">${prop.namePretty}: </label>
                                                     </div>
                                                    <span class="inputField textAreaField">
-                                                        <textarea rows="10" name="{prop.name}" id="offender-${prop.name}-${$parentIndex}"  value.bind="data['offenders'][$parentIndex][prop.name]" readonly></textarea>
+                                                        <textarea rows="10" name="offender-{prop.name}" id="offender-${prop.name}-${$parentIndex}"  value.bind="data['offenders'][$parentIndex][prop.name]" readonly></textarea>
                                                    </span>
                                                 </div>
                                             </div>
@@ -198,6 +198,11 @@
         </form>
 
         <div id="fileSection">
+            <div class="loader loaderOverlay ${isLoading ? 'show' : 'hide'}">
+                <div class="spinner">
+                    <i class="fa fa-spinner fa-pulse fa-3x icon-white"></i>
+                </div>
+            </div>
             <form id="fileUploadForm" name="fileUploadForm" role="form" submit.delegate="fileUpload()" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
                 <require from="FileListToArrayValueConverter"></require>
                 <div class="panel panel-default">

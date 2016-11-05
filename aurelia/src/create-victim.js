@@ -2,7 +2,7 @@ import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-http-client';
 import {Router} from 'aurelia-router';
 import validate from 'jquery-validation';
-import bootstrap from '../jspm_packages/github/twbs/bootstrap@3.3.6/js/bootstrap.min.js';
+import bootstrap from 'bootstrap';
 
 @inject(HttpClient, Router)
 export class CreateCase {

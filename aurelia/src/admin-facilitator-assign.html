@@ -1,0 +1,28 @@
+<template>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <table id="facilitatorAssignTable" class="table">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Assignments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr repeat.for="user of assignments">
+                        <td>
+                            ${user.username}
+                        </td>
+                        <td>
+                            <div repeat.for="assignment of user.rj_cases">
+                                <a href="/#/cases/edit?id=${assignment.id}">${assignment.caseId}</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

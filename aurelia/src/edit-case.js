@@ -13,6 +13,7 @@ export class EditCase {
     }
 
     activate(params) {
+        this.isLoading = 0;
         this.user = userObj;
         this.data = [];
         this.noteData = {};
@@ -102,6 +103,8 @@ export class EditCase {
         this.fileData.append('file', this.selectedFiles[0]);
         var self = this;
 
+        this.isLoading = 0;
+
         $.ajax({
             url: '/api/file-upload' + '?id=' + this.data.id ,
             type: 'POST',
@@ -115,6 +118,7 @@ export class EditCase {
             processData: false,
             contentType: false,
             complete: function(result) {
+                self.isLoading = 0;
                 self.fileSuccess = 1;
                 self.uploadedFiles.push(result.responseJSON.file);
                 $("form[name='fileUploadForm']").trigger('reset');

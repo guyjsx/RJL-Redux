@@ -42,6 +42,52 @@ class RjCaseService
     }
 
     /**
+     * Method to get all open cases
+     *
+     * @return string
+     */
+    public function getAllOpenCases()
+    {
+
+        $cases = $this->rjCaseRepo->getAllOpenCases();
+        // If pokemon variable is numeric, assume ID
+
+
+        // If Eloquent Object returned (rather than null) return the name of the pokemon
+        if ($cases != null)
+        {
+            return $cases;
+        }
+
+        // If nothing found, return this simple string
+        return 'Cases Not Found';
+    }
+
+
+    /**
+     * Method to get all closed cases
+     *
+     * @return string
+     */
+    public function getAllClosedCases()
+    {
+
+        $cases = $this->rjCaseRepo->getAllClosedCases();
+        // If pokemon variable is numeric, assume ID
+
+
+        // If Eloquent Object returned (rather than null) return the name of the pokemon
+        if ($cases != null)
+        {
+            return $cases;
+        }
+
+        // If nothing found, return this simple string
+        return 'Cases Not Found';
+    }
+
+
+    /**
      * Method to get case by ID
      *
      * @return string

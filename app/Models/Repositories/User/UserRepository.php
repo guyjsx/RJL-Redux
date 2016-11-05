@@ -71,4 +71,10 @@ class UserRepository implements UserInterface
 
         return $cases;
     }
+
+    public function getFacilitatorAssignments() {
+        $assignments = $this->userModel->where('role', '=', 'facilitator')->with('rjCases')->get()->toArray();
+
+        return $assignments;
+    }
 }
