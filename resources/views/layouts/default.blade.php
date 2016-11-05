@@ -25,7 +25,6 @@
     </style>
     <base href="/"></base>
     <script>var userObj = {!! $user or 'undefined' !!}</script>
-    <script src="/public/js/vendor/chart.min.js"></script>
     <link href="{{ URL::asset('/public/css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ URL::asset('/aurelia/jspm_packages/github/select2/select2@4.0.1/css/select2.min.css') }}" rel="stylesheet" type="text/css">
 </head>

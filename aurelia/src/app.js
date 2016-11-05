@@ -1,12 +1,15 @@
 
 import {Router} from 'aurelia-router';
+import {HttpClient} from 'aurelia-http-client';
 
 export class App {
-	static inject() { return [Router]; }
-	constructor(router) {
+	static inject() { return [Router, HttpClient]; }
+	constructor(router, http) {
 		this.router = router;
+        this.http = http;
 
         var routerMap = [];
+
 
         if (typeof userObj !== "undefined") {
             if (userObj.role !== "facilitator") {
@@ -33,8 +36,7 @@ export class App {
 	}
 
 	activate() {
-		if (typeof userObj !== "undefined") {
-			this.user = userObj;
-		}
+		this.user = userObj;
+        console.log('tes');
 	}
 }

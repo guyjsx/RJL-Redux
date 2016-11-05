@@ -17,7 +17,7 @@ export class Select2CustomAttribute {
             });
     }
 
-    
+
 
     detached() {
         $(this.element).select2('destroy');
