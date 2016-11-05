@@ -17,20 +17,15 @@ module.exports = {
       "includes": [
         "aurelia-framework",
         "aurelia-bootstrapper",
-        "aurelia-fetch-client",
+        "aurelia-http-client",
         "aurelia-router",
-        "aurelia-animator-css",
         "aurelia-templating-binding",
         "aurelia-polyfills",
         "aurelia-templating-resources",
         "aurelia-templating-router",
         "aurelia-loader-default",
         "aurelia-history-browser",
-        "aurelia-logging-console",
-        "bootstrap",
-        "bootstrap/css/bootstrap.css!text",
-        "fetch",
-        "jquery"
+        "aurelia-logging-console"
       ],
       "options": {
         "inject": true,
