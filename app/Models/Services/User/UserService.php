@@ -91,6 +91,7 @@ class UserService
         $cases = $this->userRepo->getAllUserCasesByUserId($userId);
 
         if (isset($cases)) {
+
             return $cases;
         }
 

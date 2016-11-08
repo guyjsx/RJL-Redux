@@ -383,9 +383,6 @@ System.config({
       "aurelia-framework",
       "aurelia-http-client"
     ],
-    "child-nav-bar.js": [
-      "aurelia-framework"
-    ],
     "create-case.js": [
       "aurelia-framework",
       "aurelia-http-client",
@@ -437,7 +434,7 @@ System.config({
       "bootstrap"
     ],
     "nav-bar.js": [
-      "aurelia-framework"
+      "aurelia-router"
     ],
     "offenders.js": [
       "aurelia-framework",

@@ -15,6 +15,8 @@ class User extends Authenticatable
         'name', 'email', 'password','role', 'username'
     ];
 
+    public $timestamps = false;
+
     /**
      * The attributes excluded from the model's JSON form.
      *

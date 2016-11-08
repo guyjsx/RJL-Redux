@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-System.register(['aurelia-framework'], function (_export, _context) {
+System.register([], function (_export, _context) {
     "use strict";
 
-    var Behavior, ChildNavBar;
+    var ChildRouter;
 
     function _classCallCheck(instance, Constructor) {
         if (!(instance instanceof Constructor)) {
@@ -12,23 +12,25 @@ System.register(['aurelia-framework'], function (_export, _context) {
     }
 
     return {
-        setters: [function (_aureliaFramework) {
-            Behavior = _aureliaFramework.Behavior;
-        }],
+        setters: [],
         execute: function () {
-            _export('ChildNavBar', ChildNavBar = function () {
-                function ChildNavBar() {
-                    _classCallCheck(this, ChildNavBar);
+            _export("ChildRouter", ChildRouter = function () {
+                function ChildRouter() {
+                    _classCallCheck(this, ChildRouter);
                 }
 
-                ChildNavBar.metadata = function metadata() {
-                    return Behavior.withProperty('router');
+                ChildRouter.prototype.openNav = function openNav() {
+                    document.getElementById("navbar-app").style.width = "250px";
                 };
 
-                return ChildNavBar;
+                ChildRouter.prototype.closeNav = function closeNav() {
+                    document.getElementById("navbar-app").style.width = "0";
+                };
+
+                return ChildRouter;
             }());
 
-            _export('ChildNavBar', ChildNavBar);
+            _export("ChildRouter", ChildRouter);
         }
     };
 });

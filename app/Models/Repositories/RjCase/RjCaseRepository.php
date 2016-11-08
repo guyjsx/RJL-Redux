@@ -93,5 +93,13 @@ class RjCaseRepository implements RjCaseInterface
         return null;
     }
 
+//    public function getAllCasesForUserId($userId) {
+//        $cases = $this->rjCaseModel->->with('users')->where('user_id', '=', $userId)->get()->toArray()[0];
+//        $userCases = isset($cases['rj_cases']) ? $cases['rj_cases'] : array();
+//
+//        return $userCases;
+//
+//    }
+
 
 }

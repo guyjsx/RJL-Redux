@@ -60,7 +60,9 @@ class HomeController extends Controller
             $user = Auth::user();
         }
 
-        $cases = isset($user) ?
+        $isAdmin = isset($user) && $user->role == "admin" || $user->role == 'caseadmin';
+
+        $cases = isset($isAdmin) ?
             $this->userService->getAllUserCasesByUserId($user->id) :
             $this->rjCaseService->getAllCases()->toArray();
 

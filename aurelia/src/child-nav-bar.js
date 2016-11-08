@@ -1,5 +1,10 @@
-import {Behavior} from 'aurelia-framework';
+export class ChildRouter {
 
-export class ChildNavBar {
-    static metadata(){ return Behavior.withProperty('router'); }
+    openNav() {
+        document.getElementById("navbar-app").style.width = "250px";
+    }
+
+    closeNav() {
+        document.getElementById("navbar-app").style.width = "0";
+    }
 }

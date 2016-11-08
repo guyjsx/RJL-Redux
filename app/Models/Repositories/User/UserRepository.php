@@ -66,7 +66,8 @@ class UserRepository implements UserInterface
     }
 
     public function getAllUserCasesByUserId($userId) {
-        $user = $this->userModel->where('id', '=', $userId)->with('rjCases')->get()->toArray()[0];
+        $user = $this->userModel->with('rjCases.victims', 'rjCases.offenders')->where('id', '=', $userId)->get()->toArray()[0];
+
         $cases = isset($user['rj_cases']) ? $user['rj_cases'] : array();
 
         return $cases;

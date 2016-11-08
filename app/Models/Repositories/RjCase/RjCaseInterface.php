@@ -12,4 +12,6 @@ interface RjCaseInterface
     public function getAllOpenCases();
 
     public function getAllClosedCases();
+
+//    public function getAllCasesForUserId($userId);
 }

@@ -203,10 +203,9 @@ class RjCaseController extends Controller
         $victimFieldData = Victim::fieldData();
         $offenderFieldData = Offender::fieldData();
         $charges = $this->chargeService->getAllCharges()->toArray();
-        $facilitators = $this->userService->getAllUsersByRole('facilitator')->toArray();
+        $facilitators = $this->userService->getAllUsers()->toArray();
         $caseManagerData  = $this->userService->getAllUsers()->toArray();
         $caseManagerList = array();
-
 
         foreach ($caseManagerData as $key => $value) {
             if (!empty($value['username'])) {

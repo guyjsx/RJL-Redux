@@ -22,8 +22,7 @@ export class App {
                     { route: ['users/'], moduleId: 'users', nav: true, title:'Users' },
                     { route: ['admin/'], moduleId: 'admin', nav: true, title:'Admin' }
                 ];
-            }
-            else if (userObj !== "facilitator") {
+            } else if (userObj.role !== "facilitator") {
                 var routerMap = [
                     { route: ['', 'home/'], moduleId: 'home', nav: true, title:'Home' },
                     { route: ['cases/'], moduleId: 'cases', nav: true, title:'Cases' },
@@ -50,4 +49,18 @@ export class App {
 		this.user = userObj;
         console.log('tes');
 	}
+
+    attached() {
+        //var clicks = 0;
+        //$('.mobile-menu-bars a').on('click', function() {
+        //    if (clicks % 2) {
+        //        $('#navbar-app').removeClass('show-menu');
+        //    } else {
+        //        $('#navbar-app').addClass('show-menu');
+        //    }
+        //
+        //    clicks++;
+        //});
+
+    }
 }

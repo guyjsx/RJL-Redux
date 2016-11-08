@@ -37,7 +37,7 @@ System.register(['aurelia-router', 'aurelia-http-client'], function (_export, _c
                     if (typeof userObj !== "undefined") {
                         if (userObj.role == "admin" || userObj.role == "caseadmin") {
                             var routerMap = [{ route: ['', 'home/'], moduleId: 'home', nav: true, title: 'Home' }, { route: ['cases/'], moduleId: 'cases', nav: true, title: 'Cases' }, { route: ['victim/'], moduleId: 'victims', nav: true, title: 'Victims' }, { route: ['offender/'], moduleId: 'offenders', nav: true, title: 'Offenders' }, { route: ['users/'], moduleId: 'users', nav: true, title: 'Users' }, { route: ['admin/'], moduleId: 'admin', nav: true, title: 'Admin' }];
-                        } else if (userObj !== "facilitator") {
+                        } else if (userObj.role !== "facilitator") {
                             var routerMap = [{ route: ['', 'home/'], moduleId: 'home', nav: true, title: 'Home' }, { route: ['cases/'], moduleId: 'cases', nav: true, title: 'Cases' }, { route: ['victim/'], moduleId: 'victims', nav: true, title: 'Victims' }, { route: ['offender/'], moduleId: 'offenders', nav: true, title: 'Offenders' }, { route: ['users/'], moduleId: 'users', nav: true, title: 'Users' }];
                         } else if (userObj.role == "facilitator") {
                             var routerMap = [{ route: ['', 'home/'], moduleId: 'home', nav: true, title: 'Home' }, { route: ['cases/'], moduleId: 'cases', nav: true, title: 'Cases' }];
@@ -55,6 +55,8 @@ System.register(['aurelia-router', 'aurelia-http-client'], function (_export, _c
                     this.user = userObj;
                     console.log('tes');
                 };
+
+                App.prototype.attached = function attached() {};
 
                 return App;
             }());
