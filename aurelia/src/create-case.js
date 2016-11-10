@@ -39,12 +39,6 @@ export class CreateCase {
         });
     }
 
-    resetFormValidator() {
-        $('#case').removeData('validator');
-        $(formId).removeData('unobtrusiveValidation');
-        $.validator.unobtrusive.parse(formId);
-    }
-
     addVictim() {
         this.newVictimFieldMapping = [];
         this.newVictimFieldMapping = $.extend(true, {}, this.victimFieldMapping);
@@ -54,8 +48,6 @@ export class CreateCase {
         );
 
         this.victimCount++;
-
-        this.resetFormValidator();
     }
 
     removeVictim(i) {
@@ -71,7 +63,6 @@ export class CreateCase {
         );
     
         this.offenderCount++;
-        this.resetFormValidator();
     }
 
     removeOffender(i) {

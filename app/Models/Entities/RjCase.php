@@ -95,7 +95,7 @@ class RjCase extends Model
 
             ),
             'conferenceDate' => array(
-                'name' => 'conferenceDAte', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'name' => 'conferenceDate', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
 
             ),
@@ -180,7 +180,7 @@ class RjCase extends Model
 
             ),
             'conferenceDate' => array(
-                'name' => 'conferenceDAte', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'name' => 'conferenceDate', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
 
             ),

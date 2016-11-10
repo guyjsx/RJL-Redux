@@ -38,8 +38,12 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'jquery', 'datatabl
                 };
 
                 ViewCase.prototype.attached = function attached() {
-                    $('#openCasesTable').dataTable();
-                    $('#closedCasesTable').dataTable();
+                    $('#openCasesTable').dataTable({
+                        "scrollX": true
+                    });
+                    $('#closedCasesTable').dataTable({
+                        "scrollX": true
+                    });
                 };
 
                 return ViewCase;

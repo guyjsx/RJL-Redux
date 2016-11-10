@@ -1,5 +1,13 @@
 <template>
     <div id="edit">
+        <div class="alert alert-success" role="alert" show.bind="caseSuccess">Updated Successfully!</div>
+        <div id="navbar-app">
+            <div class="loader loaderOverlay" show.bind="loaderOverlay">
+                <div class="spinner">
+                    <i class="fa fa-spinner fa-pulse fa-3x icon-white"></i>
+                </div>
+            </div>
+        </div>
         <form id="editCaseForm" name="editCaseForm" role="form" submit.delegate="update(data['id'])">
             <input type="hidden" name="_token" value.bind="data['token']"]>
             <input type="hidden" id="id" value.bind="data['case']['id']" name="data[id]" >
@@ -198,11 +206,12 @@
         </form>
 
         <div id="fileSection">
-            <div class="loader loaderOverlay ${isLoading ? 'show' : 'hide'}">
+            <div class="loader fileloaderOverlay" show.bind="fileLoaderOverlay">
                 <div class="spinner">
                     <i class="fa fa-spinner fa-pulse fa-3x icon-white"></i>
                 </div>
             </div>
+            <div class="alert alert-success" role="alert" show.bind="fileSuccess">Uploaded Successfully!</div>
             <form id="fileUploadForm" name="fileUploadForm" role="form" submit.delegate="fileUpload()" accept-charset="UTF-8" enctype="multipart/form-data" method="post">
                 <require from="FileListToArrayValueConverter"></require>
                 <div class="panel panel-default">
@@ -210,7 +219,6 @@
                     <div class="panel-body">
                         <input type="hidden" id="id" value.bind="data[id]" name="data[id]" >
                         <div class="row">
-                            <div show.bind="fileSuccess">File Uploaded Successfully!</div>
                             <div class="fileError"></div>
                             <div class="col-sm-4">
                                 <input type="file" multiple files.bind="selectedFiles">

@@ -38,7 +38,9 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'jquery', 'datatabl
                 };
 
                 ViewOffenders.prototype.attached = function attached() {
-                    $('#offendersTable').dataTable();
+                    $('#offendersTable').dataTable({
+                        "scrollX": true
+                    });
                 };
 
                 return ViewOffenders;

@@ -16,6 +16,8 @@ export class ViewVictims {
     }
 
     attached() {
-        $('#victimsTable').dataTable();
+        $('#victimsTable').dataTable({
+            "scrollX": true
+        });
     }
 }

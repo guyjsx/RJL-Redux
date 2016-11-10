@@ -56,6 +56,9 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     this.selectedCaseClose = [];
                     this.selectedCaseManager = [];
 
+                    this.loaderOverlay = 0;
+                    this.fileLoaderOverlay = 0;
+                    this.caseSuccess = 0;
                     this.fileSuccess = 0;
                     this.noteSuccess = 0;
                     this.childIndex = 0;
@@ -70,8 +73,8 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                         _this.uploadedFiles = _this.data.files;
                         _this.notes = _this.data.notes;
 
-                        _this.data['caseClose'] = response.content.data.caseClose.toString();
-                        _this.data['user_id'] = response.content.data.user_id.toString();
+                        _this.data['caseClose'] = response.content.data.caseClose !== null ? response.content.data.caseClose.toString() : '';
+                        _this.data['user_id'] = response.content.data.user_id == null ? response.content.data.user_id.toString() : '';
 
                         if (_this.notes) {
                             for (var i = 0; i < _this.notes.length; i++) {
@@ -100,17 +103,29 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                 };
 
                 EditCase.prototype.update = function update(id) {
+                    this.loaderOverlay = 1;
+                    var self = this;
                     this.http.put('/api/cases/' + id, this.data).then(function (response) {
-                        window.location.reload(true);
+                        self.disableForm();
+                        self.loaderOverlay = 0;
+                        self.caseSuccess = 1;
+                        setTimeout(function () {
+                            self.caseSuccess = 0;
+                        }, 3000);
                     });
+                };
+
+                EditCase.prototype.disableForm = function disableForm() {
+                    $("input, textarea").attr('readonly', 'readonly');
+                    $("select").attr('disabled', 'disabled');
+                    $('.edit-button').addClass('show-button');
+                    $('.update-button').removeClass('show-button');
                 };
 
                 EditCase.prototype.edit = function edit() {
                     if (userObj.role !== "facilitator") {
-                        $("input[readonly], textarea[readonly]").removeAttr('readonly');
+                        $("input[readonly], textarea[readonly]").removeAttr('readonly', 'readonly');
                         $("select[disabled]").removeAttr('disabled');
-                        $('.editOverlay').remove();
-                        $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
                         $('.edit-button').removeClass('show-button');
                         $('.update-button').addClass('show-button');
                     }
@@ -121,7 +136,7 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     this.fileData.append('file', this.selectedFiles[0]);
                     var self = this;
 
-                    this.isLoading = 0;
+                    self.fileLoaderOverlay = 1;
 
                     $.ajax({
                         url: '/api/file-upload' + '?id=' + this.data.id,
@@ -135,10 +150,14 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                         processData: false,
                         contentType: false,
                         complete: function complete(result) {
-                            self.isLoading = 0;
+                            self.fileLoaderOverlay = 0;
                             self.fileSuccess = 1;
                             self.uploadedFiles.push(result.responseJSON.file);
                             $("form[name='fileUploadForm']").trigger('reset');
+
+                            setTimeout(function () {
+                                self.fileSuccess = 0;
+                            }, 3000);
                         }
                     });
 

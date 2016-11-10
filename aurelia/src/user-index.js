@@ -17,7 +17,8 @@ export class UserIndex {
     }
 
     attached() {
-        $('#userTable').dataTable( {
+        $('#userTable').dataTable({
+            "scrollX": true
         });
     }
 }

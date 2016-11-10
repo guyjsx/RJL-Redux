@@ -9,7 +9,7 @@ class Utility extends Model
     public static function getDateFieldKeys() {
 
         return array(
-            'dateOfBirth', 'dateOfReferral', 'dateClosed', 'courtDate', 'noteDate'
+            'dateOfBirth', 'dateOfReferral', 'dateClosed', 'courtDate', 'noteDate', 'dateOfCharge', 'preConferenceDate', 'conferenceDate', 'agreementEndDate'
         );
     }
 

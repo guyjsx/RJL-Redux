@@ -26,6 +26,9 @@ export class EditCase {
         this.selectedCaseClose = [];
         this.selectedCaseManager = [];
 
+        this.loaderOverlay = 0;
+        this.fileLoaderOverlay = 0;
+        this.caseSuccess = 0;
         this.fileSuccess = 0;
         this.noteSuccess = 0;
         this.childIndex = 0;
@@ -41,8 +44,8 @@ export class EditCase {
                 this.uploadedFiles = this.data.files;
                 this.notes = this.data.notes;
 
-                this.data['caseClose'] = response.content.data.caseClose.toString();
-                this.data['user_id'] = response.content.data.user_id.toString();
+                this.data['caseClose'] = response.content.data.caseClose !== null ? response.content.data.caseClose.toString() : '';
+                this.data['user_id'] = response.content.data.user_id == null ? response.content.data.user_id.toString() : '';
 
                 if (this.notes) {
                     for (var i=0; i < this.notes.length; i++) {
@@ -81,18 +84,30 @@ export class EditCase {
     }
 
     update(id) {
+        this.loaderOverlay = 1;
+        var self = this;
         this.http.put('/api/cases/' + id, this.data)
             .then(response => {
-                window.location.reload(true);
+                self.disableForm();
+                self.loaderOverlay = 0;
+                self.caseSuccess = 1;
+                setTimeout(function(){
+                    self.caseSuccess = 0;
+                }, 3000);
             });
+    }
+
+    disableForm() {
+        $("input, textarea").attr('readonly', 'readonly');
+        $("select").attr('disabled', 'disabled');
+        $('.edit-button').addClass('show-button');
+        $('.update-button').removeClass('show-button');
     }
 
     edit() {
         if (userObj.role !== "facilitator") {
-            $("input[readonly], textarea[readonly]").removeAttr('readonly');
+            $("input[readonly], textarea[readonly]").removeAttr('readonly', 'readonly');
             $("select[disabled]").removeAttr('disabled');
-            $('.editOverlay').remove();
-            $('.inputField, .select2-container').removeClass('showEditIcon').unbind('mouseenter mouseleave');
             $('.edit-button').removeClass('show-button');
             $('.update-button').addClass('show-button');
         }
@@ -103,7 +118,7 @@ export class EditCase {
         this.fileData.append('file', this.selectedFiles[0]);
         var self = this;
 
-        this.isLoading = 0;
+        self.fileLoaderOverlay = 1;
 
         $.ajax({
             url: '/api/file-upload' + '?id=' + this.data.id ,
@@ -118,10 +133,14 @@ export class EditCase {
             processData: false,
             contentType: false,
             complete: function(result) {
-                self.isLoading = 0;
+                self.fileLoaderOverlay = 0;
                 self.fileSuccess = 1;
                 self.uploadedFiles.push(result.responseJSON.file);
                 $("form[name='fileUploadForm']").trigger('reset');
+
+                setTimeout(function(){
+                    self.fileSuccess = 0;
+                }, 3000);
             }
         });
 

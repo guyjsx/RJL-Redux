@@ -38,7 +38,9 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'jquery', 'datatabl
                 };
 
                 UserIndex.prototype.attached = function attached() {
-                    $('#userTable').dataTable({});
+                    $('#userTable').dataTable({
+                        "scrollX": true
+                    });
                 };
 
                 return UserIndex;

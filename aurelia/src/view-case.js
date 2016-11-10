@@ -16,7 +16,11 @@ export class ViewCase {
     }
 
     attached() {
-        $('#openCasesTable').dataTable();
-        $('#closedCasesTable').dataTable();
+        $('#openCasesTable').dataTable({
+            "scrollX": true
+        });
+        $('#closedCasesTable').dataTable({
+            "scrollX": true
+        });
     }
 }

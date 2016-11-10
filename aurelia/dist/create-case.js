@@ -58,12 +58,6 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     });
                 };
 
-                CreateCase.prototype.resetFormValidator = function resetFormValidator() {
-                    $('#case').removeData('validator');
-                    $(formId).removeData('unobtrusiveValidation');
-                    $.validator.unobtrusive.parse(formId);
-                };
-
                 CreateCase.prototype.addVictim = function addVictim() {
                     this.newVictimFieldMapping = [];
                     this.newVictimFieldMapping = $.extend(true, {}, this.victimFieldMapping);
@@ -71,8 +65,6 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     this.victimFieldData.push(this.newVictimFieldMapping);
 
                     this.victimCount++;
-
-                    this.resetFormValidator();
                 };
 
                 CreateCase.prototype.removeVictim = function removeVictim(i) {
@@ -86,7 +78,6 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     this.offenderFieldData.push(this.newOffenderFieldMapping);
 
                     this.offenderCount++;
-                    this.resetFormValidator();
                 };
 
                 CreateCase.prototype.removeOffender = function removeOffender(i) {

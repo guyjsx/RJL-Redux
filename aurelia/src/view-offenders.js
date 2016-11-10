@@ -16,6 +16,8 @@ export class ViewOffenders {
     }
 
     attached() {
-        $('#offendersTable').dataTable();
+        $('#offendersTable').dataTable({
+            "scrollX": true
+        });
     }
 }
