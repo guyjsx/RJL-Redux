@@ -56,7 +56,7 @@ class Offender extends Model
                 )
             ),
             'streetAddress' => array(
-                'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => ""
+                'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => "", 'clearfix' => "true",
             ),
             'zipCode' => array(
                 'name' => 'zipCode', 'type' => 'input', 'namePretty' => 'Zip Code', 'value' => ""
