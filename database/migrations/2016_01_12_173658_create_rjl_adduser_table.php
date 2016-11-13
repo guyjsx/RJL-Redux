@@ -12,7 +12,7 @@ class CreateRjlAdduserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('RJL_AddUser', function(Blueprint $table)
+		Schema::create('rjl_adduser', function(Blueprint $table)
 		{
 			$table->string('firstName', 30);
 			$table->string('lastName', 30);
@@ -28,7 +28,7 @@ class CreateRjlAdduserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('RJL_AddUser');
+		Schema::drop('rjl_adduser');
 	}
 
 }

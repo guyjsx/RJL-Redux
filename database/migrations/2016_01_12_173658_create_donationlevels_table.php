@@ -12,7 +12,7 @@ class CreateDonationlevelsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('donationLevels', function(Blueprint $table)
+		Schema::create('donationlevels', function(Blueprint $table)
 		{
 			$table->integer('donationLevelID', true);
 			$table->string('donationLevelName', 50)->nullable();
@@ -27,7 +27,7 @@ class CreateDonationlevelsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('donationLevels');
+		Schema::drop('donationlevels');
 	}
 
 }

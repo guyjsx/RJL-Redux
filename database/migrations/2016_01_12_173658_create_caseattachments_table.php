@@ -12,7 +12,7 @@ class CreateCaseattachmentsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('caseAttachments', function(Blueprint $table)
+		Schema::create('caseattachments', function(Blueprint $table)
 		{
 			$table->integer('caseAttachmentID', true);
 			$table->string('caseAttachmentTypeName', 30)->nullable()->index('caseAttachmentTypeID');
@@ -28,7 +28,7 @@ class CreateCaseattachmentsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('caseAttachments');
+		Schema::drop('caseattachments');
 	}
 
 }

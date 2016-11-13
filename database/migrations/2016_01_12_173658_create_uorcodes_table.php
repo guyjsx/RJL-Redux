@@ -12,7 +12,7 @@ class CreateUorcodesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('uorCodes', function(Blueprint $table)
+		Schema::create('uorcodes', function(Blueprint $table)
 		{
 			$table->string('UORchargeNumber', 10)->primary();
 			$table->text('UORdescription', 65535)->nullable();
@@ -27,7 +27,7 @@ class CreateUorcodesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('uorCodes');
+		Schema::drop('uorcodes');
 	}
 
 }

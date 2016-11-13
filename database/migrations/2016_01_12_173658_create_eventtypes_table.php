@@ -12,7 +12,7 @@ class CreateEventtypesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('eventTypes', function(Blueprint $table)
+		Schema::create('eventtypes', function(Blueprint $table)
 		{
 			$table->integer('eventTypeID', true);
 			$table->string('eventTypeName', 50)->nullable();

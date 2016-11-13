@@ -12,7 +12,7 @@ class CreateVictimcontactsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('victimContacts', function(Blueprint $table)
+		Schema::create('victimcontacts', function(Blueprint $table)
 		{
 			$table->integer('contactID');
 			$table->string('victimID', 10)->index('fk_victim_victimID_victimContact');
@@ -28,7 +28,7 @@ class CreateVictimcontactsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('victimContacts');
+		Schema::drop('victimcontacts');
 	}
 
 }
