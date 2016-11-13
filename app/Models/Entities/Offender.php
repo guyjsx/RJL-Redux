@@ -55,9 +55,6 @@ class Offender extends Model
                     array('name' => 'Other/Mixed', 'value' => 'Other/Mixed')
                 )
             ),
-            'school' => array(
-                'name' => 'school', 'type' => 'input', 'namePretty' => 'School', 'value' => "", 'clearfix' => 'true'
-            ),
             'streetAddress' => array(
                 'name' => 'streetAddress', 'type' => 'input', 'namePretty' => 'Street Address', 'value' => ""
             ),
@@ -71,8 +68,11 @@ class Offender extends Model
                 'name' => 'state', 'type' => 'select', 'namePretty' => 'State', 'value' => "KY",
                 'options' => States::getStates()
             ),
+            'school' => array(
+                'name' => 'school', 'type' => 'input', 'namePretty' => 'School', 'value' => "",
+            ),
             'email' => array(
-                'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => ""
+                'name' => 'email', 'type' => 'input', 'namePretty' => 'Email', 'value' => "", 'clearfix' => 'true'
             ),
             'guardianOneFirstName' => array(
                 'name' => 'guardianOneFirstName', 'type' => 'input', 'namePretty' => 'Guardian One First Name', 'value' => "",'clearfix' => "true"
@@ -174,7 +174,7 @@ class Offender extends Model
                 ]
             ),
             'comments' => array(
-                'name' => 'comments', 'type' => 'textarea', 'namePretty' => 'Comments', 'value' => ""
+                'name' => 'comments', 'type' => 'textarea', 'namePretty' => 'Comments', 'value' => "", 'clearfix' => "true"
             )
         );
 
