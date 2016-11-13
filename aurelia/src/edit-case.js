@@ -33,6 +33,8 @@ export class EditCase {
         this.noteSuccess = 0;
         this.childIndex = 0;
         this.caseFieldData = [];
+        this.noteFieldData = [];
+        this.selectedNoteContactType = []
 
         this.offenderFieldData = [];
 
@@ -80,6 +82,10 @@ export class EditCase {
                 this.offenderFieldData = [
                     response.content.offenderFieldData
                 ]
+
+                this.noteFieldData = [
+                    response.content.noteFieldData
+                ];
             });
     }
 
@@ -201,6 +207,12 @@ export class EditCase {
                 noteDate: {
                     required: true,
                     dateFormat: true
+                },
+                noteContent: {
+                    required: true
+                },
+                noteContactType: {
+                    required: true
                 }
             },
             messages: {

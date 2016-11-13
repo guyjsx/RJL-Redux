@@ -59,7 +59,7 @@
 
             @if(Auth::user()->role !== "facilitator")
                 <div class="panel panel-default">
-                    <h2 class="text-centere">Closed Cases</h2>
+                    <h2 class="text-center">Closed Cases</h2>
                     <table id="closedCasesTable" class="table">
                         <thead>
                                 <tr>

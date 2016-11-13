@@ -31,9 +31,6 @@ class Victim extends Model
             'lastName' => array(
                 'name' => 'lastName', 'type' => 'input', 'namePretty' => 'Last Name', 'value' => ""
             ),
-            'age' => array(
-                'name' => 'age', 'type' => 'input', 'namePretty' => 'Age', 'value' => "",'clearfix' => 'true'
-            ),
             'dateOfBirth' => array(
                 'date'=> 'true', 'name' => 'dateOfBirth', 'type' => 'input', 'namePretty' => 'Date of Birth', 'value' => "",'placeholder' => 'MM/DD/YYYY'
             ),

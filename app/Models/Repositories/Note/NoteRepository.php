@@ -64,7 +64,6 @@ class NoteRepository implements NoteInterface
             $note = new Note(
                 array(
                     "noteDate" => $data["noteDate"],
-                    "noteContact" => $data["noteContact"],
                     "noteContactType" => $data["noteContactType"],
                     "noteContent" => $data["noteContent"],
                     "rj_case_id" => $data["id"],

@@ -1,4 +1,8 @@
+/.idea
 /vendor
+/blog
+/vampire
+/rjl
 /node_modules
 /uploads
 Homestead.yaml

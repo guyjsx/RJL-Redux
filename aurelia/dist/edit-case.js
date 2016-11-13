@@ -63,6 +63,8 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     this.noteSuccess = 0;
                     this.childIndex = 0;
                     this.caseFieldData = [];
+                    this.noteFieldData = [];
+                    this.selectedNoteContactType = [];
 
                     this.offenderFieldData = [];
 
@@ -99,6 +101,8 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                         _this.victimFieldData = [response.content.victimFieldData];
 
                         _this.offenderFieldData = [response.content.offenderFieldData];
+
+                        _this.noteFieldData = [response.content.noteFieldData];
                     });
                 };
 
@@ -212,6 +216,12 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                             noteDate: {
                                 required: true,
                                 dateFormat: true
+                            },
+                            noteContent: {
+                                required: true
+                            },
+                            noteContactType: {
+                                required: true
                             }
                         },
                         messages: {},

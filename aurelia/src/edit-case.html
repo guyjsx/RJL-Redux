@@ -239,7 +239,9 @@
                                         </td>
                                         <td>
                                             <a href="/uploads/${file.filename} " download><span class="btn btn-success">Download</span></a>
-                                            <a click.delegate="deleteFile(file.id, $index)"><span class="btn btn-danger">Delete</span></a>
+                                            <span if.bind="user.role !== 'facilitator'">
+                                                <a click.delegate="deleteFile(file.id, $index)"><span class="btn btn-danger">Delete</span></a>
+                                            </span>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -252,13 +254,13 @@
         </div>
 
         <div id="noteSection">
+            <div class="alert alert-success" role="alert" show.bind="noteSuccess">Note Added Successfully!</div>
             <form id="noteForm" name="noteForm" role="form" submit.delegate="addNote()" method="post">
                 <div class="panel panel-default">
                     <div class="panel-heading">Add Note</div>
                     <div class="panel-body">
                         <input type="hidden" type="text" value.bind="data[id]" name="data[id]">
                         <div class="row">
-                            <div show.bind="noteSuccess">Note Added Successfully!</div>
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -272,20 +274,19 @@
 
                                     <div class="col-sm-3">
                                         <div>
-                                            <label for="noteContact">Note Contact: </label>
+                                            <label for="noteContactType">Note Type: </label>
                                         </div>
-                                        <span class="inputField">
-                                            <input id="noteContact" value.bind="noteData.noteContact" name="noteContact">
-                                        </span>
-                                    </div>
 
-                                    <div class="col-sm-3">
-                                        <div>
-                                            <label for="noteContactType">Note Contact Type: </label>
+                                        <div repeat.for="item of noteFieldData">
+                                            <div repeat.for="prop of item | objectKeys">
+                                                <span class="inputField">
+                                                    <require from="ObjectKeysValueConverter"></require>
+                                                    <select name="noteContactType" id="noteContactType" value.bind="noteData.noteContactType">
+                                                        <option repeat.for="option of prop.options | objectKeys" value="${option.value}">${option.name}</option>
+                                                    </select>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <span class="inputField">
-                                            <input id="noteContactType" value.bind="noteData.noteContactType" name="noteContactType">
-                                        </span>
                                     </div>
                                 </div>
 
@@ -315,8 +316,7 @@
                             <tr>
                                 <th class="col-sm-2">Added By</th>
                                 <th class="col-sm-2">Note Date</th>
-                                <th class="col-sm-2">Contact Name</th>
-                                <th class="col-sm-2">Contact Type</th>
+                                <th class="col-sm-2">Note Type</th>
                                 <th>Note Contents</th>
                             </tr>
                             </thead>
@@ -330,13 +330,6 @@
                                     <div if.bind="user.role !== 'facilitator'">
                                         <a class="editableInput" data-index="${$index}" data-name="noteDate" data-date="true">${note.noteDate}</a>
                                         <input class="inlineEdit hide" name="noteDate" type="text" value="${note.noteDate}">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div if.bind="user.role == 'facilitator'">${note.noteContact}</div>
-                                    <div if.bind="user.role !== 'facilitator'">
-                                        <a class="editableInput" data-index="${$index}" data-name="noteContact">${note.noteContact}</a>
-                                        <input class="inlineEdit hide" name="noteContact" type="text" value="${note.noteContact}">
                                     </div>
                                 </td>
                                 <td>

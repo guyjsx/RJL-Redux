@@ -73,12 +73,21 @@ class RjCase extends Model
             'study' => array(
                 'name' => 'study', 'type' => 'input', 'namePretty' => 'Study', 'value' => "", 'placeholder' => ''
             ),
-            'referralSource' => array(
-                'name' => 'referralSource', 'type' => 'input', 'namePretty' => 'Referral Source', 'value' => "", 'placeholder' => ''
+            'caseType' => array(
+                'name' => 'caseType', 'type' => 'select', 'namePretty' => 'Case Type', 'value' => "", 'placeholder' => '',
+                'options' => array(
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Juvenile', 'value' => 'Juvenile'),
+                    array('name' => 'Adult', 'value' => 'Adult'),
+                )
             ),
-            'dateOfReferral' => array(
-                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
-                'date' => "true"
+            'referralSource' => array(
+                'name' => 'referralSource', 'type' => 'select', 'namePretty' => 'Referral Source', 'value' => "", 'placeholder' => '',
+                'options' => array(
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'CDW', 'value' => 'CDW'),
+                    array('name' => 'Court', 'value' => 'Court'),
+                )
             ),
             'dateOfCharge' => array(
                 'name' => 'dateOfCharge', 'type' => 'input', 'namePretty' => 'Date of Charge', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
@@ -89,18 +98,16 @@ class RjCase extends Model
                 'date' => "true"
 
             ),
-            'preConferenceDate' => array(
-                'name' => 'preConferenceDate', 'type' => 'input', 'namePretty' => 'Pre-Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+            'dateOfReferral' => array(
+                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
-
             ),
-            'conferenceDate' => array(
-                'name' => 'conferenceDate', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+            'dueDate' => array(
+                'name' => 'dueDate', 'type' => 'input', 'namePretty' => 'Due Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
-
             ),
-            'agreementEndDate' => array(
-                'name' => 'agreementEndDate', 'type' => 'input', 'namePretty' => 'Agreement End Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+            'finalConferenceDate' => array(
+                'name' => 'finalConferenceDate', 'type' => 'input', 'namePretty' => 'Final Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
 
             ),
@@ -136,7 +143,7 @@ class RjCase extends Model
                 'options' => array(
                     array('name' => 'Case has not been closed', 'value' => '1'),
                     array('name' => 'Case closed successfully', 'value' => '2'),
-                    array('name' => 'Identified victim could not be located', 'value' => '3'),
+                    array('name' => 'Offender did not participate', 'value' => '3'),
                     array('name' => 'No victim identified and representatives of the community could not be identified', 'value' => '4'),
                     array('name' => 'Identified victim did not respond to contact from RJL.', 'value' => '5'),
                     array('name' => 'Identified victim did not wish to participate in the conference process.', 'value' => '6'),
@@ -151,22 +158,24 @@ class RjCase extends Model
                     array('name' => 'Offender not available to participate', 'value' => '16')
                 )
             ),
-            'study' => array(
-                'name' => 'study', 'type' => 'input', 'namePretty' => 'Study', 'value' => "", 'placeholder' => ''
+            'caseType' => array(
+                'name' => 'caseType', 'type' => 'select', 'namePretty' => 'Case Type', 'value' => "", 'placeholder' => '',
+                'options' => array(
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Juvenile', 'value' => 'Juvenile'),
+                    array('name' => 'Adult', 'value' => 'Adult'),
+                )
             ),
             'referralSource' => array(
-                'name' => 'referralSource', 'type' => 'input', 'namePretty' => 'Referral Source', 'value' => "", 'placeholder' => ''
-            ),
-            'dateOfReferral' => array(
-                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
-                'date' => "true"
+                'name' => 'referralSource', 'type' => 'select', 'namePretty' => 'Referral Source', 'value' => "", 'placeholder' => '',
+                'options' => array(
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'CDW', 'value' => 'CDW'),
+                    array('name' => 'Court', 'value' => 'Court'),
+                )
             ),
             'dateOfCharge' => array(
                 'name' => 'dateOfCharge', 'type' => 'input', 'namePretty' => 'Date of Charge', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
-                'date' => "true"
-            ),
-            'dateClosed' => array(
-                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => null, 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
             ),
             'courtDate' => array(
@@ -174,20 +183,22 @@ class RjCase extends Model
                 'date' => "true"
 
             ),
-            'preConferenceDate' => array(
-                'name' => 'preConferenceDate', 'type' => 'input', 'namePretty' => 'Pre-Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+            'dateOfReferral' => array(
+                'name' => 'dateOfReferral', 'type' => 'input', 'namePretty' => 'Date of Referral', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
+            'dueDate' => array(
+                'name' => 'dueDate', 'type' => 'input', 'namePretty' => 'Due Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
+            'finalConferenceDate' => array(
+                'name' => 'finalConferenceDate', 'type' => 'input', 'namePretty' => 'Final Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
 
             ),
-            'conferenceDate' => array(
-                'name' => 'conferenceDate', 'type' => 'input', 'namePretty' => 'Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+            'dateClosed' => array(
+                'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => null, 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
-
-            ),
-            'agreementEndDate' => array(
-                'name' => 'agreementEndDate', 'type' => 'input', 'namePretty' => 'Agreement End Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
-                'date' => "true"
-
             ),
             'user_id' => array(
                 'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "", 'placeholder' => '',

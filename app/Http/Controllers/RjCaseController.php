@@ -6,6 +6,7 @@ use Entities\Charge;
 use Entities\Offender;
 use Entities\Victim;
 use Entities\FileUpload;
+use Entities\Note;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -202,6 +203,7 @@ class RjCaseController extends Controller
         $caseFieldData = RjCase::editCaseFieldData();
         $victimFieldData = Victim::fieldData();
         $offenderFieldData = Offender::fieldData();
+        $noteFieldData = Note::fieldData();
         $charges = $this->chargeService->getAllCharges()->toArray();
         $facilitators = $this->userService->getAllUsers()->toArray();
         $caseManagerData  = $this->userService->getAllUsers()->toArray();
@@ -222,6 +224,7 @@ class RjCaseController extends Controller
             'caseFieldData' => $caseFieldData,
             'victimFieldData' => $victimFieldData,
             'offenderFieldData' => $offenderFieldData,
+            'noteFieldData' => $noteFieldData,
             'chargesData' => $charges,
             'facilitatorData' => $facilitators
         ));
