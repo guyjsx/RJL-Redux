@@ -12,7 +12,7 @@ class CreateAccessrolesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('accessroles', function(Blueprint $table)
+		Schema::create('accessRoles', function(Blueprint $table)
 		{
 			$table->integer('accessRoleID', true);
 			$table->string('accessRoleName', 30)->nullable();
@@ -27,7 +27,7 @@ class CreateAccessrolesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('accessroles');
+		Schema::drop('accessRoles');
 	}
 
 }

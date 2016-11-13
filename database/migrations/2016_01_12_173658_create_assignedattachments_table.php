@@ -12,7 +12,7 @@ class CreateAssignedattachmentsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('assignedattachments', function(Blueprint $table)
+		Schema::create('assignedAttachments', function(Blueprint $table)
 		{
 			$table->string('assignedAttachmentID', 10)->primary();
 			$table->integer('caseAttachmentID')->nullable();
@@ -29,7 +29,7 @@ class CreateAssignedattachmentsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('assignedattachments');
+		Schema::drop('assignedAttachments');
 	}
 
 }

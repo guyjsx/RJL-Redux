@@ -12,7 +12,7 @@ class CreateVolunteeractivitiesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('volunteeractivities', function(Blueprint $table)
+		Schema::create('volunteerActivities', function(Blueprint $table)
 		{
 			$table->integer('volunteerID');
 			$table->integer('activityID')->index('FK_activityID');
@@ -28,7 +28,7 @@ class CreateVolunteeractivitiesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('volunteeractivities');
+		Schema::drop('volunteerActivities');
 	}
 
 }

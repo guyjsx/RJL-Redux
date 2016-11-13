@@ -12,7 +12,7 @@ class CreateCaseoffendersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('caseoffenders', function(Blueprint $table)
+		Schema::create('caseOffenders', function(Blueprint $table)
 		{
 			$table->string('caseID', 10);
 			$table->string('offenderID', 10)->index('fk_offender_offenderID_caseOffender');
@@ -28,7 +28,7 @@ class CreateCaseoffendersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('caseoffenders');
+		Schema::drop('caseOffenders');
 	}
 
 }
