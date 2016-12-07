@@ -45,7 +45,7 @@
 								</td>
 								<td>
 									@if( !empty($case['victims']))
-										{{ $case['victims'][0]['firstName'] }}
+										{{ $case['victims'][0]['lastName'] }}
 									@endif
 								</td>
 								<td>
@@ -102,7 +102,7 @@
                                     </td>
                                     <td>
                                         @if( !empty($case['victims']))
-                                            {{ $case['victims'][0]['firstName'] }}
+                                            {{ $case['victims'][0]['lastName'] }}
                                         @endif
                                     </td>
                                     <td>

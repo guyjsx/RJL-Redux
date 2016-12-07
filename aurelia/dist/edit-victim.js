@@ -124,7 +124,6 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                                 required: true
                             },
                             dateOfBirth: {
-                                required: true,
                                 dateFormat: true
                             },
                             streetAddress: {

@@ -281,6 +281,9 @@ table {
     #fileSection .fileloaderOverlay .icon-white {
       color: #EEEEEE; }
 
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+  color: #000000; }
+
 .caseStatusReportContainer {
   display: block;
   position: relative;

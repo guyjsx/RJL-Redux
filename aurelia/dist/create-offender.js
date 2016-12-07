@@ -78,60 +78,60 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     $("#offendersForm").validate({
                         onkeyup: false,
                         rules: (_rules = {
-                            caseId: {
-                                required: true,
-                                remote: {
-                                    url: "/api/cases/exists"
-                                }
+                            caseStatus: {
+                                required: true
                             },
-                            offenderId: {
+                            courtDate: {
                                 required: true,
-                                remote: {
-                                    url: "/api/offender/exists"
-                                }
-                            }
-                        }, _rules['offenderId'] = {
-                            required: true,
-                            remote: {
-                                url: "/api/offender/exists"
-                            }
-                        }, _rules.caseStatus = {
-                            required: true
-                        }, _rules.courtDate = {
-                            required: true,
-                            dateFormat: true
-                        }, _rules.charge = {
-                            required: true
-                        }, _rules.dateOfCharge = {
-                            required: true,
-                            dateFormat: true
-                        }, _rules.dateClosed = {
-                            dateFormat: true
-                        }, _rules.dateOfReferral = {
-                            required: true,
-                            dateFormat: true
-                        }, _rules.email = {
-                            email: true
-                        }, _rules.firstName = {
-                            required: true
-                        }, _rules.lastName = {
-                            required: true
-                        }, _rules.dateOfBirth = {
-                            required: true,
-                            dateFormat: true
-                        }, _rules.streetAddress = {
-                            required: true
-                        }, _rules.city = {
-                            required: true
-                        }, _rules.state = {
-                            states: true
-                        }, _rules.zipCode = {
-                            required: true
-                        }, _rules.phoneOne = {
-                            required: true
-                        }, _rules.phoneOneType = {
-                            required: true
-                        }, _rules.phoneTwo = {}, _rules['zipCode'] = {
+                                dateFormat: true
+                            },
+                            charge: {
+                                required: true
+                            },
+                            dateOfCharge: {
+                                required: true,
+                                dateFormat: true
+                            },
+                            dateClosed: {
+                                dateFormat: true
+                            },
+                            dateOfReferral: {
+                                required: true,
+                                dateFormat: true
+                            },
+                            email: {
+                                email: true
+                            },
+                            firstName: {
+                                required: true
+                            },
+                            lastName: {
+                                required: true
+                            },
+                            dateOfBirth: {
+                                required: true,
+                                dateFormat: true
+                            },
+                            streetAddress: {
+                                required: true
+                            },
+                            city: {
+                                required: true
+                            },
+                            state: {
+                                states: true
+                            },
+                            zipCode: {
+                                required: true
+                            },
+                            phoneOne: {
+                                required: true
+                            },
+                            phoneOneType: {
+                                required: true
+                            },
+                            phoneTwo: {}
+                        }, _rules['zipCode'] = {
                             required: true
                         }, _rules),
                         messages: (_messages = {

@@ -70,9 +70,6 @@ class RjCase extends Model
                     array('name' => 'Closed', 'value' => 'Closed')
                 )
             ),
-            'study' => array(
-                'name' => 'study', 'type' => 'input', 'namePretty' => 'Study', 'value' => "", 'placeholder' => ''
-            ),
             'caseType' => array(
                 'name' => 'caseType', 'type' => 'select', 'namePretty' => 'Case Type', 'value' => "", 'placeholder' => '',
                 'options' => array(

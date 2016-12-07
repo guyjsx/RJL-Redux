@@ -116,7 +116,6 @@ export class EditVictim {
                     required: true
                 },
                 dateOfBirth: {
-                    required: true,
                     dateFormat: true
                 },
                 streetAddress: {

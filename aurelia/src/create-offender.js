@@ -61,24 +61,6 @@ export class CreateCase {
         $("#offendersForm").validate({
             onkeyup: false,
             rules: {
-                caseId: {
-                    required: true,
-                    remote: {
-                        url: "/api/cases/exists"
-                    }
-                },
-                offenderId: {
-                    required: true,
-                    remote: {
-                        url: "/api/offender/exists"
-                    }
-                },
-                offenderId: {
-                    required: true,
-                    remote: {
-                        url: "/api/offender/exists"
-                    }
-                },
                 caseStatus: {
                     required: true
                 },

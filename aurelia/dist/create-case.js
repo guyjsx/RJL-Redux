@@ -122,18 +122,6 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                                     url: "/api/cases/exists"
                                 }
                             },
-                            victimId: {
-                                required: true,
-                                remote: {
-                                    url: "/api/victim/exists"
-                                }
-                            },
-                            offenderId: {
-                                required: true,
-                                remote: {
-                                    url: "/api/offender/exists"
-                                }
-                            },
                             caseStatus: {
                                 required: true
                             },
@@ -162,7 +150,6 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                                 required: true
                             },
                             dateOfBirth: {
-                                required: true,
                                 dateFormat: true
                             },
                             streetAddress: {

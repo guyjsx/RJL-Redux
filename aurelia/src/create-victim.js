@@ -61,24 +61,6 @@ export class CreateCase {
         $("#victimsForm").validate({
             onkeyup: false,
             rules: {
-                caseId: {
-                    required: true,
-                    remote: {
-                        url: "/api/cases/exists"
-                    }
-                },
-                victimId: {
-                    required: true,
-                    remote: {
-                        url: "/api/victim/exists"
-                    }
-                },
-                offenderId: {
-                    required: true,
-                    remote: {
-                        url: "/api/offender/exists"
-                    }
-                },
                 caseStatus: {
                     required: true
                 },
@@ -110,7 +92,6 @@ export class CreateCase {
                     required: true
                 },
                 dateOfBirth: {
-                    required: true,
                     dateFormat: true
                 },
                 streetAddress: {
