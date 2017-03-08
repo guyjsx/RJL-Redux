@@ -34,7 +34,7 @@ System.register(['aurelia-framework', 'aurelia-http-client'], function (_export,
                 }
 
                 Admin.prototype.configureRouter = function configureRouter(config, router) {
-                    config.map([{ route: [""], name: "admin-facilitator-assign", moduleId: 'admin-facilitator-assign', nav: true, title: 'Facilitator Assignments' }]);
+                    config.map([{ route: [""], name: "admin-facilitator-assign", moduleId: 'admin-facilitator-assign', nav: true, title: 'Facilitator Assignments' }, { route: ["/reports"], name: "admin-reports", moduleId: 'admin-reports', nav: true, title: 'Reports' }]);
 
                     this.router = router;
                 };

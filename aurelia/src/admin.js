@@ -19,7 +19,8 @@ export class Admin {
 
     configureRouter(config, router) {
         config.map([
-            { route: [""], name: "admin-facilitator-assign", moduleId: 'admin-facilitator-assign', nav: true, title:'Facilitator Assignments' }
+            { route: [""], name: "admin-facilitator-assign", moduleId: 'admin-facilitator-assign', nav: true, title:'Facilitator Assignments' },
+            { route: ["/reports"], name: "admin-reports", moduleId: 'admin-reports', nav: true, title:'Reports' }
         ]);
 
         this.router = router;

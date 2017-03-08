@@ -1,0 +1,12 @@
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col {
+  flex: 1;
+  margin-right: 10px;
+  flex-basis: auto;
+  max-width: 700px;
+}

@@ -53,5 +53,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/api/charge', 'ChargeController');
     Route::resource('/api/file-upload', 'FileUploadController');
     Route::resource('/api/note', 'NoteController');
+
+    // Report routes
+    Route::get('/api/reports/index', 'ReportController@index');
+    Route::post('/api/reports/get-cases-with-filters', 'ReportController@processReport');
+
 });
 
