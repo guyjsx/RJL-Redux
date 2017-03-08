@@ -313,6 +313,8 @@ System.config({
       "ObjectValuesValueConverter.js",
       "admin-facilitator-assign.html!github:systemjs/plugin-text@0.0.8.js",
       "admin-facilitator-assign.js",
+      "admin-reports.html!github:systemjs/plugin-text@0.0.8.js",
+      "admin-reports.js",
       "admin.html!github:systemjs/plugin-text@0.0.8.js",
       "admin.js",
       "app.html!github:systemjs/plugin-text@0.0.8.js",
@@ -370,6 +372,10 @@ System.config({
       "aurelia-http-client",
       "jquery",
       "datatables"
+    ],
+    "admin-reports.js": [
+      "aurelia-framework",
+      "aurelia-http-client"
     ],
     "admin.js": [
       "aurelia-framework",
