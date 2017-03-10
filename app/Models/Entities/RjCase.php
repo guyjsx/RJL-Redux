@@ -103,6 +103,10 @@ class RjCase extends Model
                 'name' => 'dueDate', 'type' => 'input', 'namePretty' => 'Due Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
             ),
+            'preConferenceDate' => array(
+                'name' => 'preConferenceDate', 'type' => 'input', 'namePretty' => 'Pre-Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
             'finalConferenceDate' => array(
                 'name' => 'finalConferenceDate', 'type' => 'input', 'namePretty' => 'Final Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
@@ -188,10 +192,13 @@ class RjCase extends Model
                 'name' => 'dueDate', 'type' => 'input', 'namePretty' => 'Due Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
             ),
+            'preConferenceDate' => array(
+                'name' => 'preConferenceDate', 'type' => 'input', 'namePretty' => 'Pre-Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
+                'date' => "true"
+            ),
             'finalConferenceDate' => array(
                 'name' => 'finalConferenceDate', 'type' => 'input', 'namePretty' => 'Final Conference Date', 'value' => "", 'placeholder' => 'MM/DD/YYYY',
                 'date' => "true"
-
             ),
             'dateClosed' => array(
                 'name' => 'dateClosed', 'type' => 'input', 'namePretty' => 'Closed Date', 'value' => null, 'placeholder' => 'MM/DD/YYYY',
