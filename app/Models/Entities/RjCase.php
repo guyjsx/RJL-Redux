@@ -113,7 +113,7 @@ class RjCase extends Model
 
             ),
             'user_id' => array(
-                'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "", 'placeholder' => '',
+                'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "73", 'placeholder' => '',
                 'options' => array()
             ),
             'caseDescription' => array(
@@ -205,7 +205,7 @@ class RjCase extends Model
                 'date' => "true"
             ),
             'user_id' => array(
-                'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => "", 'placeholder' => '',
+                'name' => 'user_id', 'type' => 'select', 'namePretty' => 'Case Manager', 'value' => 73, 'placeholder' => '',
                 'options' => array()
             ),
             'caseDescription' => array(

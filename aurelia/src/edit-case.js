@@ -47,7 +47,7 @@ export class EditCase {
                 this.notes = this.data.notes;
 
                 this.data['caseClose'] = response.content.data.caseClose !== null ? response.content.data.caseClose.toString() : '';
-                this.data['user_id'] = response.content.data.user_id == null ? response.content.data.user_id.toString() : '';
+                this.data['user_id'] = response.content.data.user_id !== null ? response.content.data.user_id.toString() : '';
 
                 if (this.notes) {
                     for (var i=0; i < this.notes.length; i++) {
@@ -104,8 +104,8 @@ export class EditCase {
     }
 
     disableForm() {
-        $("input, textarea").attr('readonly', 'readonly');
-        $("select").attr('disabled', 'disabled');
+        $("#editCaseForm input, #editCaseForm textarea").attr('readonly', 'readonly');
+        $("#editCaseForm select").attr('disabled', 'disabled');
         $('.edit-button').addClass('show-button');
         $('.update-button').removeClass('show-button');
     }
