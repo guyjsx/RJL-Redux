@@ -76,7 +76,7 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                         _this.notes = _this.data.notes;
 
                         _this.data['caseClose'] = response.content.data.caseClose !== null ? response.content.data.caseClose.toString() : '';
-                        _this.data['user_id'] = response.content.data.user_id !== null ? response.content.data.user_id.toString() : '';
+                        _this.data['user_id'] = response.content.data.user_id == null ? response.content.data.user_id.toString() : '';
 
                         if (_this.notes) {
                             for (var i = 0; i < _this.notes.length; i++) {
@@ -120,8 +120,8 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                 };
 
                 EditCase.prototype.disableForm = function disableForm() {
-                    $("#editCaseForm input, #editCaseForm textarea").attr('readonly', 'readonly');
-                    $("#editCaseForm select").attr('disabled', 'disabled');
+                    $("input, textarea").attr('readonly', 'readonly');
+                    $("select").attr('disabled', 'disabled');
                     $('.edit-button').addClass('show-button');
                     $('.update-button').removeClass('show-button');
                 };
