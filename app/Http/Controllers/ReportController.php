@@ -108,16 +108,17 @@ class ReportController extends Controller
             }
 
             if (isset($data['notes'])) {
-                foreach ($data['notes'] as $fields) {
-                    foreach ($fields as $fieldName => $fieldValue) {
+                $lastNoteFields = end($data['notes']);
+
+                if (isset($lastNoteFields) && is_array($lastNoteFields)) {
+                    foreach ($lastNoteFields as $fieldName => $fieldValue) {
                         if ($fieldName !== "pivot" && $fieldName !== "rj_case_id") {
                             $cases[$index][$fieldName] = $fieldValue;
                         }
                     }
-                    break;
                 }
-                unset($cases[$index]['notes']);
 
+                unset($cases[$index]['notes']);
             }
 
             if (isset($data['users'])) {

@@ -7,7 +7,7 @@ class Report
     public static function getAdultCaseStatusReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate'),
+            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate', 'caseClose'),
             'additionalFilters' => array(
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
@@ -23,7 +23,7 @@ class Report
     public static function getJuvenileCaseStatusReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate'),
+            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate', 'caseClose'),
             'additionalFilters' => array(
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
@@ -40,7 +40,7 @@ class Report
     public static function getCdwReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseId', 'caseStatus', 'referralSource', 'courtDate', 'dueDate'),
+            'fields' => array('id', 'caseId', 'caseStatus', 'referralSource', 'courtDate', 'dueDate', 'caseClose'),
             'additionalFilters' => array(
                 array('filterType' => 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
                 array('filterType' => 'text', 'filterName' => 'referralSource', 'filterOperation' => '=', 'filterValue' => 'CDW')
@@ -100,7 +100,7 @@ class Report
     public static function getUserActiveCasesReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseId', 'caseStatus', 'caseType'),
+            'fields' => array('id', 'caseId', 'caseStatus', 'caseType', 'caseClose'),
             'additionalFilters' => array(
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
@@ -128,7 +128,7 @@ class Report
     public static function getDefaultReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseId', 'caseStatus', 'dateOfReferral', 'courtDate', 'dateOfCharge', 'caseDescription', 'dateClosed', 'referralSource', 'caseType', 'finalConferenceDate', 'dueDate'),
+            'fields' => array('id', 'caseId', 'caseStatus', 'dateOfReferral', 'courtDate', 'dateOfCharge', 'caseDescription', 'dateClosed', 'referralSource', 'caseType', 'finalConferenceDate', 'dueDate', 'caseClose'),
             'additionalFilters' => array(
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
