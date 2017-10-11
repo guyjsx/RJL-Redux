@@ -16,7 +16,7 @@ class Offender extends Model
      */
     public function rjCases()
     {
-        return $this->belongsToMany('Entities\RjCase',  'offenders_rj_cases', 'rj_case_id','offender_id');
+        return $this->belongsToMany('Entities\RjCase',  'offenders_rj_cases', 'offender_id', 'rj_case_id');
     }
 
     public static function fieldData() {
