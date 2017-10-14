@@ -135,6 +135,23 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     }
                 };
 
+                EditCase.prototype.showDeleteModal = function showDeleteModal() {
+                    $('#deleteModal').modal('show');
+                };
+
+                EditCase.prototype.delete = function _delete(id) {
+                    var _this2 = this;
+
+                    this.loaderOverlay = 1;
+                    var self = this;
+                    this.http.delete('/api/cases/' + id).then(function (response) {
+                        self.loaderOverlay = 0;
+                        $('#deleteModal').modal('hide');
+
+                        _this2.router.navigateToRoute('cases');
+                    });
+                };
+
                 EditCase.prototype.fileUpload = function fileUpload() {
                     this.fileData = new FormData();
                     this.fileData.append('file', this.selectedFiles[0]);
@@ -173,14 +190,14 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                 };
 
                 EditCase.prototype.addNote = function addNote(id) {
-                    var _this2 = this;
+                    var _this3 = this;
 
                     this.http.post('/api/note' + '?id=' + id, this.noteData).then(function (response) {
                         console.log(response);
-                        _this2.showNoteSuccess();
+                        _this3.showNoteSuccess();
                         response.content.note.noteDate = moment(response.content.note.noteDate).format('L');
 
-                        _this2.notes.push(response.content.note);
+                        _this3.notes.push(response.content.note);
                     });
                 };
 
@@ -334,7 +351,7 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                         var id = self.notes[index].id;
 
                         $($input).keydown(function (e) {
-                            var _this3 = this;
+                            var _this4 = this;
 
                             if (e.which == 27) {
                                 $(this).addClass("hide");
@@ -351,11 +368,11 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
 
                                     $.ajax({
                                         url: "/api/note/" + id,
-                                        context: _this3,
+                                        context: _this4,
                                         method: "PUT",
                                         data: {
                                             'name': name,
-                                            'value': _this3.value
+                                            'value': _this4.value
                                         },
                                         dataType: "json",
                                         beforeSend: function beforeSend(request) {

@@ -181,6 +181,23 @@ System.register(['aurelia-framework', 'aurelia-http-client', 'aurelia-router', '
                     this.setupVictimValidation();
                 };
 
+                EditVictim.prototype.showDeleteModal = function showDeleteModal() {
+                    $('#deleteModal').modal('show');
+                };
+
+                EditVictim.prototype.delete = function _delete(id) {
+                    var _this2 = this;
+
+                    this.loaderOverlay = 1;
+                    var self = this;
+                    this.http.delete('/api/victim/' + id).then(function (response) {
+                        self.loaderOverlay = 0;
+                        $('#deleteModal').modal('hide');
+
+                        _this2.router.navigateToRoute('victims');
+                    });
+                };
+
                 return EditVictim;
             }()) || _class));
 

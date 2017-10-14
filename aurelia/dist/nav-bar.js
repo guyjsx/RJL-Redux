@@ -32,7 +32,7 @@ System.register(["aurelia-router"], function (_export, _context) {
 
                     if (typeof userObj !== "undefined") {
                         if (userObj.role == "admin" || userObj.role == "caseadmin") {
-                            var routerMap = [{ route: ['cases/'], moduleId: 'cases', nav: false, title: 'Cases' }, { route: ['victim/'], moduleId: 'victims', nav: false, title: 'Victims' }, { route: ['offender/'], moduleId: 'offenders', nav: false, title: 'Offenders' }, { route: ['users/'], moduleId: 'users', nav: false, title: 'Users' }, { route: ['admin/'], moduleId: 'admin', nav: false, title: 'Admin' }];
+                            var routerMap = [{ route: ['cases/'], name: 'cases', moduleId: 'cases', nav: false, title: 'Cases' }, { route: ['victim/'], name: 'victims', moduleId: 'victims', nav: false, title: 'Victims' }, { route: ['offender/'], name: 'offenders', moduleId: 'offenders', nav: false, title: 'Offenders' }, { route: ['users/'], moduleId: 'users', nav: false, title: 'Users' }, { route: ['admin/'], moduleId: 'admin', nav: false, title: 'Admin' }];
                         } else if (userObj.role !== "facilitator") {
                             var routerMap = [{ route: ['cases/'], moduleId: 'cases', nav: false, title: 'Cases' }, { route: ['victim/'], moduleId: 'victims', nav: false, title: 'Victims' }, { route: ['offender/'], moduleId: 'offenders', nav: false, title: 'Offenders' }, { route: ['users/'], moduleId: 'users', nav: false, title: 'Users' }];
                         } else if (userObj.role == "facilitator") {
