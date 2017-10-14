@@ -13,7 +13,7 @@
                                 <span class="submitContainer float-right">
                                     <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-success edit-button show-button" click.delegate="edit()">Edit Offender</button>
                                     <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-danger update-button" type="submit">Update Offender</button>
-                                    <button if.bind="user.role !== 'admin' || user.role !== 'caseadmin'" class="btn btn-default btn-danger edit-button show-button" click.delegate="showDeleteModal()">Delete</button>
+                                    <button if.bind="user.role === 'admin' || user.role === 'caseadmin'" class="btn btn-default btn-danger edit-button show-button" click.delegate="showDeleteModal()">Delete</button>
                                 </span>
                             </div>
                         </div>
