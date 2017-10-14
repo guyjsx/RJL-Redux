@@ -174,4 +174,21 @@ export class EditOffender {
         this.parseDates();
         this.setupOffenderValidation();
     }
+
+    showDeleteModal() {
+        $('#deleteModal').modal('show');
+    }
+
+    delete(id) {
+
+        this.loaderOverlay = 1;
+        var self = this;
+        this.http.delete('/api/offender/' + id)
+            .then(response => {
+                self.loaderOverlay = 0;
+                $('#deleteModal').modal('hide');
+
+                this.router.navigateToRoute('offenders');
+            });
+    }
 }

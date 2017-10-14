@@ -177,7 +177,21 @@ class VictimController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (isset($id)) {
+            $victim = Victim::find($id);
+
+            if (isset($victim)) {
+
+                $victim->rjCases()->detach();
+                $victim->delete();
+
+                return;
+            }
+
+            return;
+        }
+
+        return;
     }
 
     public function checkIfExists(Request $request) {

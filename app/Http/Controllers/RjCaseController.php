@@ -340,7 +340,26 @@ class RjCaseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (isset($id)) {
+            $case = RjCase::find($id);
+
+            if (isset($case)) {
+
+                $case->victims()->detach();
+                $case->offenders()->detach();
+                $case->charges()->detach();
+                $case->users()->detach();
+                $case->files()->delete();
+                $case->notes()->delete();
+                $case->delete();
+
+                return;
+            }
+
+            return;
+        }
+
+        return;
     }
 
     public function checkIfExists(Request $request) {

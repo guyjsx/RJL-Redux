@@ -13,6 +13,7 @@
                                 <span class="submitContainer float-right">
                                     <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-success edit-button show-button" click.delegate="edit()">Edit Victim</button>
                                     <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-danger update-button" type="submit">Update Victim</button>
+                                    <button if.bind="user.role !== 'admin' || user.role !== 'caseadmin'" class="btn btn-default btn-danger edit-button show-button" click.delegate="showDeleteModal()">Delete</button>
                                 </span>
                             </div>
                         </div>
@@ -82,5 +83,25 @@
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteModalLabel">Delete Victim</h4>
+                </div>
+                <div class="modal-body">
+                    <h1>Are you sure you want to delete this victim?</h1>
+                    <div class="text-center">
+                        <button class="btn btn-default btn-danger" click.delegate="delete(data['id'])">Delete</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

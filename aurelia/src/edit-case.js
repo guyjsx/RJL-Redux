@@ -119,6 +119,23 @@ export class EditCase {
         }
     }
 
+    showDeleteModal() {
+        $('#deleteModal').modal('show');
+    }
+
+    delete(id) {
+
+        this.loaderOverlay = 1;
+        var self = this;
+        this.http.delete('/api/cases/' + id)
+            .then(response => {
+                self.loaderOverlay = 0;
+                $('#deleteModal').modal('hide');
+
+                this.router.navigateToRoute('cases');
+            });
+    }
+
     fileUpload() {
         this.fileData = new FormData();
         this.fileData.append('file', this.selectedFiles[0]);

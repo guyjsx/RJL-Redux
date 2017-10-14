@@ -9,7 +9,7 @@
             </div>
         </div>
         <form id="editCaseForm" name="editCaseForm" role="form" submit.delegate="update(data['id'])">
-            <input type="hidden" name="_token" value.bind="data['token']"]>
+            <input type="hidden" name="_token" value.bind="data['token']">
             <input type="hidden" id="id" value.bind="data['case']['id']" name="data[id]" >
             <div class="row">
                 <div class="col-sm-12">
@@ -20,6 +20,7 @@
                                 <span class="submitContainer float-right">
                                     <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-success edit-button show-button" click.delegate="edit()">Edit Case</button>
                                     <button if.bind="user.role !== 'facilitator'" class="btn  btn-default btn-danger update-button" type="submit">Update Case</button>
+                                    <button if.bind="user.role !== 'admin' || user.role !== 'caseadmin'" class="btn btn-default btn-danger edit-button show-button" click.delegate="showDeleteModal()">Delete</button>
                                 </span>
                             </div>
                         </div>
@@ -350,6 +351,28 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteModalLabel">Delete Case</h4>
+                </div>
+                <div class="modal-body">
+                    <h1>Are you sure you want to delete this case?</h1>
+                    <p>This will also delete any notes and files attached to the case. Victims and Offenders will no longer be assigned to the case, but not deleted</p>
+                    <p>To delete a Victim or Offender, navigate to the Edit page for that specific person.</p>
+                    <div class="text-center">
+                        <button class="btn btn-default btn-danger" click.delegate="delete(data['id'])">Delete</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>

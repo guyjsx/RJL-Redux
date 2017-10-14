@@ -174,7 +174,21 @@ class OffenderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (isset($id)) {
+            $offender = Offender::find($id);
+            
+            if (isset($offender)) {
+
+                $offender->rjCases()->detach();
+                $offender->delete();
+
+                return;
+            }
+
+            return;
+        }
+
+        return;
     }
 
     public function checkIfExists(Request $request) {

@@ -176,4 +176,21 @@ export class EditVictim {
         this.parseDates();
         this.setupVictimValidation();
     }
+
+    showDeleteModal() {
+        $('#deleteModal').modal('show');
+    }
+
+    delete(id) {
+
+        this.loaderOverlay = 1;
+        var self = this;
+        this.http.delete('/api/victim/' + id)
+            .then(response => {
+                self.loaderOverlay = 0;
+                $('#deleteModal').modal('hide');
+
+                this.router.navigateToRoute('victims');
+            });
+    }
 }
