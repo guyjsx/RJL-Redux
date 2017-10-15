@@ -380,6 +380,7 @@ class RjCaseController extends Controller
         $mapping = array(
             'Yes' => 1,
             'No' => 0,
+            '' => 0
         );
 
         if (isset($mapping[$a['participating']])) {
