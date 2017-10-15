@@ -68,47 +68,55 @@ class ReportController extends Controller
                 unset($cases[$index]['id']);
             }
 
+            $cases[$index]['Victims'] = '';
+
             if (isset($data['victims'])) {
                 foreach ($data['victims'] as $fields) {
-                    $childIndex = 0;
                     foreach ($fields as $fieldName => $fieldValue) {
-                        if ($fieldName !== "pivot" && $fieldName !== "id") {
-                            $newFieldName = 'Victim ' . ($childIndex + 1) . ' ' . ucfirst($fieldName);
-                            $cases[$index][$newFieldName] = $fieldValue;
-                        }
+                        $cases[$index]['Victims'] =  isset($cases[$index]['Victims']) ? $cases[$index]['Victims'] . ' ' . $fieldValue : $fieldValue;
                     }
+
+                    $cases[$index]['Victims'] = $cases[$index]['Victims'] . ' | ';
                 }
                 unset($cases[$index]['victims']);
             }
 
+            $cases[$index]['Offenders'] = '';
+
             if (isset($data['offenders'])) {
                 foreach ($data['offenders'] as $fields) {
-                    $childIndex = 0;
                     foreach ($fields as $fieldName => $fieldValue) {
                         if ($fieldName !== "pivot" && $fieldName !== "id") {
-                            $newFieldName = 'Offender ' . ($childIndex + 1) . ' ' . ucfirst($fieldName);
-                            $cases[$index][$newFieldName] = $fieldValue;
+                            $cases[$index]['Offenders'] = isset($cases[$index]['Offenders']) ? $cases[$index]['Offenders'] . ' ' . $fieldValue : $fieldValue;
                         }
                     }
+
+                    $cases[$index]['Offenders'] = $cases[$index]['Offenders'] . ' | ';
                 }
                 unset($cases[$index]['offenders']);
             }
 
+            $cases[$index]['Charges'] = '';
+
             if (isset($data['charges'])) {
                 foreach ($data['charges'] as $fields) {
-                    $childIndex = 0;
                     foreach ($fields as $fieldName => $fieldValue) {
                         if ($fieldName !== "pivot" && $fieldName !== "id") {
-                            $newFieldName = substr(ucfirst($fieldName), 0, -1) . ' ' . ($childIndex + 1);
-                            $cases[$index][$newFieldName] = $fieldValue;
+                            $cases[$index]['Charges'] = isset($cases[$index]['Charges']) ? $cases[$index]['Charges'] . ' ' . $fieldValue : $fieldValue;
                         }
                     }
+
+                    $cases[$index]['Charges'] = $cases[$index]['Charges'] . ' | ';
                 }
                 unset($cases[$index]['charges']);
             }
 
+            $cases[$index]['Note Date'] = '';
+            $cases[$index]['Note Content'] = '';
+            $cases[$index]['Note Contact Type'] = '';
+
             if (isset($data['notes'])) {
-                $lastNoteFields = end($data['notes']);
+                $lastNoteFields = isset($data['notes'][0]) ? $data['notes'][0] : null;
 
                 if (isset($lastNoteFields) && is_array($lastNoteFields)) {
                     foreach ($lastNoteFields as $fieldName => $fieldValue) {
@@ -121,14 +129,17 @@ class ReportController extends Controller
                 unset($cases[$index]['notes']);
             }
 
+            $cases[$index]['Facilitators'] = '';
+
             if (isset($data['users'])) {
                 foreach ($data['users'] as $fields) {
                     foreach ($fields as $fieldName => $fieldValue) {
-                        if ($fieldName !== "pivot" && $fieldName !== "rj_case_id") {
-                            $cases[$index][$fieldName] = $fieldValue;
+                        if ($fieldName !== "pivot" && $fieldName !== "id") {
+                            $cases[$index]['Facilitators'] = isset($cases[$index]['Facilitators']) ? $cases[$index]['Facilitators'] . ' ' . $fieldValue : $fieldValue;
                         }
                     }
-                    break;
+
+                    $cases[$index]['Facilitators'] = $cases[$index]['Facilitators'] . ' | ';
                 }
                 unset($cases[$index]['users']);
 

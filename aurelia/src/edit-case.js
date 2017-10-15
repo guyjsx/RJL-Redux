@@ -94,12 +94,7 @@ export class EditCase {
         var self = this;
         this.http.put('/api/cases/' + id, this.data)
             .then(response => {
-                self.disableForm();
-                self.loaderOverlay = 0;
-                self.caseSuccess = 1;
-                setTimeout(function(){
-                    self.caseSuccess = 0;
-                }, 3000);
+                window.location.reload(true);
             });
     }
 

@@ -7,7 +7,7 @@ class Report
     public static function getAdultCaseStatusReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate', 'caseClose'),
+            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate', 'caseClose', 'dueDate'),
             'additionalFilters' => array(
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
@@ -15,6 +15,10 @@ class Report
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
             ), 'notes' => array(
                 'fields' => array('rj_case_id', 'noteDate', 'noteContactType', 'noteContent')
+            ), 'charges' => array(
+                'fields' =>  array('id', 'charges')
+            ), 'users' => array(
+                'fields' =>  array('id', 'name')
             )),
             'userName' => $data['userName']
         );
@@ -23,7 +27,7 @@ class Report
     public static function getJuvenileCaseStatusReportMapping($data, $parsedDateRange = array()) {
 
         return array(
-            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate', 'caseClose'),
+            'fields' => array('id', 'caseStatus', 'caseType','caseId', 'referralSource', 'courtDate', 'dateOfReferral', 'finalConferenceDate', 'preConferenceDate', 'caseClose', 'dueDate'),
             'additionalFilters' => array(
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
@@ -31,6 +35,10 @@ class Report
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
             ), 'notes' => array(
                 'fields' => array('rj_case_id', 'noteDate', 'noteContactType', 'noteContent')
+            ), 'charges' => array(
+                'fields' =>  array('id', 'charges')
+            ), 'users' => array(
+                'fields' =>  array('id', 'name')
             )),
             'userName' => $data['userName']
         );
@@ -49,6 +57,8 @@ class Report
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
             ), 'notes' => array(
                 'fields' => array('rj_case_id', 'noteDate', 'noteContactType', 'noteContent')
+            ), 'charges' => array(
+                'fields' =>  array('id', 'charges')
             )),
             'userName' => $data['userName']
         );
@@ -75,7 +85,7 @@ class Report
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
             'relatedObjects' => array('offenders' => array(
-                'fields' => array('id', 'offenderId', 'firstName', 'lastName', 'gender', 'race', 'zipCode')
+                'fields' => array('id', 'offenderId', 'firstName', 'lastName', 'dateOfBirth', 'gender', 'race', 'zipCode')
             ), 'charges' => array(
                 'fields' =>  array('id', 'charges')
             )),
@@ -92,6 +102,8 @@ class Report
             ),
             'relatedObjects' => array('offenders' => array(
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
+            ),'users' => array(
+            'fields' =>  array('id', 'name')
             )),
             'userName' => $data['userName']
         );
@@ -106,6 +118,8 @@ class Report
             ),
             'relatedObjects' => array('offenders' => array(
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
+            ),'users' => array(
+                'fields' =>  array('id', 'name')
             )),
             'userName' => $data['userName']
         );
@@ -162,7 +176,12 @@ class Report
             array('name' => 'No victim available with which to work', 'value' => '13'),
             array('name' => 'Case closed unsuccessfully', 'value' => '14'),
             array('name' => 'Offender did not complete agreement.', 'value' => '15'),
-            array('name' => 'Offender not available to participate', 'value' => '16')
+            array('name' => 'Offender not available to participate', 'value' => '16'),
+            array('name' => 'Victim did not participate', 'value' => '17'),
+            array('name' => 'Offender did not participate', 'value' => '18'),
+            array('name' => 'Victim could not be located/did not respond to contact', 'value' => '19'),
+            array('name' => 'Offender could not be located/did not respond to contact', 'value' => '20'),
+            array('name' => 'Victim did not wish to participate or prosecute the case', 'value' => '21'),
         );
     }
 }

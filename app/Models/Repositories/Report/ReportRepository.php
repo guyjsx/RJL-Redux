@@ -71,6 +71,13 @@ class ReportRepository implements ReportInterface
             }]);
         }
 
+        if (isset($relatedObjects['users'])) {
+            $cases->with(['users' => function($query) use ($relatedObjects) {
+                $formattedHeaderFields = isset($relatedObjects['users']['fields']) ? $relatedObjects['users']['fields'] : array();
+                $query->addSelect(DB::raw($this->formatFieldsToHeaderNames($formattedHeaderFields)));
+            }]);
+        }
+
         // add case status filter
         if ($statusFilter == "all") {
             $cases->where(function($query) {
@@ -117,10 +124,6 @@ class ReportRepository implements ReportInterface
 
         //add user filter
         if (isset($userName) && !empty($userName)) {
-            $cases->with(['users' => function($query) {
-                $query->addSelect(DB::raw("rj_case_id, username as 'Username'"));
-            }]);
-
             $casesArr = $cases->whereHas('users', function($query) use ($userName) {
                 $query->where('username', $userName);
             })->get()->toArray();

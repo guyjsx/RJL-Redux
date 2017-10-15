@@ -209,6 +209,10 @@ class RjCaseController extends Controller
         $caseManagerData  = $this->userService->getAllUsers()->toArray();
         $caseManagerList = array();
 
+        if (isset($case['victims'])) {
+            usort($case['victims'], array($this, "compareParticipatingVictims"));
+        }
+
         foreach ($caseManagerData as $key => $value) {
             if (!empty($value['username'])) {
                 $caseManagerList[$key]['name'] = $value['username'];
@@ -370,5 +374,64 @@ class RjCaseController extends Controller
         }
 
         return "true";
+    }
+
+    public function compareParticipatingVictims($a, $b) {
+        $mapping = array(
+            'Yes' => 1,
+            'No' => 0,
+        );
+
+        if (isset($mapping[$a['participating']])) {
+            if ($mapping[$a['participating']] === 'Yes' && isset($a['bestContact'])) {
+
+                $a = isset($mapping[$a['bestContact']]) ? $mapping[$a['participating']] + $mapping[$a['bestContact']] : $mapping[$a['participating']];
+            } else {
+                $a = $mapping[$a['participating']];
+            }
+        }
+
+        if (isset($mapping[$b['participating']])) {
+            if ($mapping[$b['participating']] === 1 && isset($b['bestContact'])) {
+
+                $b = isset($mapping[$b['bestContact']]) ? $mapping[$b['participating']] + $mapping[$b['bestContact']] : $mapping[$b['participating']];
+            } else {
+                $b = $mapping[$b['participating']];
+            }
+        }
+
+        if ($a == $b) {
+
+            return 0;
+        }
+
+        return ($a > $b) ? -1 : 1;
+    }
+
+    public function compareBestContactVictims($a, $b) {
+        $mapping = array(
+            'Yes' => 1,
+            'No' => 0,
+        );
+
+        if (isset($a['participating'])) {
+            if ($a['participating'] === 'No') {
+
+                return -1;
+            }
+        }
+
+        $isABestContact = isset($mapping[$a['bestContact']]) ? isset($mapping[$a['bestContact']]) : 0;
+        $isBBestContact = isset($mapping[$b['bestContact']]) ? isset($mapping[$b['bestContact']]) : 0;
+
+        $a = $isABestContact;
+        $b = $isBBestContact;
+
+        if ($a == $b) {
+
+            return 0;
+        }
+
+        return ($a > $b) ? -1 : 1;
     }
 }

@@ -107,6 +107,22 @@ class Victim extends Model
                     array('name' => 'Home', 'value' => 'Home')
                 ]
             ),
+            'participating' => array(
+                'name' => 'participating', 'type' => 'select', 'namePretty' => 'Participating', 'value' => "", 'clearfix' => "true",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Yes', 'value' => 'Yes'),
+                    array('name' => 'No', 'value' => 'No'),
+                ]
+            ),
+            'bestContact' => array(
+                'name' => 'bestContact', 'type' => 'select', 'namePretty' => 'Best to Contact', 'value' => "",
+                'options' => [
+                    array('name' => 'Select an option..', 'value' => ''),
+                    array('name' => 'Yes', 'value' => 'Yes'),
+                    array('name' => 'No', 'value' => 'No'),
+                ]
+            ),
             'comments' => array(
                 'name' => 'comments', 'type' => 'textarea', 'namePretty' => 'Comments', 'value' => ""
             ),
