@@ -379,8 +379,7 @@ class RjCaseController extends Controller
     public function compareParticipatingVictims($a, $b) {
         $mapping = array(
             'Yes' => 1,
-            'No' => 0,
-            '' => 0
+            'No' => 0
         );
 
         if (isset($mapping[$a['participating']])) {
@@ -390,6 +389,8 @@ class RjCaseController extends Controller
             } else {
                 $a = $mapping[$a['participating']];
             }
+        } else {
+            $a = 0;
         }
 
         if (isset($mapping[$b['participating']])) {
@@ -399,6 +400,8 @@ class RjCaseController extends Controller
             } else {
                 $b = $mapping[$b['participating']];
             }
+        } else {
+            $b = 0;
         }
 
         if ($a == $b) {
