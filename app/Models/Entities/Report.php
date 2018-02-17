@@ -13,6 +13,8 @@ class Report
             ),
             'relatedObjects' => array('offenders' => array(
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
+            ), 'victims' => array(
+                'fields' => array('id', 'firstName', 'lastName', 'participating', 'bestContact')
             ), 'notes' => array(
                 'fields' => array('rj_case_id', 'noteDate', 'noteContactType', 'noteContent')
             ), 'charges' => array(
@@ -33,15 +35,17 @@ class Report
             ),
             'relatedObjects' => array('offenders' => array(
                 'fields' => array('id', 'offenderId', 'firstName', 'lastName')
+            ), 'victims' => array(
+                'fields' => array('id', 'firstName', 'lastName', 'participating', 'bestContact')
             ), 'notes' => array(
                 'fields' => array('rj_case_id', 'noteDate', 'noteContactType', 'noteContent')
             ), 'charges' => array(
                 'fields' =>  array('id', 'charges')
             ), 'users' => array(
                 'fields' =>  array('id', 'name')
-            )),
+            ),
             'userName' => $data['userName']
-        );
+        ));
     }
 
 
@@ -133,7 +137,7 @@ class Report
                 array('filterType'=> 'date', 'filterName' => 'dateOfReferral', 'filterValues' => array($parsedDateRange['dateStart'], $parsedDateRange['dateEnd'])),
             ),
             'relatedObjects' => array('victims' => array(
-                'fields' => array('id', 'victimId', 'firstName', 'lastName', 'zipCode')
+                'fields' => array('id', 'victimId', 'firstName', 'lastName', 'zipCode', 'participating', 'bestContact')
             )),
             'userName' => $data['userName']
         );
@@ -151,7 +155,7 @@ class Report
             ), 'notes' => array(
                 'fields' => array('rj_case_id', 'noteDate', 'noteContactType', 'noteContent')
             ),'victims' => array(
-                'fields' => array('id', 'victimId', 'firstName', 'lastName', 'zipCode')
+                'fields' => array('id', 'victimId', 'firstName', 'lastName', 'zipCode', 'participating', 'bestContact')
             ), 'charges' => array(
                 'fields' =>  array('id', 'charges')
             )),

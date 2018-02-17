@@ -68,31 +68,69 @@ class ReportController extends Controller
                 unset($cases[$index]['id']);
             }
 
-            $cases[$index]['Victims'] = '';
+            $cases[$index]['Victim' . ' ' . 'First Name'] = '';
+            $cases[$index]['Victim' . ' ' . 'Last Name'] = '';
 
             if (isset($data['victims'])) {
-                foreach ($data['victims'] as $fields) {
-                    foreach ($fields as $fieldName => $fieldValue) {
-                        $cases[$index]['Victims'] =  isset($cases[$index]['Victims']) ? $cases[$index]['Victims'] . ' ' . $fieldValue : $fieldValue;
-                    }
+                $mainVictim = null;
+                $participatingVictims = array();
+                $bestToContactVictims = array();
 
-                    $cases[$index]['Victims'] = $cases[$index]['Victims'] . ' | ';
+                // check for participating victims
+                foreach ($data['victims'] as $victim) {
+                    if ($victim['Participating'] === 'Yes') {
+                        array_push($participatingVictims, $victim);
+                        break;
+                    }
                 }
+
+                // if participating victims, get the best to contact
+                if (count($participatingVictims) > 0) {
+                    foreach ($data['victims'] as $victim) {
+                        if ($victim['Best Contact'] === 'Yes') {
+                            array_push($bestToContactVictims, $victim);
+                            break;
+                        }
+                    }
+                }
+
+                if (count($bestToContactVictims) > 0) {
+                    $mainVictim = $bestToContactVictims[0];
+                } else if (count($participatingVictims) > 0) {
+                    $mainVictim = $participatingVictims[0];
+                } else {
+                    $mainVictim = isset($data['victims'][0]) ? $data['victims'][0] : null;
+                }
+
+                if ($mainVictim) {
+                    $cases[$index]['Victim' . ' ' . 'First Name'] = $mainVictim['First Name'];
+                    $cases[$index]['Victim' . ' ' . 'Last Name'] = $mainVictim['Last Name'];
+                } else {
+                    $cases[$index]['Victim' . ' ' . 'First Name'] = '';
+                    $cases[$index]['Victim' . ' ' . 'Last Name'] = '';
+                }
+
+
                 unset($cases[$index]['victims']);
             }
 
-            $cases[$index]['Offenders'] = '';
+            $cases[$index]['Offender' . ' ' . 'Id'] = '';
+            $cases[$index]['Offender' . ' ' . 'First Name'] = '';
+            $cases[$index]['Offender' . ' ' . 'Last Name'] = '';
 
             if (isset($data['offenders'])) {
-                foreach ($data['offenders'] as $fields) {
-                    foreach ($fields as $fieldName => $fieldValue) {
-                        if ($fieldName !== "pivot" && $fieldName !== "id") {
-                            $cases[$index]['Offenders'] = isset($cases[$index]['Offenders']) ? $cases[$index]['Offenders'] . ' ' . $fieldValue : $fieldValue;
-                        }
-                    }
+                $offender = isset($data['offenders'][0]) ? $data['offenders'][0] : null;
 
-                    $cases[$index]['Offenders'] = $cases[$index]['Offenders'] . ' | ';
+                if ($offender) {
+                    $cases[$index]['Offender' . ' ' . 'Id'] = $offender['Offender Id'];
+                    $cases[$index]['Offender' . ' ' . 'First Name'] = $offender['First Name'];
+                    $cases[$index]['Offender' . ' ' . 'Last Name'] = $offender['Last Name'];
+                } else {
+                    $cases[$index]['Offender' . ' ' . 'Id'] = '';
+                    $cases[$index]['Offender' . ' ' . 'First Name'] = '';
+                    $cases[$index]['Offender' . ' ' . 'Last Name'] = '';
                 }
+
                 unset($cases[$index]['offenders']);
             }
 
