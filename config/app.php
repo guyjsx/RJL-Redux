@@ -164,7 +164,6 @@ return [
         'Services\Note\NoteServiceServiceProvider',
         'Repositories\Report\ReportRepositoryServiceProvider',
         'Services\Report\ReportServiceServiceProvider',
-        'Maatwebsite\Excel\ExcelServiceProvider',
 
         /*
          * Application Service Providers...
