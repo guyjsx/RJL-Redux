@@ -11,7 +11,8 @@
     "php": ">=5.5.9",
     "laravel/framework": "^7.0",
     "laravelcollective/html": "^6.0",
-    "barryvdh/laravel-debugbar": "dev-master"
+    "barryvdh/laravel-debugbar": "dev-master",
+    "laravel/ui": "^2.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
